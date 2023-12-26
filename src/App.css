@@ -1,0 +1,44 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  position: relative;
+  height: 30px;
+    width: 50px;
+    border-radius: 10px;
+overflow: hidden;
+display: flex;
+flex-direction: row;
+justify-content: start;
+align-items: stretch;
+padding: 0;
+background: lightblue;
+text-align: center;
+}
+ 
+.progressBar {
+background: rgb(0, 255, 255);
+  background: linear-gradient(180deg, rgba(0, 255, 255, 1) 0%, rgb(0, 200, 200) 50%, rgb(1, 119, 119) 100%);
+  width: 0%
+}
+
+.previous-button {
+background: linear-gradient(180deg, rgba(0, 255, 255, 1) 0%, rgb(0, 200, 200) 50%, rgb(1, 119, 119) 100%);
+display: 'flex';
+justify-content: center;
+align-items: center;
+}
+
+.span{
+  position: absolute;
+  align-self: center;
+  left: 10px;
+  left: 50%;
+  transform: translate( -50%);
+}
