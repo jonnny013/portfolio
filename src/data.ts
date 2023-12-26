@@ -6,7 +6,7 @@ export const imgData: string[] = [
   'https://static.freemake.com/blog/wp-content/uploads/2014/09/best-pc-screensavers.jpg',
 ];
 
-export const projects = [
+export const projectData = [
   {
     title: 'Book App',
     project: 'GraphQL',

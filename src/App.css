@@ -5,6 +5,9 @@
   text-align: center;
   display: flex;
   justify-content: center;
+   --my-gradient: linear-gradient(to right, #765d23, #d6c591, #654d21);
+  --background-color1: linear-gradient(to right, #2c230c, #372b2b, #2a2a28);
+  --background-color2: white;
 }
 
 .buttons {
@@ -41,4 +44,285 @@ align-items: center;
   left: 10px;
   left: 50%;
   transform: translate( -50%);
+}
+
+html {
+  margin: 0;
+  font-size: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+header {
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    sans-serif;
+  align-items: center;
+  font-size: 2rem !important;
+  margin: 0;
+  color: white;
+  background: var(--my-gradient, gold);
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+
+.nav-link:visited {
+  color: white;
+}
+
+#header-link {
+  font-size: 3rem;
+  gap: 50px;
+  margin: auto;
+  padding: 10px;
+  width: auto;
+}
+
+nav {
+  background: var(--background-color1);
+  width: 100%;
+}
+
+main {
+  flex: 1;
+  height: auto;
+  margin: 0;
+  width: auto;
+  padding: 20px;
+  font-size: 1.5rem;
+  background-color: var(--background-color2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  bottom: 0;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  max-height: 50px;
+  background: var(--background-color1);
+  color: white;
+  gap: 30px;
+}
+.social-icons {
+  color: linen;
+  margin-left: 25px;
+  font-size: 30px;
+}
+
+.social-icons a {
+  text-decoration: none;
+  color: linen;
+}
+
+.social-icons a:visited {
+  color: linen;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.contactList {
+  font-size: 2rem;
+  width: 600px;
+  height: 300px;
+  display: flex;
+  margin: auto;
+}
+
+.contactList ul {
+  width: 550px;
+}
+
+.contactList li {
+  padding-top: 15px;
+}
+
+.contactList span {
+  justify-content: flex-end;
+  align-items: flex-end;
+  float: right;
+}
+
+.certificates {
+  width: auto;
+  height: auto;
+}
+
+/*only project boxes  below */
+
+
+
+.all-projects  {
+  width: 90%;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ind-projects {
+  border: 1px solid black;
+  width: 450px ;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+  margin: 0;
+  color: black;
+}
+
+.ind-projects::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.project-title {
+  text-align: center;
+  background: var(--my-gradient);
+  align-self: flex-start;
+  width: 100%;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+  margin: 0;
+  border-radius: 7px 7px 0 0;
+}
+
+.project-title a {
+  text-decoration: underline;
+  color: black;
+}
+
+.project-title a:visited {
+  color: black;
+}
+
+#mern-long-paragraph {
+  font-size: 1.5rem;
+  padding: 8px;
+}
+
+.ind-projects p {
+  padding: 15px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.7rem;
+  flex: 1;
+}
+
+.ind-projects .project-focus p {
+  font-weight: 600;
+  flex: 1;
+  margin: auto;
+  text-align: center;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: auto;
+  flex: 1;
+  text-align: center;
+}
+.icons i {
+  font-size: 4rem;
+}
+
+.html-icon,
+.css-icon,
+.js-icon,
+.bootstrap-icon,
+.mern-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  padding: 2px;
+}
+
+.ind-projects .icons p {
+  padding: 0;
+}
+
+#express-logo {
+  font-family: roboto;
+  font-size: 3rem;
+}
+
+
+
+/*Mobile device sizing */
+
+@media only screen and (max-width: 480px) {
+  #header-link {
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .cover::before,
+  .cover::after {
+    width: 50px;
+  }
+  .arrow-icon {
+    padding: 0px;
+    font-size: 30px;
+  }
+  .arrow-icon:hover {
+    font-size: 40px;
+  }
+  .all-projects {
+    height:auto + 50px;
+    width: 100%;
+  }
+  .ind-projects {
+    width: 300px;
+    height: 500px;
+  }
+  .swiper {
+    width: 300px;
+    height: 500px
+  }
+  #pageDescription {
+    display: none;
+  }
+  .icons {
+    gap: 5px;
+  }
+  .ind-projects p {
+    padding: 5px;
+  }
+  #express-logo{
+    font-size: 2.8rem;
+  }
 }

@@ -1,39 +1,41 @@
 import {motion} from 'framer-motion';
 import {useEffect, useState} from 'react';
+import { Project } from '../types';
+import Projects from './Projects';
 
-const Carousel = ({images}: {images: string[]}) => {
-  const [photoIndex, setPhotoIndex] = useState(1);
+const Carousel = ({projects}: {projects: Project[]}) => {
+  const [projectIndex, setProjectIndex] = useState(1);
   const [animationKey, setAnimationKey] = useState(0);
   const [time, setTime] = useState(5);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (photoIndex < images.length - 1) {
-        setPhotoIndex(photoIndex + 1);
+      if (projectIndex < projects.length - 1) {
+        setProjectIndex(projectIndex + 1);
       } else {
-        setPhotoIndex(0);
+        setProjectIndex(0);
       }
       setAnimationKey(animationKey + 1);
       setTime(5);
     }, time * 1000);
     return () => clearTimeout(timer);
-  }, [photoIndex, images]);
+  }, [projectIndex, projects]);
 
-  const nextPhoto = () => {
-    if (photoIndex < images.length - 1) {
-      setPhotoIndex(photoIndex + 1);
+  const nextProject = () => {
+    if (projectIndex < projects.length - 1) {
+      setProjectIndex(projectIndex + 1);
     } else {
-      setPhotoIndex(0);
+      setProjectIndex(0);
     }
     setAnimationKey(animationKey + 1);
     setTime(10);
   };
 
-  const prevPhoto = () => {
-    if (photoIndex > 0) {
-      setPhotoIndex(photoIndex - 1);
+  const prevProject = () => {
+    if (projectIndex > 0) {
+      setProjectIndex(projectIndex - 1);
     } else {
-      setPhotoIndex(images.length - 1);
+      setProjectIndex(projects.length - 1);
     }
     setAnimationKey(animationKey + 1);
     setTime(10);
@@ -41,27 +43,23 @@ const Carousel = ({images}: {images: string[]}) => {
 
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 10, margin: 0}}>
-      <button className='previous-button buttons' onClick={prevPhoto}>{`<`}</button>
+      <button className='previous-button buttons' onClick={prevProject}>{`<`}</button>
       <div
         style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5}}
       >
-        <div style={{width: 400, height: 400, objectFit: 'cover'}}>
-          {images.map((img: string, index: number) => {
+        
+          {projects.map((project: string, index: number) => {
             return (
-              <img
+              <Projects
                 key={index}
-                src={img}
-                alt={`image-${index}`}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  display: photoIndex !== index ? 'none' : 'block',
-                }}
+                project={project}
+                index={index}
+                projectIndex={projectIndex}
+                
               />
             );
           })}
-        </div>
+
         <div
           style={{
             height: 50,
@@ -73,23 +71,23 @@ const Carousel = ({images}: {images: string[]}) => {
             alignItems: 'center',
           }}
         >
-          {images.map((_a, index) => {
+          {projects.map((_a, index) => {
             return (
               <div
                 key={index}
                 style={{
                   height: 10,
                   width: 10,
-                  backgroundColor: index !== photoIndex ? 'black' : 'white',
+                  backgroundColor: index !== projectIndex ? 'black' : 'white',
                   borderRadius: 50,
                 }}
-                onClick={() => setPhotoIndex(index)}
+                onClick={() => setProjectIndex(index)}
               ></div>
             );
           })}
         </div>
       </div>
-      <button className='next-button buttons' onClick={nextPhoto}>
+      <button className='next-button buttons' onClick={nextProject}>
         <p className='span'>{`>`}</p>
         <motion.div
           className='progressBar'
