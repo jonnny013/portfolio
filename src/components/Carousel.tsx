@@ -7,6 +7,28 @@ const Carousel = ({projects}: {projects: Project[]}) => {
   const [projectIndex, setProjectIndex] = useState(1);
   const [animationKey, setAnimationKey] = useState(0);
   const [time, setTime] = useState(5);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  function handleTouchStart(e: React.TouchEvent) {
+    setTouchStart(e.targetTouches[0].clientX);
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }
+
+  function handleTouchEnd() {
+    if (touchStart - touchEnd > 100) {
+      // do your stuff here for left swipe
+      nextProject();
+    }
+
+    if (touchStart - touchEnd < -100) {
+      // do your stuff here for right swipe
+      prevProject();
+    }
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,6 +82,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
       <button className='previous-button buttons' onClick={prevProject}>{`<`}</button>
       <div
         style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5}}
+        onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
       >
         {projects.map((project: Project, index: number) => {
           return (

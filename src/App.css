@@ -308,6 +308,9 @@ h2 {
   #header-link {
     font-size: 1.7rem;
   }
+  .buttons {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 680px) {
