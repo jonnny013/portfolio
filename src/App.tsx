@@ -3,6 +3,7 @@ import { projectData} from './data';
 import './App.css';
 import Carousel from './components/Carousel';
 import { Project } from './types';
+import HeaderIndex from './components/Header/HeaderIndex';
 
 
 const App: React.FC = () => {
@@ -14,8 +15,8 @@ const App: React.FC = () => {
 
   return (
     <div>
-      
-    <Carousel projects={projects} />
+      <HeaderIndex />
+      <Carousel projects={projects} />
     </div>
   );
 };

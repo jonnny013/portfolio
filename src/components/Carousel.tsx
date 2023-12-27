@@ -1,6 +1,6 @@
 import {motion} from 'framer-motion';
 import {useEffect, useState} from 'react';
-import { Project } from '../types';
+import {Project} from '../types';
 import Projects from './Projects';
 
 const Carousel = ({projects}: {projects: Project[]}) => {
@@ -45,38 +45,34 @@ const Carousel = ({projects}: {projects: Project[]}) => {
     setProjectIndex(index);
     setAnimationKey(animationKey + 1);
     setTime(15);
-  }
+  };
 
   return (
-    <div style={{display: 'flex', alignItems: 'center', gap: 10, margin: 0}}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        margin: 0,
+        justifyContent: 'center',
+      }}
+    >
       <button className='previous-button buttons' onClick={prevProject}>{`<`}</button>
       <div
         style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5}}
       >
-        
-          {projects.map((project: Project, index: number) => {
-            return (
-              <Projects
-                key={index}
-                project={project}
-                index={index}
-                projectIndex={projectIndex}
-                
-              />
-            );
-          })}
+        {projects.map((project: Project, index: number) => {
+          return (
+            <Projects
+              key={index}
+              project={project}
+              index={index}
+              projectIndex={projectIndex}
+            />
+          );
+        })}
 
-        <div
-          style={{
-            height: 50,
-            width: 300,
-            backgroundColor: 'gray',
-            borderRadius: 10,
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-          }}
-        >
+        <div id='carouselPageBar' style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
           {projects.map((_a, index) => {
             return (
               <div
