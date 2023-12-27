@@ -28,7 +28,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
       setProjectIndex(0);
     }
     setAnimationKey(animationKey + 1);
-    setTime(10);
+    setTime(15);
   };
 
   const prevProject = () => {
@@ -38,8 +38,14 @@ const Carousel = ({projects}: {projects: Project[]}) => {
       setProjectIndex(projects.length - 1);
     }
     setAnimationKey(animationKey + 1);
-    setTime(10);
+    setTime(15);
   };
+
+  const BottomBarOnClick = (index: number) => {
+    setProjectIndex(index);
+    setAnimationKey(animationKey + 1);
+    setTime(15);
+  }
 
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 10, margin: 0}}>
@@ -48,7 +54,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
         style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5}}
       >
         
-          {projects.map((project: string, index: number) => {
+          {projects.map((project: Project, index: number) => {
             return (
               <Projects
                 key={index}
@@ -81,7 +87,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
                   backgroundColor: index !== projectIndex ? 'black' : 'white',
                   borderRadius: 50,
                 }}
-                onClick={() => setProjectIndex(index)}
+                onClick={() => BottomBarOnClick(index)}
               ></div>
             );
           })}

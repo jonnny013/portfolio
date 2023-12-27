@@ -1,7 +1,7 @@
 import React from 'react';
-import {imgData, projectData} from './data';
+import { projectData} from './data';
 import './App.css';
-import Carousel from './components/carousel';
+import Carousel from './components/Carousel';
 import { Project } from './types';
 
 
@@ -14,7 +14,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>My photos</h1>
+      
     <Carousel projects={projects} />
     </div>
   );

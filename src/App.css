@@ -189,7 +189,7 @@ h2 {
 
 .ind-projects {
   border: 1px solid black;
-  width: 450px ;
+  width: 420px ;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -225,7 +225,7 @@ h2 {
 }
 
 #mern-long-paragraph {
-  font-size: 1.5rem;
+  
   padding: 8px;
 }
 

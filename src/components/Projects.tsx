@@ -4,8 +4,7 @@ const Projects = ({project, index, projectIndex}: {project: Project, index: numb
   return (
     <div
       style={{
-        width: 400,
-        height: 400,
+
         objectFit: 'cover',
         display: projectIndex !== index ? 'none' : 'block',
         backgroundColor: '',
