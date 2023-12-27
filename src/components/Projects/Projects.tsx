@@ -1,10 +1,21 @@
-import { Project } from '../types';
+import {Project} from '../../types';
+import { renderIcon } from './Icons';
 
-const Projects = ({project, index, projectIndex}: {project: Project, index: number, projectIndex: number}) => {
+
+const Projects = ({
+  project,
+  index,
+  projectIndex,
+}: {
+  project: Project;
+  index: number;
+  projectIndex: number;
+}) => {
+  
+
   return (
     <div
       style={{
-
         objectFit: 'cover',
         display: projectIndex !== index ? 'none' : 'block',
         backgroundColor: '',
@@ -21,18 +32,9 @@ const Projects = ({project, index, projectIndex}: {project: Project, index: numb
         <div className='project-focus'>
           <p className='main-focus-paragraph'>Main focus:</p>
           <div className='icons'>
-            <div className='mern-icon'>
-              <p>Express</p>
-              <p id='express-logo'>Ex</p>
-            </div>
-            <div className='mern-icon'>
-              <p>React</p>
-              <i className='fa-brands fa-react' style={{color: '#61dbfb'}}></i>
-            </div>
-            <div className='mern-icon'>
-              <p>Node.Js</p>
-              <i className='fa-brands fa-node' style={{color: '#68a063'}}></i>
-            </div>
+            {Object.entries(project.skills).map(
+              ([skill, value]) => value && renderIcon(skill)
+            )}
           </div>
         </div>
       </div>

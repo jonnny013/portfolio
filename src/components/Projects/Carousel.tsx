@@ -1,6 +1,6 @@
 import {motion} from 'framer-motion';
 import {useEffect, useState} from 'react';
-import {Project} from '../types';
+import {Project} from '../../types';
 import Projects from './Projects';
 
 const Carousel = ({projects}: {projects: Project[]}) => {
@@ -82,7 +82,9 @@ const Carousel = ({projects}: {projects: Project[]}) => {
       <button className='previous-button buttons' onClick={prevProject}>{`<`}</button>
       <div
         style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5}}
-        onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {projects.map((project: Project, index: number) => {
           return (
@@ -95,7 +97,10 @@ const Carousel = ({projects}: {projects: Project[]}) => {
           );
         })}
 
-        <div id='carouselPageBar' style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+        <div
+          id='carouselPageBar'
+          style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}
+        >
           {projects.map((_a, index) => {
             return (
               <div

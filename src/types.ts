@@ -2,7 +2,7 @@ export interface Project {
   title: string;
   project: string;
   intro: string;
-  css: boolean;
+  skills: {css: boolean;
   html: boolean;
   node: boolean;
   react: boolean;
@@ -11,7 +11,7 @@ export interface Project {
   mongoDB: boolean;
   express: boolean;
   javascript: boolean;
-  typescript: boolean;
+  typescript: boolean;};
   website: string;
   sourceCode: string;
 }

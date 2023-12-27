@@ -7,13 +7,21 @@ const SocialIcons = () => {
         target='_blank'
         href='https://instagram.com/jonloveprogramming?igshid=OGQ5ZDc2ODk2ZA=='
       >
-        <Instagram color="purple" />
+        <Instagram
+          style={{
+            background:
+              'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
+            borderRadius: 10,
+            fontWeight: 0,
+          }}
+          color='rgba(255, 255, 255, 0.7)'
+        />
       </a>
       <a target='_blank' href='https://www.linkedin.com/in/jon-love-9b8342265/'>
-        <Linkedin />
+        <Linkedin color='#0077B5' />
       </a>
       <a target='_blank' href='https://github.com/jonnny013'>
-        <Github />
+        <Github color='#181717' />
       </a>
     </div>
   );
