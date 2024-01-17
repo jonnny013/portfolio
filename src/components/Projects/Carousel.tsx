@@ -20,12 +20,10 @@ const Carousel = ({projects}: {projects: Project[]}) => {
 
   function handleTouchEnd() {
     if (touchStart - touchEnd > 100) {
-      // do your stuff here for left swipe
       nextProject();
     }
 
     if (touchStart - touchEnd < -100) {
-      // do your stuff here for right swipe
       prevProject();
     }
   }

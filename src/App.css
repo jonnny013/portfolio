@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   --my-gradient: linear-gradient(to right, #765d23, #d6c591, #654d21);
+  --my-gradient2: linear-gradient(180deg, #765d23, #d6c591, #654d21);
   --background-color1: linear-gradient(to right, #2c230c, #372b2b, #2a2a28);
   --background-color2: white;
 }
@@ -155,28 +156,18 @@ h2 {
   justify-content: start;
   align-items: stretch;
   padding: 0;
-  background: lightblue;
+  background: #d6c591d1;
   text-align: center;
 }
 
 .progressBar {
   background: rgb(0, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 255, 255, 1) 0%,
-    rgb(0, 200, 200) 50%,
-    rgb(1, 119, 119) 100%
-  );
+  background: var(--my-gradient2);
   width: 0%;
 }
 
 .previous-button {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 255, 255, 1) 0%,
-    rgb(0, 200, 200) 50%,
-    rgb(1, 119, 119) 100%
-  );
+  background: var(--my-gradient2);
   display: 'flex';
   justify-content: center;
   align-items: center;
@@ -188,6 +179,7 @@ h2 {
   left: 10px;
   left: 50%;
   transform: translate(-50%);
+  background: none;
 }
 
 #carouselPageBar {

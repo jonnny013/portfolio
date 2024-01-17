@@ -33,7 +33,7 @@ const Projects = ({
           <p className='main-focus-paragraph'>Main focus:</p>
           <div className='icons'>
             {Object.entries(project.skills).map(
-              ([skill, value]) => value && renderIcon(skill)
+              ([skill, value], index) => value && renderIcon(skill, index)
             )}
           </div>
         </div>
