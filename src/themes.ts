@@ -1,6 +1,6 @@
 const themes = {
   fonts: {
-    fontSize: 16
+    standardFontSize: 16
   },
   colors: {
     headerColor: 'white'

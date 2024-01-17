@@ -16,6 +16,7 @@ function LinkTab(props: LinkTabProps) {
     <Tab
       component={Link}
       to={props.to || '/'}
+      style={{ fontSize: themes.fonts.standardFontSize }}
       aria-current={props.selected && 'page'}
       {...props}
     />
@@ -49,7 +50,7 @@ const NavTabs = () => {
         }}
         role='navigation'
       >
-        <LinkTab label='Projects' to='/' selected={value === 0} />
+        <LinkTab label='Projects'  to='/' selected={value === 0} />
         <LinkTab label='About Me' to='/about' selected={value === 1} />
         <LinkTab label='Contact' to='/contact' selected={value === 2} />
       </Tabs>
