@@ -29,7 +29,7 @@ header {
   align-items: center;
   font-size: 2rem !important;
   margin: 0;
-  color: white;
+  color: var(--background-color2);
   background: var(--my-gradient, gold);
   width: 100vw;
   text-align: center;
@@ -43,12 +43,12 @@ header {
 }
 
 .nav-link {
-  color: white;
+  color:  var(--background-color2);
   text-decoration: none;
 }
 
 .nav-link:visited {
-  color: white;
+  color:  var(--background-color2);
 }
 
 #header-link {
@@ -59,6 +59,7 @@ header {
   margin: auto;
   padding: 10px;
   width: auto;
+  border-bottom-color: var(--background-color2);
 }
 
 nav {

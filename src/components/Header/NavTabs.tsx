@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { Link, useLocation } from 'react-router-dom'
+import themes from '../../themes'
 
 interface LinkTabProps {
   label?: string
@@ -36,11 +37,16 @@ const NavTabs = () => {
   }
 
   return (
-    <Box >
+    <Box sx={{ typography: 'body1' }}>
       <Tabs
         value={value}
         onChange={handleChange}
         aria-label='nav tabs example'
+        textColor='inherit'
+        indicatorColor='primary'
+        sx={{
+          '& .MuiTabs-indicator': { backgroundColor: themes.colors.headerColor }, // Set the background color using sx
+        }}
         role='navigation'
       >
         <LinkTab label='Projects' to='/' selected={value === 0} />
