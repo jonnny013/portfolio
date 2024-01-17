@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 
 interface propTypes {
@@ -16,12 +15,7 @@ const styles = {
 
 const StandardFormBar = ({id, label, type, helperText}: propTypes) => {
   return (
-    <>
-      <Box
-        sx={{
-          '& > :not(style)': { m: 1, width: '55ch' },
-        }}
-      >
+      
         <TextField
           inputProps={styles.resize}
           InputLabelProps={styles.resize}
@@ -31,8 +25,6 @@ const StandardFormBar = ({id, label, type, helperText}: propTypes) => {
           type={type}
           helperText={helperText ? helperText : undefined}
         ></TextField>
-      </Box>
-    </>
   )
 }
 
