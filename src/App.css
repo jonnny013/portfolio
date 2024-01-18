@@ -109,7 +109,7 @@ footer {
 }
 
 .logo {
-  width: 150px;
+  width: 80px;
   height: auto;
   margin: 0;
 }
@@ -315,6 +315,9 @@ h2 {
   }
   #header-link {
     flex-direction: column;
+  }
+  .header {
+    font-size: 1.5em;
   }
   .arrow-icon {
     padding: 0px;
