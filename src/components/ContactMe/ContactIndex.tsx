@@ -28,11 +28,12 @@ const initialValues = {
 const ContactIndex = () => {
   const [notification, setNotification] = useState<string | null>(null)
 
-  const onSubmit = (values: ContactFormTypes) => {
+  const onSubmit = async (values: ContactFormTypes, { resetForm }: {resetForm: () => void}) => {
     console.log('Form submitted', values)
-    const task = contactFormPost(values)
+    const task = await contactFormPost(values)
     if (task) {
       setNotification(task)
+      resetForm()
     }
   }
 
