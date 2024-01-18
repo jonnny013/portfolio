@@ -1,19 +1,27 @@
 import TextField from '@mui/material/TextField'
+import themes from '../themes'
+import { useState } from 'react'
 
 interface propTypes {
   id: string
   label: string
   type: string
   helperText?: string | undefined
+  props?: {
+    multiline: boolean,
+    rows: number
+  }
 }
 
 const styles = {
   resize: {
-    style: {fontSize: 20}
+    style: {fontSize: themes.fonts.formTextSize}
   }
 }
 
-const StandardFormBar = ({id, label, type, helperText}: propTypes) => {
+const StandardFormBar = ({id, label, type, helperText, props}: propTypes) => {
+  const [text, setText] = useState<string | undefined>(undefined)
+  console.log('text',text)
   return (
       
         <TextField
@@ -24,6 +32,9 @@ const StandardFormBar = ({id, label, type, helperText}: propTypes) => {
           label={label}
           type={type}
           helperText={helperText ? helperText : undefined}
+          {...props}
+          value={text}
+          onChange={e => setText(e.target.value)}
         ></TextField>
   )
 }
