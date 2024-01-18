@@ -79,7 +79,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
     >
       <button className='previous-button buttons' onClick={prevProject}>{`<`}</button>
       <div
-        style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5}}
+        style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10}}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
