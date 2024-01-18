@@ -1,8 +1,9 @@
-import { ContactFormTypes } from "../../types"
-import ContactForm from "./ContactForm"
+import { ContactFormTypes } from '../../types'
+import ContactForm from './ContactForm'
 import { Formik } from 'formik'
-import contactFormPost from '../../services/contactService' 
+import contactFormPost from '../../services/contactService'
 import * as yup from 'yup'
+import { useState, useEffect } from 'react'
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -24,14 +25,23 @@ const initialValues = {
   message: '',
 }
 
-
-
 const ContactIndex = () => {
-const onSubmit = (values: ContactFormTypes) => {
-  // event.preventDefault()
-  console.log('Form submitted', values)
-  contactFormPost(values)
-}
+  const [notification, setNotification] = useState<string | null>(null)
+
+  const onSubmit = (values: ContactFormTypes) => {
+    console.log('Form submitted', values)
+    const task = contactFormPost(values)
+    if (task) {
+      setNotification(task)
+    }
+  }
+
+   useEffect(() => {
+     const timeoutId = setTimeout(() => {
+       setNotification(null)
+     }, 5000)
+     return () => clearTimeout(timeoutId)
+   }, [notification, setNotification])
 
   return (
     <Formik
@@ -39,7 +49,9 @@ const onSubmit = (values: ContactFormTypes) => {
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      {({ handleSubmit }) => <ContactForm onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => (
+        <ContactForm onSubmit={handleSubmit} notification={notification} />
+      )}
     </Formik>
   )
 }
