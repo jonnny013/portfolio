@@ -1,41 +1,43 @@
 import TextField from '@mui/material/TextField'
 import themes from '../themes'
-import { useState } from 'react'
+import { useField } from 'formik'
 
 interface propTypes {
   id: string
   label: string
   type: string
-  helperText?: string | undefined
   props?: {
-    multiline: boolean,
+    multiline: boolean
     rows: number
   }
 }
 
 const styles = {
   resize: {
-    style: {fontSize: themes.fonts.formTextSize}
+    style: { fontSize: themes.fonts.formTextSize },
+  },
+  helper: {
+    style: { fontSize: 15}
   }
 }
 
-const StandardFormBar = ({id, label, type, helperText, props}: propTypes) => {
-  const [text, setText] = useState<string | undefined>(undefined)
-  console.log('text',text)
+const StandardFormBar = ({ id, label, type, props }: propTypes) => {
+  const [field, meta] = useField(id)
+  const showError = meta.touched && meta.error
   return (
-      
-        <TextField
-          inputProps={styles.resize}
-          InputLabelProps={styles.resize}
-          variant='filled'
-          id={id}
-          label={label}
-          type={type}
-          helperText={helperText ? helperText : undefined}
-          {...props}
-          value={text}
-          onChange={e => setText(e.target.value)}
-        ></TextField>
+    <TextField
+      inputProps={styles.resize}
+      InputLabelProps={styles.resize}
+      FormHelperTextProps={styles.helper}
+      variant='filled'
+      id={id}
+      label={label}
+      type={type}
+      {...field}
+      error={showError ? true : false}
+      helperText={showError ? meta.error : undefined}
+      {...props}
+    ></TextField>
   )
 }
 

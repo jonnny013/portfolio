@@ -15,3 +15,10 @@ export interface Project {
   website: string;
   sourceCode: string;
 }
+
+export interface ContactFormTypes {
+  name: string
+  email: string
+  subject: string
+  message: string
+}

@@ -1,11 +1,6 @@
-interface props {
-  name: string,
-  email: string,
-  subject: string,
-  message: string
-}
+import { ContactFormTypes } from "../types"
 
-const contactFormPost = ({name, email, subject, message}: props) => {
+const contactFormPost = ({name, email, subject, message}: ContactFormTypes) => {
 
   console.log('Form to send', name, email, subject, message)
 }

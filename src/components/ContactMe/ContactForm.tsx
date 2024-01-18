@@ -1,15 +1,13 @@
 import Box from '@mui/material/Box'
 import StandardFormBar from '../StandardFormBar'
 import StandardButton from '../StandardButton'
-// import contactFormPost from '../../services/contactService' 
-const ContactForm = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log('Form submitted', event)
-    // contactFormPost()
-  }
+
+type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
+
+const ContactForm = ({onSubmit}: {onSubmit: FormSubmitHandler}) => {
+  
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <Box
         sx={{
           '& > :not(style)': {
