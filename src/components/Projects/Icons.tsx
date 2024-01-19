@@ -56,7 +56,7 @@ export const renderIcon = (skill: string, index: number) => {
       return (
         <div key={index} className='mern-icon'>
           <p>MongoDB</p>
-          <p>where is my icon??</p>
+          <img alt='MongoDB' src='../../../mongodbicon.png' style={{width: 30}} />
         </div>
       );
     case 'express':
