@@ -1,4 +1,4 @@
-import { ContactFormTypes } from "../types"
+import type { ContactFormTypes } from "../types"
 
 const contactFormPost = ({name, email, subject, message}: ContactFormTypes) => {
 

@@ -22,3 +22,8 @@ export interface ContactFormTypes {
   subject: string
   message: string
 }
+
+export interface LoginFormTypes {
+  username: string
+  password: string
+}
