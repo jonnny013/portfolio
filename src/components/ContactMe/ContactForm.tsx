@@ -2,12 +2,17 @@ import Box from '@mui/material/Box'
 import StandardFormBar from '../StandardFormBar'
 import StandardButton from '../StandardButton'
 import Alert from '@mui/material/Alert'
-import themes from '../../themes'
+import themes from '../../themes/themes'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
-const ContactForm = ({onSubmit, notification}: {onSubmit: FormSubmitHandler, notification: string | null}) => {
-  
+const ContactForm = ({
+  onSubmit,
+  notification,
+}: {
+  onSubmit: FormSubmitHandler
+  notification: string | null
+}) => {
   return (
     <form onSubmit={onSubmit}>
       <Box
@@ -22,7 +27,14 @@ const ContactForm = ({onSubmit, notification}: {onSubmit: FormSubmitHandler, not
         }}
         style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
       >
-        {notification && <Alert severity={notification === 'error' ? 'error' : 'success'} style={{fontSize: themes.fonts.formTextSize}}>{notification}</Alert>}
+        {notification && (
+          <Alert
+            severity={notification === 'error' ? 'error' : 'success'}
+            style={{ fontSize: themes.fonts.formTextSize }}
+          >
+            {notification}
+          </Alert>
+        )}
         <StandardFormBar id='name' label='Name' type='text' />
         <StandardFormBar id='email' label='Email' type='email' />
         <StandardFormBar id='subject' label='Subject' type='text' />
@@ -35,7 +47,11 @@ const ContactForm = ({onSubmit, notification}: {onSubmit: FormSubmitHandler, not
             rows: 8,
           }}
         />
-        <StandardButton text='Send Message' type='submit' disabled={notification ? true : false} />
+        <StandardButton
+          text='Send Message'
+          type='submit'
+          disabled={notification ? true : false}
+        />
       </Box>
     </form>
   )

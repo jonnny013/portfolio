@@ -1,8 +1,8 @@
-import React from 'react';
+import type React from 'react';
 import {projectData} from './data';
 import './App.css';
 import Carousel from './components/Projects/Carousel';
-import {Project} from './types';
+import type { Project } from './types';
 import HeaderIndex from './components/Header/HeaderIndex';
 import { Route, Routes } from 'react-router-dom';
 import ContactIndex from './components/ContactMe/ContactIndex';
@@ -19,8 +19,9 @@ const App: React.FC = () => {
       <HeaderIndex />
       <Routes>
         <Route path='/' element={<Carousel projects={projects} />} />
-        <Route path='contact' element={<ContactIndex /> } />
-        <Route path='about' element={<AboutIndex />} />
+        <Route path='/contact' element={<ContactIndex />} />
+        <Route path='/about' element={<AboutIndex />} />
+        <Route path='/settings' element={<AboutIndex />} />
       </Routes>
     </div>
   )

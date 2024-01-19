@@ -1,5 +1,5 @@
 import TextField from '@mui/material/TextField'
-import themes from '../themes'
+import themes from '../themes/themes'
 import { useField } from 'formik'
 
 interface propTypes {
@@ -17,8 +17,8 @@ const styles = {
     style: { fontSize: themes.fonts.formTextSize },
   },
   helper: {
-    style: { fontSize: 15}
-  }
+    style: { fontSize: 15 },
+  },
 }
 
 const StandardFormBar = ({ id, label, type, props }: propTypes) => {
