@@ -4,8 +4,9 @@ import MenuItem from '@mui/material/MenuItem'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import themes from '../../themes/themes'
 
-const SettingsTab = () => {
+const SettingsMenu = () => {
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -36,13 +37,25 @@ const SettingsTab = () => {
         MenuListProps={{
           'aria-labelledby': 'settings-menu',
         }}
+        sx={{
+          '& .MuiMenuItem-root': {
+            fontSize: themes.fonts.buttonFontSize,
+          },
+        }}
       >
+        <MenuItem
+          onClick={() => {
+            handleClose()
+            navigate('/admin')
+          }}
+        >
+          Admin
+        </MenuItem>
         <MenuItem onClick={handleClose}>Light/Dark</MenuItem>
         <MenuItem onClick={handleClose}>Language</MenuItem>
-        <MenuItem onClick={() => {handleClose(); navigate('/admin') }}>Admin</MenuItem>
       </Menu>
     </>
   )
 }
 
-export default SettingsTab
+export default SettingsMenu

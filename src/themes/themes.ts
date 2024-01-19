@@ -6,6 +6,14 @@ const themes = {
   },
   colors: {
     headerColor: 'white'
+  },
+  lightColors: {
+    background: 'white',
+    font: 'black'
+  },
+  darkColors: {
+    background: 'darkGray',
+    font: 'white'
   }
 }
 

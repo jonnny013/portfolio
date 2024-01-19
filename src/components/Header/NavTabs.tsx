@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { Link, useLocation } from 'react-router-dom'
 import themes from '../../themes/themes'
-import SettingsTab from './SettingsTab'
+import SettingsMenu from './SettingsMenu'
 
 interface LinkTabProps {
   label?: string
@@ -31,7 +31,7 @@ const NavTabs = () => {
   React.useEffect(() => {
     const paths = ['/', '/about', '/contact']
     const currentIndex = paths.findIndex(path => path === location.pathname)
-    setValue(currentIndex !== -1 ? currentIndex : 0)
+    setValue(currentIndex !== -1 ? currentIndex : -1)
   }, [location.pathname])
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -47,14 +47,14 @@ const NavTabs = () => {
         textColor='inherit'
         indicatorColor='primary'
         sx={{
-          '& .MuiTabs-indicator': { backgroundColor: themes.colors.headerColor }, // Set the background color using sx
+          '& .MuiTabs-indicator': { backgroundColor: themes.colors.headerColor },
         }}
         role='navigation'
       >
         <LinkTab label='Projects' to='/' selected={value === 0} />
         <LinkTab label='About Me' to='/about' selected={value === 1} />
         <LinkTab label='Contact' to='/contact' selected={value === 2} />
-        <SettingsTab />
+        <SettingsMenu />
       </Tabs>
     </Box>
   )
