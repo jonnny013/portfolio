@@ -36,7 +36,6 @@ const Carousel = () => {
   if (result.isLoading) {
     return <LoadingScreen />
   }
-  console.log(result.data)
 
   if (result) {
     if (result.data) {

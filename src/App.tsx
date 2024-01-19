@@ -4,19 +4,19 @@ import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material';
 import './themes/App.css';
 import Carousel from './components/Projects/Carousel';
-import type { Project } from './types';
 import HeaderIndex from './components/Header/HeaderIndex';
 import { Route, Routes } from 'react-router-dom';
 import ContactIndex from './components/ContactMe/ContactIndex';
 import AboutIndex from './components/AboutMe/AboutIndex';
 import AdminIndex from './components/Admin/AdminIndex'
-import { useState } from 'react';
+import { useContext } from 'react'
+import DarkModeContext from './contexts/darkContext'
 
 
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true)
-
+ const darkMode = useContext(DarkModeContext)?.[0]?.darkMode || false
+  console.log(darkMode)
   return (
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />

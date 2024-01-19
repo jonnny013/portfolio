@@ -5,8 +5,13 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import themes from '../../themes/themes'
+import { useContext } from 'react'
+import DarkModeContext from '../../contexts/darkContext'
+
 
 const SettingsMenu = () => {
+  const [, dispatch] = useContext(DarkModeContext) || [undefined, () => {}]
+
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -51,7 +56,14 @@ const SettingsMenu = () => {
         >
           Admin
         </MenuItem>
-        <MenuItem onClick={handleClose}>Light/Dark</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose()
+            dispatch({type: 'TOGGLE_DARK' })
+          }}
+        >
+          Light/Dark
+        </MenuItem>
         <MenuItem onClick={handleClose}>Language</MenuItem>
       </Menu>
     </>
