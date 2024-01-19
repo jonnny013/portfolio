@@ -1,5 +1,6 @@
 import type { Project } from '../../types';
 import { renderIcon } from './Icons';
+import { Typography } from '@mui/material';
 
 
 const Projects = ({
@@ -25,10 +26,10 @@ const Projects = ({
         <div className='project-title'>
           <h2>{project.title}</h2>
         </div>
-        <h3 className='projectName'>{project.project}</h3>
-        <p className='long-intro' id='mern-long-paragraph'>
+        <h1 className='projectName'>{project.project}</h1>
+        <Typography className='long-intro' id='mern-long-paragraph'>
           {project.intro}
-        </p>
+        </Typography>
         <div className='project-focus'>
           <p className='main-focus-paragraph'>Main focus:</p>
           <div className='icons'>
@@ -39,7 +40,7 @@ const Projects = ({
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default Projects;

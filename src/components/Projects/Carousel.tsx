@@ -1,71 +1,96 @@
-import {motion} from 'framer-motion';
-import {useEffect, useState} from 'react';
-import {Project} from '../../types';
-import Projects from './Projects';
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import type { Project } from '../../types'
+import Projects from './Projects'
+import { useQuery } from '@tanstack/react-query'
+import LoadingScreen from '../LoadingScreen'
+import { getProjects } from '../../services/projectsServices'
 
-const Carousel = ({projects}: {projects: Project[]}) => {
-  const [projectIndex, setProjectIndex] = useState(1);
-  const [animationKey, setAnimationKey] = useState(0);
-  const [time, setTime] = useState(5);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+const Carousel = () => {
+  const [projectIndex, setProjectIndex] = useState(1)
+  const [animationKey, setAnimationKey] = useState(0)
+  const [time, setTime] = useState(5)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
+  let projects: Project[] = []
 
-  function handleTouchStart(e: React.TouchEvent) {
-    setTouchStart(e.targetTouches[0].clientX);
-  }
-
-  function handleTouchMove(e: React.TouchEvent) {
-    setTouchEnd(e.targetTouches[0].clientX);
-  }
-
-  function handleTouchEnd() {
-    if (touchStart - touchEnd > 100) {
-      nextProject();
-    }
-
-    if (touchStart - touchEnd < -100) {
-      prevProject();
-    }
-  }
+  const result = useQuery({
+    queryKey: ['projects'],
+    queryFn: getProjects,
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (projectIndex < projects.length - 1) {
-        setProjectIndex(projectIndex + 1);
+        setProjectIndex(projectIndex + 1)
       } else {
-        setProjectIndex(0);
+        setProjectIndex(0)
       }
-      setAnimationKey(animationKey + 1);
-      setTime(5);
-    }, time * 1000);
-    return () => clearTimeout(timer);
-  }, [projectIndex, projects]);
+      setAnimationKey(animationKey + 1)
+      setTime(5)
+    }, time * 1000)
+    return () => clearTimeout(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectIndex, projects])
+
+  if (result.isLoading) {
+    return <LoadingScreen />
+  }
+  console.log(result.data)
+
+  if (result) {
+    if (result.data) {
+      projects = result.data
+    }
+  }
+
+  function handleTouchStart(e: React.TouchEvent) {
+    if (e.targetTouches[0]) {
+      setTouchStart(e.targetTouches[0].clientX)
+    }
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+   if (e.targetTouches[0]) {
+     setTouchEnd(e.targetTouches[0].clientX)
+   }
+  }
+
+  function handleTouchEnd() {
+    if (touchStart - touchEnd > 100) {
+      nextProject()
+    }
+
+    if (touchStart - touchEnd < -100) {
+      prevProject()
+    }
+  }
 
   const nextProject = () => {
     if (projectIndex < projects.length - 1) {
-      setProjectIndex(projectIndex + 1);
+      setProjectIndex(projectIndex + 1)
     } else {
-      setProjectIndex(0);
+      setProjectIndex(0)
     }
-    setAnimationKey(animationKey + 1);
-    setTime(15);
-  };
+    setAnimationKey(animationKey + 1)
+    setTime(15)
+  }
 
   const prevProject = () => {
     if (projectIndex > 0) {
-      setProjectIndex(projectIndex - 1);
+      setProjectIndex(projectIndex - 1)
     } else {
-      setProjectIndex(projects.length - 1);
+      setProjectIndex(projects.length - 1)
     }
-    setAnimationKey(animationKey + 1);
-    setTime(15);
-  };
+    setAnimationKey(animationKey + 1)
+    setTime(15)
+  }
 
   const BottomBarOnClick = (index: number) => {
-    setProjectIndex(index);
-    setAnimationKey(animationKey + 1);
-    setTime(15);
-  };
+    setProjectIndex(index)
+    setAnimationKey(animationKey + 1)
+    setTime(15)
+  }
 
   return (
     <div
@@ -79,7 +104,12 @@ const Carousel = ({projects}: {projects: Project[]}) => {
     >
       <button className='previous-button buttons' onClick={prevProject}>{`<`}</button>
       <div
-        style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10}}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 10,
+        }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -92,12 +122,16 @@ const Carousel = ({projects}: {projects: Project[]}) => {
               index={index}
               projectIndex={projectIndex}
             />
-          );
+          )
         })}
 
         <div
           id='carouselPageBar'
-          style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+          }}
         >
           {projects.map((_a, index) => {
             return (
@@ -111,7 +145,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
                 }}
                 onClick={() => BottomBarOnClick(index)}
               ></div>
-            );
+            )
           })}
         </div>
       </div>
@@ -132,7 +166,7 @@ const Carousel = ({projects}: {projects: Project[]}) => {
         />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Carousel;
+export default Carousel
