@@ -4,7 +4,6 @@ import Switch from '@mui/material/Switch'
 import { useContext } from 'react'
 import DarkModeContext from '../../contexts/darkContext'
 
-
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
@@ -53,9 +52,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }))
 
 const DarkModeSwitch = () => {
-  
-  const [{darkMode}, dispatch] = useContext(DarkModeContext)!
-  console.log(darkMode)
+  const [{ darkMode }, dispatch] = useContext(DarkModeContext)!
 
   const handleSwitchChange = () => {
     dispatch({ type: 'TOGGLE_DARK' })

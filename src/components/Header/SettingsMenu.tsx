@@ -8,7 +8,6 @@ import themes from '../../themes/themes'
 import DarkModeSwitch from './DarkModeSwitch'
 
 const SettingsMenu = () => {
-
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -53,7 +52,7 @@ const SettingsMenu = () => {
         >
           Admin
         </MenuItem>
-        <MenuItem >
+        <MenuItem>
           <DarkModeSwitch />
         </MenuItem>
         <MenuItem onClick={handleClose}>Language</MenuItem>
