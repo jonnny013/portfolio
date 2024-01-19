@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, createContext, useReducer } from 'react'
 
-type DarkModeAction = { type: 'TOGGLE_DARK' }
+ type DarkModeAction = { type: 'TOGGLE_DARK' }
 
  const darkModeReducer = (state: { darkMode: boolean }, action: DarkModeAction) => {
   switch (action.type) {
@@ -13,7 +13,7 @@ type DarkModeAction = { type: 'TOGGLE_DARK' }
 const initialState = {
   darkMode: false,
 }
-type DarkModeContextType = [
+export type DarkModeContextType = [
   state: { darkMode: boolean },
   dispatch: Dispatch<DarkModeAction>
 ]

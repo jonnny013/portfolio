@@ -16,7 +16,6 @@ import DarkModeContext from './contexts/darkContext'
 
 const App: React.FC = () => {
  const darkMode = useContext(DarkModeContext)?.[0]?.darkMode || false
-  console.log(darkMode)
   return (
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />
