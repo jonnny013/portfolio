@@ -20,15 +20,12 @@ import * as yup from 'yup'
        'URL is not valid'
      )
      .required('Please enter a valid website URL'),
-   sourceCode: yup.string().test('is-url', 'URL is not valid', function (value) {
-     if (!value) return true
-     try {
-       new URL(value)
-       return true
-     } catch (error) {
-       return false
-     }
-   }),
+   sourceCode: yup
+     .string()
+     .matches(
+       /^(https?:\/\/)?([a-zA-Z0-9_-]+\.){1,}[a-zA-Z]{2,}(:[0-9]+)?(\/[\w#]+)*\/?(\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/,
+       'URL is not valid'
+     ),
    skills: yup.object().test({
      name: 'areSkillsSelected',
      message: 'At least one skill must be selected',
