@@ -6,7 +6,7 @@ export const getProjects = () => {
   return projectData
 }
 
-export const addProject = ({project}: Project) => {
+export const addProject = (project: Project) => {
   console.log('Build a post to send:',project)
   return 'Return confirmation here'
 }

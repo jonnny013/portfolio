@@ -12,7 +12,6 @@ const Projects = ({
   index: number;
   projectIndex: number;
 }) => {
-  console.log(project)
 
   return (
     <div
