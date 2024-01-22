@@ -8,6 +8,7 @@ const AdminIndex = () => {
 
   return (
     <div>
+      <h2>What would you like to do?</h2>
       <ul>
         <li>add projects(form-POST)</li>
         <li>update projects(list-PUT)</li>

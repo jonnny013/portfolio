@@ -31,7 +31,7 @@ const NavTabs = () => {
   React.useEffect(() => {
     const paths = ['/', '/about', '/contact']
     const currentIndex = paths.findIndex(path => path === location.pathname)
-    setValue(currentIndex !== -1 ? currentIndex : -1)
+    setValue(currentIndex !== -1 ? currentIndex : 3)
   }, [location.pathname])
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {

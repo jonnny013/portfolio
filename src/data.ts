@@ -6,7 +6,7 @@ export const imgData: string[] = [
   'https://static.freemake.com/blog/wp-content/uploads/2014/09/best-pc-screensavers.jpg',
 ];
 
-export const projectData = [
+const projects = [
   {
     title: 'Book App',
     project: 'GraphQL',
@@ -116,3 +116,13 @@ export const projectData = [
     sourceCode: 'https://github.com/jonnny013/',
   },
 ];
+
+ const projectsWithId = () => {
+  const projectWithId = projects.map(project => ({
+    ...project,
+    id: Math.floor(Math.random() * 100000).toString(),
+  }))
+  return projectWithId
+}
+
+export const projectData = projectsWithId()

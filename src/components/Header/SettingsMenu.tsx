@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import themes from '../../themes/themes'
 import DarkModeSwitch from './DarkModeSwitch'
+import Divider from '@mui/material/Divider'
 
 const SettingsMenu = () => {
   const navigate = useNavigate()
@@ -52,6 +53,7 @@ const SettingsMenu = () => {
         >
           Admin
         </MenuItem>
+        <Divider variant='middle' component='li' />
         <MenuItem>
           <DarkModeSwitch />
         </MenuItem>
