@@ -4,6 +4,7 @@ import AddProjectForm from './AddProjectForm'
 import type { ProjectWithoutID } from '../../../../types'
 import { useState, useEffect } from 'react'
 import { addProject } from '../../../../services/projectsServices'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
 
 const re =
   /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm
@@ -52,15 +53,28 @@ const initialValues = {
 
 const AddProjectPage = () => {
   const [notification, setNotification] = useState<string | null>(null)
+  const queryClient = useQueryClient()
+  const newProjectMutation = useMutation({ mutationFn: addProject,
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['projects']})
+    setNotification('Your project has been added')
+  },
+  onError: (error) => {
+    setNotification(`Error: , ${error.message}`)
+  },
+  onMutate: () => {
+    setNotification('Please wait...')
+  }
+})
 
   const onSubmit = async (
     values: ProjectWithoutID,
     { resetForm }: { resetForm: () => void }
   ) => {
     console.log('Form submitted', values)
+    newProjectMutation.mutate(values)
     const task = await addProject(values)
     if (task) {
-      setNotification(task)
       resetForm()
     }
   }

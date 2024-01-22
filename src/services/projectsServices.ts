@@ -6,9 +6,12 @@ export const getProjects = () => {
   return projectData
 }
 
-export const addProject = (project: ProjectWithoutID) => {
+export const addProject = async (project: ProjectWithoutID): Promise<Project> => {
   console.log('Build a post to send:',project)
-  return 'Return confirmation here'
+  const projectWithId = {...project,
+    id: Math.floor(Math.random() * 100000).toString(),
+  }
+  return projectWithId
 }
 
 export const updateProject = (project: Project) => {
