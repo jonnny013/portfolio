@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { addProject } from '../../../../services/projectsServices'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from '../yupValidation'
+import { useNavigate } from 'react-router-dom'
 
 
 const initialValues = {
@@ -29,12 +30,16 @@ const initialValues = {
 }
 
 const AddProjectPage = () => {
+  const navigate = useNavigate()
   const [notification, setNotification] = useState<string | null>(null)
   const queryClient = useQueryClient()
   const newProjectMutation = useMutation({ mutationFn: addProject,
   onSuccess: () => {
     queryClient.invalidateQueries({ queryKey: ['projects']})
-    setNotification('Your project has been added')
+    setNotification('Your project has been added. Redirecting...')
+    setTimeout(() => {
+      navigate('/admin')
+    }, 4000)
   },
   onError: (error) => {
     setNotification(`Error: , ${error.message}`)

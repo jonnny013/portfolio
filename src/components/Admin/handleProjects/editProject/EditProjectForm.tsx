@@ -66,7 +66,7 @@ const EditProjectForm = ({
         </Alert>
       )}
       <StandardButton
-        text='Add project'
+        text='Update project'
         type='submit'
         disabled={notification ? true : false}
       />

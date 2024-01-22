@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getSingleProject } from '../../../../services/projectsServices'
 import { Formik } from 'formik'
 import type { Project } from '../../../../types'
@@ -11,6 +11,7 @@ import LoadingScreen from '../../../LoadingScreen'
 import Error from '../../../Error'
 
 const EditProjectFormikIndex = () => {
+  const navigate = useNavigate()
   const [notification, setNotification] = useState<string | null>(null)
   const params = useParams()
   let projectId: string
@@ -28,7 +29,10 @@ const EditProjectFormikIndex = () => {
     mutationFn: updateProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
-      setNotification('Your project has been added')
+      setNotification('Your project has been updated. Redirecting...')
+      setTimeout(() => {
+        navigate('/admin')
+      }, 4000)
     },
     onError: error => {
       setNotification(`Error: , ${error.message}`)
