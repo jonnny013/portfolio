@@ -17,6 +17,8 @@ export interface Project {
   sourceCode: string;
 }
 
+export type ProjectWithoutID = Omit<Project, 'id'>
+
 export interface ContactFormTypes {
   name: string
   email: string

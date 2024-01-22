@@ -11,11 +11,15 @@ import AboutIndex from './components/AboutMe/AboutIndex';
 import AdminIndex from './components/Admin/AdminIndex'
 import { useContext } from 'react'
 import DarkModeContext from './contexts/darkContext'
-
+import AddProjectPage from './components/Admin/handleProjects/AddProjectPage'
+import EditProjectPage from './components/Admin/handleProjects/EditProjectPage'
+import DeleteProjectPage from './components/Admin/handleProjects/DeleteProjectPage'
+import Unauthorized from './components/Unauthorized'
 
 
 const App: React.FC = () => {
  const darkMode = useContext(DarkModeContext)?.[0]?.darkMode || false
+ const user = true
   return (
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />
@@ -26,6 +30,18 @@ const App: React.FC = () => {
           <Route path='/contact' element={<ContactIndex />} />
           <Route path='/about' element={<AboutIndex />} />
           <Route path='/admin' element={<AdminIndex />} />
+          <Route
+            path='/addContent'
+            element={user ? <AddProjectPage /> : <Unauthorized />}
+          />
+          <Route
+            path='/editContent'
+            element={user ? <EditProjectPage /> : <Unauthorized />}
+          />
+          <Route
+            path='/deleteContent'
+            element={user ? <DeleteProjectPage /> : <Unauthorized />}
+          />
         </Routes>
       </div>
     </ThemeProvider>

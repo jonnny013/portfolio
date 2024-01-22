@@ -1,12 +1,12 @@
 import { projectData } from '../data'
-import type { Project } from '../types'
+import type { Project, ProjectWithoutID } from '../types'
 
 export const getProjects = () => {
   console.log("Get request")
   return projectData
 }
 
-export const addProject = (project: Project) => {
+export const addProject = (project: ProjectWithoutID) => {
   console.log('Build a post to send:',project)
   return 'Return confirmation here'
 }
