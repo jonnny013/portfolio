@@ -25,7 +25,6 @@ const DeleteProjectPage = () => {
     }
   }
 
-  console.log(projects)
   return (
     <div>
       <h1>Which project would you like to delete?</h1>

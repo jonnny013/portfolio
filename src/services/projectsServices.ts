@@ -31,7 +31,7 @@ export const updateProject = async (project: Project) => {
   return 'Return confirmation of put request here'
 }
 
-export const deleteProject = (project: Project) => {
-  console.log('use ID to delete project', project.id)
+export const deleteProject =  async (id: string) => {
+  console.log('use ID to delete project:', id)
   return "Project deleted or error  "
 }

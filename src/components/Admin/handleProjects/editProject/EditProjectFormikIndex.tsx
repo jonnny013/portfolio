@@ -22,7 +22,6 @@ const EditProjectFormikIndex = () => {
     queryKey: ['project'],
     queryFn: () => getSingleProject(projectId),
   })
-  console.log(result.data)
 
   const queryClient = useQueryClient()
   const updateProjectMutation = useMutation({
