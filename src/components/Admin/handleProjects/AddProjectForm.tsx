@@ -4,6 +4,7 @@ import StandardButton from '../../StandardButton'
 import Alert from '@mui/material/Alert'
 import themes from '../../../themes/themes'
 import StandardCheckBox from './StandardCheckBox'
+import SampleProject from './SampleProject'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
@@ -51,6 +52,16 @@ const AddProjectForm = ({
         <StandardFormBar id='website' label='Project URL' type='text' />
         <StandardFormBar id='sourceCode' label='Source Code URL' type='text' />
         <StandardCheckBox />
+        <h2>Preview:</h2>
+        <SampleProject />
+        {notification && (
+          <Alert
+            severity={notification === 'error' ? 'error' : 'success'}
+            style={{ fontSize: themes.fonts.formTextSize }}
+          >
+            {notification}
+          </Alert>
+        )}
         <StandardButton
           text='Add project'
           type='submit'

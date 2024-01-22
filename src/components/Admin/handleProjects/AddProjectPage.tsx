@@ -1,4 +1,4 @@
-import SampleProject from './SampleProject'
+
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import AddProjectForm from './AddProjectForm'
@@ -70,16 +70,16 @@ const AddProjectPage = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <h1>Add a new project</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit, handleChange }) => (
+        {({ handleSubmit }) => (
           <>
-            <AddProjectForm onSubmit={handleSubmit} notification={notification} handleChange={handleChange} />
-            <h2>Preview:</h2>
-            <SampleProject />
+            <AddProjectForm onSubmit={handleSubmit} notification={notification}  />
+
           </>
         )}
       </Formik>

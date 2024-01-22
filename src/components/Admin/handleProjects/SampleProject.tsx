@@ -21,7 +21,8 @@ if (!project) {
         backgroundColor: '',
         justifySelf: 'center',
         alignSelf: 'center',
-        margin: 'auto'
+        margin: 'auto',
+        marginBottom: 20
       }}
     >
       <div className='ind-projects'>

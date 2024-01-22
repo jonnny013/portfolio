@@ -43,7 +43,6 @@ const StandardCheckBox = () => {
   return (
     <Box>
       <FormControl
-        required
         error={showError ? true : false}
         component='fieldset'
         sx={{ m: 1 }}
@@ -56,7 +55,7 @@ const StandardCheckBox = () => {
           Choose project type {open ? <ExpandLess /> : <ExpandMore />}
         </FormLabel>
         <Divider />
-        <Collapse in={open} timeout='auto' unmountOnExit>
+        <Collapse in={open} timeout='auto' >
           <FormGroup
             sx={{
               width: '100%',
