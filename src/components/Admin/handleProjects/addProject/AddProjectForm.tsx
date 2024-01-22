@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box'
-import StandardFormBar from '../../StandardFormBar'
-import StandardButton from '../../StandardButton'
+import StandardFormBar from '../../../StandardFormBar'
+import StandardButton from '../../../StandardButton'
 import Alert from '@mui/material/Alert'
-import themes from '../../../themes/themes'
-import StandardCheckBox from './StandardCheckBox'
+import themes from '../../../../themes/themes'
+import StandardCheckBox from '../StandardCheckBox'
 import SampleProject from './SampleProject'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void

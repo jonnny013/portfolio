@@ -1,18 +1,17 @@
 import { useFormikContext } from 'formik'
-import { renderIcon } from '../../Projects/Icons'
+import { renderIcon } from '../../../Projects/Icons'
 import { Typography } from '@mui/material'
-import Error from '../../Error'
-import type {  ProjectWithoutID } from '../../../types'
+import Error from '../../../Error'
+import type { ProjectWithoutID } from '../../../../types'
 
 const SampleProject = () => {
-const formik = useFormikContext()
-const {values } = formik
-const project = values as ProjectWithoutID
+  const formik = useFormikContext()
+  const { values } = formik
+  const project = values as ProjectWithoutID
 
-
-if (!project) {
-  return <Error />
-}
+  if (!project) {
+    return <Error />
+  }
 
   return (
     <div
@@ -22,7 +21,7 @@ if (!project) {
         justifySelf: 'center',
         alignSelf: 'center',
         margin: 'auto',
-        marginBottom: 20
+        marginBottom: 20,
       }}
     >
       <div className='ind-projects'>

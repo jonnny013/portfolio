@@ -1,25 +1,24 @@
-import type React from 'react';
+import type React from 'react'
 import { materialUIThemeDark, materialUIThemeLight } from './themes/materialUI'
 import { ThemeProvider } from '@mui/material/styles'
-import { CssBaseline } from '@mui/material';
-import './themes/App.css';
-import Carousel from './components/Projects/Carousel';
-import HeaderIndex from './components/Header/HeaderIndex';
-import { Route, Routes } from 'react-router-dom';
-import ContactIndex from './components/ContactMe/ContactIndex';
-import AboutIndex from './components/AboutMe/AboutIndex';
+import { CssBaseline } from '@mui/material'
+import './themes/App.css'
+import Carousel from './components/Projects/Carousel'
+import HeaderIndex from './components/Header/HeaderIndex'
+import { Route, Routes } from 'react-router-dom'
+import ContactIndex from './components/ContactMe/ContactIndex'
+import AboutIndex from './components/AboutMe/AboutIndex'
 import AdminIndex from './components/Admin/AdminIndex'
 import { useContext } from 'react'
 import DarkModeContext from './contexts/darkContext'
-import AddProjectPage from './components/Admin/handleProjects/AddProjectPage'
+import AddProjectPage from './components/Admin/handleProjects/addProject/AddProjectPage'
 import EditProjectPage from './components/Admin/handleProjects/EditProjectPage'
 import DeleteProjectPage from './components/Admin/handleProjects/DeleteProjectPage'
 import Unauthorized from './components/Unauthorized'
 
-
 const App: React.FC = () => {
- const darkMode = useContext(DarkModeContext)?.[0]?.darkMode || false
- const user = true
+  const darkMode = useContext(DarkModeContext)?.[0]?.darkMode || false
+  const user = true
   return (
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />
@@ -46,6 +45,6 @@ const App: React.FC = () => {
       </div>
     </ThemeProvider>
   )
-};
+}
 
-export default App;
+export default App

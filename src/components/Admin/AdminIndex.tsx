@@ -7,8 +7,10 @@ import { Divider } from '@mui/material'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { useNavigate } from 'react-router-dom'
 
 const AdminIndex = () => {
+  const navigate = useNavigate()
   const user = true
 
   if (!user) return (
@@ -16,7 +18,14 @@ const AdminIndex = () => {
   )
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <h2>What would you like to do?</h2>
       <List
         sx={{
@@ -31,7 +40,7 @@ const AdminIndex = () => {
         component='ul'
         aria-labelledby='nested-list-subheader'
       >
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate('/addContent')}>
           <ListItemIcon>
             <ControlPointIcon />
           </ListItemIcon>
@@ -39,7 +48,7 @@ const AdminIndex = () => {
         </ListItemButton>
         <Divider variant='middle' component='li' />
 
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate('/editContent')}>
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>
@@ -47,7 +56,7 @@ const AdminIndex = () => {
         </ListItemButton>
         <Divider variant='middle' component='li' />
 
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate('/deleteContent')}>
           <ListItemIcon>
             <DeleteForeverIcon />
           </ListItemIcon>

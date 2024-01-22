@@ -1,14 +1,12 @@
-
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import AddProjectForm from './AddProjectForm'
-import type { ProjectWithoutID } from '../../../types'
+import type { ProjectWithoutID } from '../../../../types'
 import { useState, useEffect } from 'react'
-import {addProject} from '../../../services/projectsServices'
+import { addProject } from '../../../../services/projectsServices'
 
 const re =
   /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm
-
 
 const validationSchema = yup.object().shape({
   title: yup
@@ -24,23 +22,30 @@ const validationSchema = yup.object().shape({
     .min(10, 'Description must be 10 characters or more')
     .required('Description is required'),
   website: yup.string().matches(re, 'URL is not valid').required('Please enter website'),
-  sourceCode: yup.string().matches(re, 'URL is not valid')
+  sourceCode: yup.string().matches(re, 'URL is not valid'),
+  skills: yup.object().test({
+    name: 'areSkillsSelected',
+    message: 'At least one skill must be selected',
+    test: skills => Object.values(skills).some(value => value === true),
+  }),
 })
 
 const initialValues = {
   title: '',
   project: '',
   intro: '',
-  skills: {css: false,
-  html: false,
-  node: false,
-  react: false,
-  bootstrap: false,
-  materialUI: false,
-  mongoDB: false,
-  express: false,
-  javascript: false,
-  typescript: false,},
+  skills: {
+    css: false,
+    html: false,
+    node: false,
+    react: false,
+    bootstrap: false,
+    materialUI: false,
+    mongoDB: false,
+    express: false,
+    javascript: false,
+    typescript: false,
+  },
   website: '',
   sourceCode: '',
 }
@@ -67,7 +72,6 @@ const AddProjectPage = () => {
     return () => clearTimeout(timeoutId)
   }, [notification, setNotification])
 
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <h1>Add a new project</h1>
@@ -78,8 +82,7 @@ const AddProjectPage = () => {
       >
         {({ handleSubmit }) => (
           <>
-            <AddProjectForm onSubmit={handleSubmit} notification={notification}  />
-
+            <AddProjectForm onSubmit={handleSubmit} notification={notification} />
           </>
         )}
       </Formik>

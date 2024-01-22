@@ -17,7 +17,7 @@ const styles = {
     style: { fontSize: themes.fonts.formTextSize },
   },
   helper: {
-    style: { fontSize: 15 },
+    style: { fontSize: themes.fonts.helperFont },
   },
 }
 

@@ -11,6 +11,7 @@ import type { ProjectWithoutID } from '../../../types'
 import { useState } from 'react'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+import themes from '../../../themes/themes'
 
 
 const StandardCheckBox = () => {
@@ -78,7 +79,7 @@ const StandardCheckBox = () => {
           </FormGroup>
         </Collapse>
       </FormControl>
-      <FormHelperText>{showError ? meta.error : undefined}</FormHelperText>
+      <FormHelperText style={{fontSize: themes.fonts.helperFont, textAlign: 'center', color: 'red'}}>{showError ? meta.error : undefined}</FormHelperText>
     </Box>
   )
 }
