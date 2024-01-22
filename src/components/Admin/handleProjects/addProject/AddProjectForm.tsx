@@ -17,57 +17,60 @@ const AddProjectForm = ({
 }) => {
   return (
     <form onSubmit={onSubmit}>
-      <Box
-        sx={{
-          '& > :not(style)': {
-            m: 1,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: '80%',
-            maxWidth: 400,
-          },
-        }}
-        style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
+      <div
+        id='addProjectContainer'
       >
-        {notification && (
-          <Alert
-            severity={notification === 'error' ? 'error' : 'success'}
-            style={{ fontSize: themes.fonts.formTextSize }}
-          >
-            {notification}
-          </Alert>
-        )}
-        <StandardFormBar id='title' label='Title' type='text' />
-        <StandardFormBar id='project' label='Project Name' type='text' />
-        <StandardFormBar
-          id='intro'
-          label='Description'
-          type='text'
-          props={{
-            multiline: true,
-            rows: 8,
+        <Box
+          sx={{
+            '& > :not(style)': {
+              m: 1,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: '80%',
+              maxWidth: 400,
+            },
           }}
-        />
+          style={{  flexDirection: 'column', margin: 'auto' }}
+        >
+          {notification && (
+            <Alert
+              severity={notification === 'error' ? 'error' : 'success'}
+              style={{ fontSize: themes.fonts.formTextSize }}
+            >
+              {notification}
+            </Alert>
+          )}
+          <StandardFormBar id='title' label='Title' type='text' />
+          <StandardFormBar id='project' label='Project Name' type='text' />
+          <StandardFormBar
+            id='intro'
+            label='Description'
+            type='text'
+            props={{
+              multiline: true,
+              rows: 8,
+            }}
+          />
 
-        <StandardFormBar id='website' label='Project URL' type='text' />
-        <StandardFormBar id='sourceCode' label='Source Code URL' type='text' />
-        <StandardCheckBox />
-        <h2>Preview:</h2>
+          <StandardFormBar id='website' label='Project URL' type='text' />
+          <StandardFormBar id='sourceCode' label='Source Code URL' type='text' />
+          <StandardCheckBox />
+        </Box>
         <SampleProject />
-        {notification && (
-          <Alert
-            severity={notification === 'error' ? 'error' : 'success'}
-            style={{ fontSize: themes.fonts.formTextSize }}
-          >
-            {notification}
-          </Alert>
-        )}
-        <StandardButton
-          text='Add project'
-          type='submit'
-          disabled={notification ? true : false}
-        />
-      </Box>
+      </div>
+      {notification && (
+        <Alert
+          severity={notification === 'error' ? 'error' : 'success'}
+          style={{ fontSize: themes.fonts.formTextSize }}
+        >
+          {notification}
+        </Alert>
+      )}
+      <StandardButton
+        text='Add project'
+        type='submit'
+        disabled={notification ? true : false}
+      />
     </form>
   )
 }

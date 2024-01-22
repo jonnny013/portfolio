@@ -18,12 +18,10 @@ const SampleProject = () => {
       style={{
         objectFit: 'cover',
         backgroundColor: '',
-        justifySelf: 'center',
-        alignSelf: 'center',
-        margin: 'auto',
-        marginBottom: 20,
+        margin: 10,
       }}
     >
+      <h1 style={{ margin: 5 }}>Preview:</h1>
       <div className='ind-projects'>
         <div className='project-title'>
           <h2>{project.title}</h2>

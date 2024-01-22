@@ -27,7 +27,7 @@ const StandardCheckBox = () => {
 
   const [field, meta] = useField('skills')
   const showError = meta.touched && meta.error
-
+  console.log('field',field)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     field.onChange({
@@ -56,7 +56,7 @@ const StandardCheckBox = () => {
           Choose project type {open ? <ExpandLess /> : <ExpandMore />}
         </FormLabel>
         <Divider />
-        <Collapse in={open} timeout='auto' >
+        <Collapse in={open} timeout='auto'>
           <FormGroup
             sx={{
               width: '100%',
@@ -71,7 +71,13 @@ const StandardCheckBox = () => {
             {skillKeys.map(skill => (
               <FormControlLabel
                 key={skill}
-                control={<Checkbox onChange={handleChange} name={skill} />}
+                control={
+                  <Checkbox
+                    onChange={handleChange}
+                    checked={field.value[skill] || false}
+                    name={skill}
+                  />
+                }
                 label={skill}
                 componentsProps={{ typography: { variant: 'h4' } }}
               />
@@ -79,7 +85,11 @@ const StandardCheckBox = () => {
           </FormGroup>
         </Collapse>
       </FormControl>
-      <FormHelperText style={{fontSize: themes.fonts.helperFont, textAlign: 'center', color: 'red'}}>{showError ? meta.error : undefined}</FormHelperText>
+      <FormHelperText
+        style={{ fontSize: themes.fonts.helperFont, textAlign: 'center', color: 'red' }}
+      >
+        {showError ? meta.error : undefined}
+      </FormHelperText>
     </Box>
   )
 }
