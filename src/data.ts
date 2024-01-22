@@ -11,7 +11,7 @@ const projects = [
     title: 'Book App',
     project: 'GraphQL',
     intro:
-      "This project is from University of Helsinki's fullstack open course. I made it using the MERN stack and used GraphQL for data storage. I usedbootstrap for the CSS. This project includes the use of websockets.",
+      "This project is from University of Helsinki's fullstack open course. I made it using the MERN stack and used GraphQL for data storage. I used bootstrap for the CSS. This project includes the use of websockets.",
     skills: {css: false,
     html: false,
     node: true,
@@ -118,9 +118,10 @@ const projects = [
 ];
 
  const projectsWithId = () => {
-  const projectWithId = projects.map(project => ({
+
+  const projectWithId = projects.map((project, index) => ({
     ...project,
-    id: Math.floor(Math.random() * 100000).toString(),
+    id: index.toString()
   }))
   return projectWithId
 }

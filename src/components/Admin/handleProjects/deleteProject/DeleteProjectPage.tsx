@@ -42,7 +42,7 @@ const DeleteProjectPage = () => {
         {projects.map(project => (
           <ListItemButton
             key={project.id}
-            onClick={() => navigate(`/editContent/${project.id}`)}
+            onClick={() => navigate(`/deleteContent/${project.id}`)}
           >
             <ListItem>
               {project.project} - {project.title}

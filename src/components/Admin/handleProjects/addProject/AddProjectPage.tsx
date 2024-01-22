@@ -1,35 +1,12 @@
 import { Formik } from 'formik'
-import * as yup from 'yup'
+
 import AddProjectForm from './AddProjectForm'
 import type { ProjectWithoutID } from '../../../../types'
 import { useState, useEffect } from 'react'
 import { addProject } from '../../../../services/projectsServices'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
+import validationSchema from '../yupValidation'
 
-const re =
-  /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm
-
-const validationSchema = yup.object().shape({
-  title: yup
-    .string()
-    .min(3, 'Title must be 3 characters or more')
-    .required('Title is required'),
-  project: yup
-    .string()
-    .min(3, 'Project must be 3 characters or more')
-    .required('Project is required'),
-  intro: yup
-    .string()
-    .min(10, 'Description must be 10 characters or more')
-    .required('Description is required'),
-  website: yup.string().matches(re, 'URL is not valid').required('Please enter website'),
-  sourceCode: yup.string().matches(re, 'URL is not valid'),
-  skills: yup.object().test({
-    name: 'areSkillsSelected',
-    message: 'At least one skill must be selected',
-    test: skills => Object.values(skills).some(value => value === true),
-  }),
-})
 
 const initialValues = {
   title: '',

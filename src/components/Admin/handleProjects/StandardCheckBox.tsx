@@ -27,7 +27,6 @@ const StandardCheckBox = () => {
 
   const [field, meta] = useField('skills')
   const showError = meta.touched && meta.error
-  console.log('field',field)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     field.onChange({

@@ -15,7 +15,7 @@ import AddProjectPage from './components/Admin/handleProjects/addProject/AddProj
 import EditProjectPage from './components/Admin/handleProjects/editProject/EditProjectPage'
 import DeleteProjectPage from './components/Admin/handleProjects/deleteProject/DeleteProjectPage'
 import Unauthorized from './components/Unauthorized'
-import EditProjectForm from './components/Admin/handleProjects/editProject/EditProjectForm'
+import EditProjectFormikIndex from './components/Admin/handleProjects/editProject/EditProjectFormikIndex'
 import DeletionVerificationForm from './components/Admin/handleProjects/deleteProject/DeletionVerificationForm'
 
 const PrivateRoute = ({ element }: { element: JSX.Element }) => {
@@ -46,7 +46,7 @@ const App: React.FC = () => {
           />
           <Route
             path='/editContent/:id'
-            element={<PrivateRoute element={<EditProjectForm />} />}
+            element={<PrivateRoute element={<EditProjectFormikIndex />} />}
           />
           <Route
             path='/deleteContent'

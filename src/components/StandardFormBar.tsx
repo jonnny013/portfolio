@@ -14,7 +14,7 @@ interface propTypes {
 
 const styles = {
   resize: {
-    style: { fontSize: themes.fonts.formTextSize },
+    style: { fontSize: themes.fonts.formTextSize, lineHeight: 1.3  },
   },
   helper: {
     style: { fontSize: themes.fonts.helperFont },
@@ -37,6 +37,7 @@ const StandardFormBar = ({ id, label, type, props }: propTypes) => {
       error={showError ? true : false}
       helperText={showError ? meta.error : undefined}
       {...props}
+      
     ></TextField>
   )
 }

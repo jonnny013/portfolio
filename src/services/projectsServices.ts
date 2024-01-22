@@ -6,6 +6,15 @@ export const getProjects = () => {
   return projectData
 }
 
+export const  getSingleProject = async (id: string): Promise<Project | undefined> => {
+
+  const project = projectData.find(a => a.id.toString() === id)
+  if (project === undefined) {
+    throw new Error('Failed to find project')
+  }
+  return project
+}
+
 export const addProject = async (project: ProjectWithoutID): Promise<Project> => {
   console.log('Build a post to send:',project)
   const projectWithId = {...project,
@@ -14,7 +23,7 @@ export const addProject = async (project: ProjectWithoutID): Promise<Project> =>
   return projectWithId
 }
 
-export const updateProject = (project: Project) => {
+export const updateProject = async (project: Project) => {
   if (typeof project.id === 'string') {
     console.log('use ID to make put request', project.id)
   }
