@@ -3,6 +3,7 @@ import { renderIcon } from '../../../Projects/Icons'
 import { Typography } from '@mui/material'
 import Error from '../../../Error'
 import type { ProjectWithoutID } from '../../../../types'
+import ProjectLinks from '../../../Projects/ProjectLinks'
 
 const SampleProject = () => {
   const formik = useFormikContext()
@@ -37,6 +38,7 @@ const SampleProject = () => {
               ([skill, value], index) => value && renderIcon(skill, index)
             )}
           </div>
+          <ProjectLinks projectURL={project.website} sourceURL={project.sourceCode} />
         </div>
       </div>
     </div>

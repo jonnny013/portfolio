@@ -2,6 +2,7 @@ import { renderIcon } from '../../../Projects/Icons'
 import { Typography } from '@mui/material'
 import Error from '../../../Error'
 import type { Project } from '../../../../types'
+import ProjectLinks from '../../../Projects/ProjectLinks'
 
 const SampleProject = ({project}: {project: Project} ) => {
 
@@ -32,6 +33,7 @@ const SampleProject = ({project}: {project: Project} ) => {
               ([skill, value], index) => value && renderIcon(skill, index)
             )}
           </div>
+          <ProjectLinks projectURL={project.website} sourceURL={project.sourceCode} />
         </div>
       </div>
     </div>
