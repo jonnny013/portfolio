@@ -62,6 +62,15 @@ const AdminIndex = () => {
           </ListItemIcon>
           <ListItemText primary='Delete a project' />
         </ListItemButton>
+        <Divider variant='middle' component='li' />
+
+        <ListItemButton onClick={() => navigate('/aboutMeAdminPage')}>
+          <ListItemIcon>
+            <DeleteForeverIcon />
+          </ListItemIcon>
+          <ListItemText primary='Delete a project' />
+        </ListItemButton>
+        <Divider variant='middle' component='li' />
       </List>
     </div>
   )
