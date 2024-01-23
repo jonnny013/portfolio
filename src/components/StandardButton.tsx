@@ -11,18 +11,20 @@ export default function StandardButton({
   type,
   disabled,
   buttonColor,
-  onClick
+  onClick,
+  style,
 }: {
   text: string
   type: button
-  disabled?: boolean 
-  buttonColor?: color 
+  disabled?: boolean
+  buttonColor?: color
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
+  style?: React.CSSProperties
 }) {
   return (
     <Button
       variant='contained'
-      style={{ fontSize: themes.fonts.buttonFontSize }}
+      style={{ fontSize: themes.fonts.buttonFontSize, ...style }}
       type={type}
       disabled={disabled ? disabled : false}
       onClick={onClick ? onClick : undefined}

@@ -6,19 +6,29 @@ interface props {
   sourceURL?: string | null | undefined
 }
 
+const styles = {
+  margin: 10,
+}
+
 const ProjectLinks = ({projectURL, sourceURL}: props) => {
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
       <StandardButton
         text='Project'
         type='button'
         onClick={() => window.open(projectURL, '_blank')}
+        style={styles}
       />
       <StandardButton
         text='Source'
         type='button'
+        style={styles}
         disabled={sourceURL ? false : true}
-        onClick={() => window.open(sourceURL, '_blank')}
+        onClick={() => {
+          if (sourceURL) {
+            window.open(sourceURL, '_blank')
+          }
+        }}
       />
     </div>
   )

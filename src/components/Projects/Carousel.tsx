@@ -18,6 +18,7 @@ const Carousel = () => {
   const result = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
+    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {
@@ -43,7 +44,6 @@ const Carousel = () => {
 
   if (result) {
     if (result.data) {
-      console.log(result)
       projects = result.data
     }
   }
