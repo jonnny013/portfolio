@@ -3,7 +3,8 @@ const themes = {
     standardFontSize: 16,
     formTextSize: 20,
     buttonFontSize: 16,
-    helperFont: 16
+    helperFont: 16,
+    title: 22
   },
   colors: {
     headerColor: 'white'
