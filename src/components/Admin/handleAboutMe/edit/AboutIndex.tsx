@@ -20,8 +20,10 @@ const styles: Styles = {
 
 const AboutIndex = ({
   setNotification,
+  notification
 }: {
-  setNotification: React.Dispatch<React.SetStateAction<string | undefined>>
+  setNotification: React.Dispatch<React.SetStateAction<string | undefined>>,
+  notification: string | null
 }) => {
   let infoCards: AboutMe[] = []
 
@@ -46,7 +48,7 @@ const AboutIndex = ({
   return (
     <div style={styles.container}>
       {infoCards.map((card: AboutMe) => (
-        <InfoCards card={card} key={card.id} setNotification={setNotification} />
+        <InfoCards card={card} key={card.id} setNotification={setNotification} notification={notification} />
       ))}
     </div>
   )

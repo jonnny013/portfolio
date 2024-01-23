@@ -1,49 +1,59 @@
 import { Dialog, DialogTitle } from '@mui/material'
 import type { AboutMe } from '../../../../types'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
-import { CardActionArea } from '@mui/material'
-import themes from '../../../../themes/themes'
+import FormikBaseIndex from '../../FormikBaseIndex'
+import validationSchema from '../yupValidation'
+import AddAboutMeForm from '../AddAboutMeForm'
+import { updateAboutMe } from '../../../../services/aboutMeServices'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
 
 interface props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   open: boolean
   card: AboutMe
+  setNotification: React.Dispatch<React.SetStateAction<string | undefined>>
+  notification: string | undefined
 }
 
-const DialogComponent = ({ setOpen, open, card }: props) => {
+const DialogComponent = ({ setOpen, open, card, setNotification, notification }: props) => {
   const handleClose = () => {
     setOpen(false)
   }
+   const queryClient = useQueryClient()
+   const updateProjectMutation = useMutation({
+     mutationFn: updateAboutMe,
+     onSuccess: () => {
+       queryClient.invalidateQueries({ queryKey: ['projects'] })
+       setNotification('Your post has been updated. ')
+       setTimeout(() => {
+        setOpen(false)
+       }, 4000)
+     },
+     onError: error => {
+       setNotification(`Error: , ${error.message}`)
+     },
+     onMutate: () => {
+       setNotification('Please wait...')
+     },
+   })
+
+   const onSubmit = async (values: AboutMe) => {
+     console.log('Form submitted', values)
+     await updateProjectMutation.mutate(values)
+   
+   }
 
   return (
     <Dialog onClose={handleClose} open={open} fullWidth maxWidth='xl' scroll='body'>
-      <CardActionArea onClick={() => setOpen(!open)}>
-        <DialogTitle sx={{ fontSize: themes.fonts.title, fontWeight: 800, padding: 1 }}>
-          {card.name}
-        </DialogTitle>
-        <Card
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
-          <img
-            id='aboutMeImg'
-            src={card.picture as string}
-            alt={card.picDesc}
-          />
-          <CardContent>
-            <Typography variant='h4' color='text.secondary'>
-              {card.description}
-            </Typography>
-          </CardContent>
-        </Card>
-      </CardActionArea>
+      <DialogTitle>Edit information here</DialogTitle>
+      <FormikBaseIndex
+        initialValues={card}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        formComponent={AddAboutMeForm}
+        picturePreview={card.picture}
+        notification={notification}
+      />
     </Dialog>
   )
 }

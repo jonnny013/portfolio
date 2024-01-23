@@ -11,9 +11,11 @@ type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) 
 const AddAboutMeForm = ({
   onSubmit,
   notification,
+  picturePreview,
 }: {
   onSubmit: FormSubmitHandler
   notification: string | null
+  picturePreview?: string | HTMLImageElement | File
 }) => {
   const [picture, setPicture] = useState<null | ArrayBuffer | string>('')
   return (
@@ -28,7 +30,13 @@ const AddAboutMeForm = ({
             maxWidth: 400,
           },
         }}
-        style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          margin: 'auto',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
         {notification && (
           <Alert
@@ -52,24 +60,22 @@ const AddAboutMeForm = ({
         <PictureInput id='picture' type='file' setPicture={setPicture} />
         {picture && typeof picture === 'string' && (
           <>
-            <h1>Picture preview:</h1>
+            <h1 style={{ textAlign: 'center' }}>Picture preview:</h1>
             <img src={picture} style={{ maxWidth: 200 }} />
           </>
         )}
+        {picturePreview && typeof picturePreview === 'string' && (
+          <>
+            <h1 style={{ textAlign: 'center' }}>Original preview:</h1>
+            <img src={picturePreview} style={{ maxWidth: 200 }} />
+          </>
+        )}
+        <StandardButton
+          text='Add About Me '
+          type='submit'
+          disabled={notification ? true : false}
+        />
       </Box>
-      {notification && (
-        <Alert
-          severity={notification === 'error' ? 'error' : 'success'}
-          style={{ fontSize: themes.fonts.formTextSize }}
-        >
-          {notification}
-        </Alert>
-      )}
-      <StandardButton
-        text='Add About Me '
-        type='submit'
-        disabled={notification ? true : false}
-      />
     </form>
   )
 }

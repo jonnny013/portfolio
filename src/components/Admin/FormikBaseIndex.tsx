@@ -7,6 +7,7 @@ interface Props {
   validationSchema: unknown
   formComponent: any
   notification?: string | null
+  props: any
 }
 
 const FormikBaseIndex = ({
@@ -15,6 +16,7 @@ const FormikBaseIndex = ({
   validationSchema,
   formComponent,
   notification,
+  ...props
 }: Props) => {
   const FormComponent = formComponent
   return (
@@ -25,7 +27,7 @@ const FormikBaseIndex = ({
     >
       {({ handleSubmit }) => (
         <>
-          <FormComponent onSubmit={handleSubmit} notification={notification} />
+          <FormComponent onSubmit={handleSubmit} notification={notification} {...props}/>
         </>
       )}
     </Formik>

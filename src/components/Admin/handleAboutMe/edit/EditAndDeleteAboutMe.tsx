@@ -1,10 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AboutIndex from './AboutIndex'
 import { Alert } from '@mui/material'
 import themes from '../../../../themes/themes'
 
 const EditAndDeleteAboutMe = () => {
   const [notification, setNotification] = useState<string | undefined>()
+
+    useEffect(() => {
+      const timeoutId = setTimeout(() => {
+        setNotification(undefined)
+      }, 5000)
+      return () => clearTimeout(timeoutId)
+    }, [notification, setNotification])
+
   return (
     <>
       {notification && (
@@ -15,7 +23,7 @@ const EditAndDeleteAboutMe = () => {
           {notification}
         </Alert>
       )}
-      <AboutIndex setNotification={setNotification} />
+      <AboutIndex setNotification={setNotification} notification={notification} />
     </>
   )
 }
