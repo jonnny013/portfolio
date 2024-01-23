@@ -9,6 +9,7 @@ export const getAboutMe = async () => {
 }
 
 export const addAboutMe = async (info: AboutMeWithoutID) => {
+  console.log('post', info)
   const result = await axios.post(baseURL, info)
   return result.data
 }

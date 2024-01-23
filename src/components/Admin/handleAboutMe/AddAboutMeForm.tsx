@@ -1,8 +1,76 @@
-import React from 'react'
+import Box from '@mui/material/Box'
+import StandardFormBar from '../../StandardFormBar'
+import StandardButton from '../../StandardButton'
+import Alert from '@mui/material/Alert'
+import themes from '../../../themes/themes'
+import PictureInput from './PictureInput'
+import { useState } from 'react'
 
-const AddAboutMeForm = () => {
+type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
+
+const AddAboutMeForm = ({
+  onSubmit,
+  notification,
+}: {
+  onSubmit: FormSubmitHandler
+  notification: string | null
+}) => {
+  const [picture, setPicture] = useState<null | ArrayBuffer | string>('')
   return (
-    <div>AddAboutMeForm</div>
+    <form onSubmit={onSubmit}>
+      <Box
+        sx={{
+          '& > :not(style)': {
+            m: 1,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80%',
+            maxWidth: 400,
+          },
+        }}
+        style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
+      >
+        {notification && (
+          <Alert
+            severity={notification === 'error' ? 'error' : 'success'}
+            style={{ fontSize: themes.fonts.formTextSize }}
+          >
+            {notification}
+          </Alert>
+        )}
+        <StandardFormBar id='name' label='Name' type='text' />
+        <StandardFormBar
+          id='description'
+          label='Description'
+          type='text'
+          props={{
+            multiline: true,
+            rows: 8,
+          }}
+        />
+        <StandardFormBar id='picDesc' label='Picture Description' type='text' />
+        <PictureInput id='picture' type='file' setPicture={setPicture} />
+        {picture && typeof picture === 'string' && (
+          <>
+            <h1>Picture preview:</h1>
+            <img src={picture} style={{ maxWidth: 200 }} />
+          </>
+        )}
+      </Box>
+      {notification && (
+        <Alert
+          severity={notification === 'error' ? 'error' : 'success'}
+          style={{ fontSize: themes.fonts.formTextSize }}
+        >
+          {notification}
+        </Alert>
+      )}
+      <StandardButton
+        text='Add About Me '
+        type='submit'
+        disabled={notification ? true : false}
+      />
+    </form>
   )
 }
 

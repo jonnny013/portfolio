@@ -10,14 +10,14 @@ import type { AboutMeWithoutID } from '../../../types'
 const initialValues = {
   picture: '',
   description: '',
-  name: ''
+  name: '',
+  picDesc: ''
 }
 
 const AddNewAboutMe = () => {
   const navigate = useNavigate()
   const [notification, setNotification] = useState<string | null>(null)
   const queryClient = useQueryClient()
-  let reset: () => void
   const newProjectMutation = useMutation({
     mutationFn: addAboutMe,
     onSuccess: () => {
@@ -26,7 +26,6 @@ const AddNewAboutMe = () => {
       setTimeout(() => {
         navigate('/admin')
       }, 4000)
-      reset()
     },
     onError: error => {
       setNotification(`Error: , ${error.message}`)
@@ -38,9 +37,8 @@ const AddNewAboutMe = () => {
 
   const onSubmit = async (
     values: AboutMeWithoutID,
-    { resetForm }: { resetForm: () => void }
   ) => {
-    reset = resetForm
+
     newProjectMutation.mutate(values)
     
   }

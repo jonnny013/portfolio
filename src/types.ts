@@ -36,6 +36,7 @@ export interface AboutMe {
   name: string
   description: string
   id: string
+  picDesc: string
 }
 
 export type AboutMeWithoutID = Omit<AboutMe, 'id'>
