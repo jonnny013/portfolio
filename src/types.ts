@@ -30,3 +30,12 @@ export interface LoginFormTypes {
   username: string
   password: string
 }
+
+export interface AboutMe {
+  picture: HTMLImageElement | File | string
+  name: string
+  description: string
+  id: string
+}
+
+export type AboutMeWithoutID = Omit<AboutMe, 'id'>

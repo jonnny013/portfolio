@@ -1,4 +1,5 @@
 import axios from 'axios'
+import type { AboutMe } from '../types'
 
 const baseURL = 'http://localhost:3001/aboutMe'
 
@@ -12,12 +13,12 @@ export const addAboutMe = async (info) => {
   return result.data
 }
 
-export const updateAboutMe = async info => {
+export const updateAboutMe = async (info: AboutMe) => {
   const result = await axios.put(`${baseURL}/${info.id}`, info)
   return result.data
 }
 
-export const deleteAboutMe = async info => {
-  const result = await axios.delete(`${baseURL}/${info.id}`)
+export const deleteAboutMe = async (id: string) => {
+  const result = await axios.delete(`${baseURL}/${id}`)
   return result.data
 }
