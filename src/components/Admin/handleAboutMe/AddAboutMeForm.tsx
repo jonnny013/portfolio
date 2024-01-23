@@ -66,7 +66,7 @@ const AddAboutMeForm = ({
         )}
         {picturePreview && typeof picturePreview === 'string' && (
           <>
-            <h1 style={{ textAlign: 'center' }}>Original preview:</h1>
+            <h1 style={{ textAlign: 'center' }}>Original picture:</h1>
             <img src={picturePreview} style={{ maxWidth: 200 }} />
           </>
         )}

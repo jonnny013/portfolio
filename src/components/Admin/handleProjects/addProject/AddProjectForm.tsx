@@ -17,9 +17,7 @@ const AddProjectForm = ({
 }) => {
   return (
     <form onSubmit={onSubmit}>
-      <div
-        id='addProjectContainer'
-      >
+      <div id='addProjectContainer'>
         <Box
           sx={{
             '& > :not(style)': {
@@ -27,10 +25,11 @@ const AddProjectForm = ({
               marginLeft: 'auto',
               marginRight: 'auto',
               width: '80%',
-              maxWidth: 400,
             },
+            width: '80%',
+            maxWidth: 600
           }}
-          style={{  flexDirection: 'column', margin: 'auto' }}
+          style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
         >
           {notification && (
             <Alert

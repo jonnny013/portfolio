@@ -25,10 +25,11 @@ const EditProjectForm = ({
               marginLeft: 'auto',
               marginRight: 'auto',
               width: '80%',
-              maxWidth: 400,
             },
+            width: '80%',
+            maxWidth: 600,
           }}
-          style={{ flexDirection: 'column', margin: 'auto' }}
+          style={{display: 'flex', flexDirection: 'column', margin: 'auto' }}
         >
           {notification && (
             <Alert
@@ -48,7 +49,6 @@ const EditProjectForm = ({
               multiline: true,
               rows: 8,
             }}
-          
           />
 
           <StandardFormBar id='website' label='Project URL' type='text' />

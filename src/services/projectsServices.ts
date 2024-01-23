@@ -1,22 +1,16 @@
-import { projectData } from '../data'
 import type { Project, ProjectWithoutID } from '../types'
 import axios from 'axios'
 
 const baseURL = 'http://localhost:3001/projects'
 
 export const getProjects = async () => {
-  console.log("Get request")
   const result = await axios.get(baseURL)
   return result.data
 }
 
 export const  getSingleProject = async (id: string): Promise<Project | undefined> => {
-
-  const project = projectData.find(a => a.id.toString() === id)
-  if (project === undefined) {
-    throw new Error('Failed to find project')
-  }
-  return project
+  const result = await axios.get(`${baseURL}/${id}`)
+  return result.data
 }
 
 export const addProject = async (project: ProjectWithoutID): Promise<Project> => {

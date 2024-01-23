@@ -24,57 +24,81 @@ const AdminIndex = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%',
+        margin: 'auto',
       }}
     >
       <h2>What would you like to do?</h2>
-      <List
-        sx={{
-          '& .MuiTypography-root': {
-            fontSize: 18,
-            fontWeight: 'bold',
-          },
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
           width: '100%',
-          maxWidth: 360,
-          bgcolor: 'background.paper',
+          justifyContent: 'center',
         }}
-        component='ul'
-        aria-labelledby='nested-list-subheader'
       >
-        <ListItemButton onClick={() => navigate('/addContent')}>
-          <ListItemIcon>
-            <ControlPointIcon />
-          </ListItemIcon>
-          <ListItemText primary='Add a project' />
-        </ListItemButton>
-        <Divider variant='middle' component='li' />
-        <ListItemButton onClick={() => navigate('/editContent')}>
-          <ListItemIcon>
-            <EditIcon />
-          </ListItemIcon>
-          <ListItemText primary='Edit a project' />
-        </ListItemButton>
-        <Divider variant='middle' component='li' />
-        <ListItemButton onClick={() => navigate('/deleteContent')}>
-          <ListItemIcon>
-            <DeleteForeverIcon />
-          </ListItemIcon>
-          <ListItemText primary='Delete a project' />
-        </ListItemButton>
-        <Divider variant='middle' component='li' />
-        <ListItemButton onClick={() => navigate('/aboutMeAdminPage')}>
-          <ListItemIcon>
-            <EditIcon />
-          </ListItemIcon>
-          <ListItemText primary='Edit "About Me"' />
-        </ListItemButton>
-        <Divider variant='middle' component='li' />
-        <ListItemButton onClick={() => navigate('/aboutMeAddNew')}>
-          <ListItemIcon>
-            <ControlPointIcon />
-          </ListItemIcon>
-          <ListItemText primary='Add new "About Me"' />
-        </ListItemButton>
-      </List>
+        <List
+          sx={{
+            '& .MuiTypography-root': {
+              fontSize: 18,
+              fontWeight: 'bold',
+            },
+            width: '100%',
+            maxWidth: 360,
+            bgcolor: 'background.paper',
+          }}
+          component='ul'
+          aria-labelledby='nested-list-subheader'
+        >
+          <ListItemButton onClick={() => navigate('/addContent')}>
+            <ListItemIcon>
+              <ControlPointIcon />
+            </ListItemIcon>
+            <ListItemText primary='Add a project' />
+          </ListItemButton>
+          <Divider variant='middle' component='li' />
+          <ListItemButton onClick={() => navigate('/editContent')}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText primary='Edit a project' />
+          </ListItemButton>
+          <Divider variant='middle' component='li' />
+          <ListItemButton onClick={() => navigate('/deleteContent')}>
+            <ListItemIcon>
+              <DeleteForeverIcon />
+            </ListItemIcon>
+            <ListItemText primary='Delete a project' />
+          </ListItemButton>
+        </List>
+        <List
+          sx={{
+            '& .MuiTypography-root': {
+              fontSize: 18,
+              fontWeight: 'bold',
+            },
+            width: '100%',
+            maxWidth: 360,
+            bgcolor: 'background.paper',
+          }}
+          component='ul'
+          aria-labelledby='nested-list-subheader'
+        >
+          <ListItemButton onClick={() => navigate('/aboutMeAddNew')}>
+            <ListItemIcon>
+              <ControlPointIcon />
+            </ListItemIcon>
+            <ListItemText primary='Add new "About Me"' />
+          </ListItemButton>
+          <Divider variant='middle' component='li' />
+          <ListItemButton onClick={() => navigate('/aboutMeAdminPage')}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText primary='Edit "About Me"' />
+          </ListItemButton>
+        </List>
+      </div>
     </div>
   )
 }
