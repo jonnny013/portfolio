@@ -47,7 +47,6 @@ const AdminIndex = () => {
           <ListItemText primary='Add a project' />
         </ListItemButton>
         <Divider variant='middle' component='li' />
-
         <ListItemButton onClick={() => navigate('/editContent')}>
           <ListItemIcon>
             <EditIcon />
@@ -55,7 +54,6 @@ const AdminIndex = () => {
           <ListItemText primary='Edit a project' />
         </ListItemButton>
         <Divider variant='middle' component='li' />
-
         <ListItemButton onClick={() => navigate('/deleteContent')}>
           <ListItemIcon>
             <DeleteForeverIcon />
@@ -63,14 +61,19 @@ const AdminIndex = () => {
           <ListItemText primary='Delete a project' />
         </ListItemButton>
         <Divider variant='middle' component='li' />
-
         <ListItemButton onClick={() => navigate('/aboutMeAdminPage')}>
           <ListItemIcon>
-            <DeleteForeverIcon />
+            <EditIcon />
           </ListItemIcon>
-          <ListItemText primary='Delete a project' />
+          <ListItemText primary='Edit "About Me"' />
         </ListItemButton>
         <Divider variant='middle' component='li' />
+        <ListItemButton onClick={() => navigate('/aboutMeAddNew')}>
+          <ListItemIcon>
+            <ControlPointIcon />
+          </ListItemIcon>
+          <ListItemText primary='Add new "About Me"' />
+        </ListItemButton>
       </List>
     </div>
   )

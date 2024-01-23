@@ -9,7 +9,8 @@ import DeleteProjectPage from './components/Admin/handleProjects/deleteProject/D
 import Unauthorized from './components/Unauthorized'
 import EditProjectFormikIndex from './components/Admin/handleProjects/editProject/EditProjectFormikIndex'
 import DeletionVerificationForm from './components/Admin/handleProjects/deleteProject/DeletionVerificationForm'
-
+import EditAndDeleteAboutMe from './components/Admin/handleAboutMe/EditAndDeleteAboutMe'
+import AddNewAboutMeIndex from './components/Admin/handleAboutMe/AddNewAboutMeIndex'
 
 const PrivateRoute = ({ element }: { element: JSX.Element }) => {
   const user = true
@@ -42,7 +43,11 @@ const AppRoutes = () => {
       />
       <Route
         path='/aboutMeAdminPage'
-        element={<PrivateRoute element={<DeletionVerificationForm />} />}
+        element={<PrivateRoute element={<EditAndDeleteAboutMe />} />}
+      />
+      <Route
+        path='/aboutMeAddNew'
+        element={<PrivateRoute element={<AddNewAboutMeIndex />} />}
       />
       <Route path='/unauthorized' element={<Unauthorized />} />
     </Routes>
