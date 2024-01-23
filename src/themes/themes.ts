@@ -4,10 +4,11 @@ const themes = {
     formTextSize: 20,
     buttonFontSize: 16,
     helperFont: 16,
-    title: 22
+    title: 22,
+    icons: 30
   },
   colors: {
-    headerColor: 'white'
+    headerColor: 'white',
   },
   lightColors: {
     background: 'white',

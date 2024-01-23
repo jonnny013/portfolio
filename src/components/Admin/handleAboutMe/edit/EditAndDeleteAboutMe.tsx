@@ -1,8 +1,10 @@
-
+import AboutIndex from './AboutIndex'
 
 const EditAndDeleteAboutMe = () => {
   return (
-    <div>EditAndDeleteAboutMe</div>
+    <>
+  <AboutIndex />
+    </>
   )
 }
 

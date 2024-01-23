@@ -9,7 +9,7 @@ import DeleteProjectPage from './components/Admin/handleProjects/deleteProject/D
 import Unauthorized from './components/Unauthorized'
 import EditProjectFormikIndex from './components/Admin/handleProjects/editProject/EditProjectFormikIndex'
 import DeletionVerificationForm from './components/Admin/handleProjects/deleteProject/DeletionVerificationForm'
-import EditAndDeleteAboutMe from './components/Admin/handleAboutMe/EditAndDeleteAboutMe'
+import EditAndDeleteAboutMe from './components/Admin/handleAboutMe/edit/EditAndDeleteAboutMe'
 import AddNewAboutMeIndex from './components/Admin/handleAboutMe/AddNewAboutMeIndex'
 
 const PrivateRoute = ({ element }: { element: JSX.Element }) => {
