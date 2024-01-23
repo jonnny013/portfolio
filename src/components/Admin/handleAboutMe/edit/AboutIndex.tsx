@@ -23,7 +23,7 @@ const AboutIndex = ({
   notification
 }: {
   setNotification: React.Dispatch<React.SetStateAction<string | undefined>>,
-  notification: string | null
+  notification: string | undefined
 }) => {
   let infoCards: AboutMe[] = []
 
