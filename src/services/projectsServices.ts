@@ -20,22 +20,16 @@ export const  getSingleProject = async (id: string): Promise<Project | undefined
 }
 
 export const addProject = async (project: ProjectWithoutID): Promise<Project> => {
-  console.log('Build a post to send:',project)
-  const projectWithId = {...project,
-    id: Math.floor(Math.random() * 100000).toString(),
-  }
-  return projectWithId
+  const result = await axios.post(baseURL, project)
+  return result.data
 }
 
 export const updateProject = async (project: Project) => {
-  if (typeof project.id === 'string') {
-    console.log('use ID to make put request', project.id)
-  }
-  
-  return 'Return confirmation of put request here'
+  const result = await axios.put(`${baseURL}/${project.id}`, project)
+  return result.data
 }
 
 export const deleteProject =  async (id: string) => {
-  console.log('use ID to delete project:', id)
-  return "Project deleted or error  "
+  const result = await axios.delete(`${baseURL}/${id}`)
+  return result.data
 }

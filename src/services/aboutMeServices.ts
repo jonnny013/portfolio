@@ -18,6 +18,6 @@ export const updateAboutMe = async info => {
 }
 
 export const deleteAboutMe = async info => {
-  const result = await axios.delete(`${baseURL}/${info.id}`, info)
+  const result = await axios.delete(`${baseURL}/${info.id}`)
   return result.data
 }
