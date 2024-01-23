@@ -1,9 +1,13 @@
 import { projectData } from '../data'
 import type { Project, ProjectWithoutID } from '../types'
+import axios from 'axios'
 
-export const getProjects = () => {
+const baseURL = 'http://localhost:3001/projects'
+
+export const getProjects = async () => {
   console.log("Get request")
-  return projectData
+  const result = await axios.get(baseURL)
+  return result.data
 }
 
 export const  getSingleProject = async (id: string): Promise<Project | undefined> => {

@@ -35,6 +35,7 @@ const ContactForm = ({
             {notification}
           </Alert>
         )}
+        <h2>Send me a message!</h2>
         <StandardFormBar id='name' label='Name' type='text' />
         <StandardFormBar id='email' label='Email' type='email' />
         <StandardFormBar id='subject' label='Subject' type='text' />

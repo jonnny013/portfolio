@@ -5,6 +5,7 @@ import Projects from './Projects'
 import { useQuery } from '@tanstack/react-query'
 import LoadingScreen from '../LoadingScreen'
 import { getProjects } from '../../services/projectsServices'
+import Error from '../Error'
 
 const Carousel = () => {
   const [projectIndex, setProjectIndex] = useState(1)
@@ -36,9 +37,13 @@ const Carousel = () => {
   if (result.isLoading) {
     return <LoadingScreen />
   }
+  if (result.isError) {
+    return <Error />
+  }
 
   if (result) {
     if (result.data) {
+      console.log(result)
       projects = result.data
     }
   }
