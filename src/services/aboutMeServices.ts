@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AboutMe } from '../types'
+import type { AboutMe, AboutMeWithoutID } from '../types'
 
 const baseURL = 'http://localhost:3001/aboutMe'
 
@@ -8,7 +8,7 @@ export const getAboutMe = async () => {
   return result.data
 }
 
-export const addAboutMe = async (info) => {
+export const addAboutMe = async (info: AboutMeWithoutID) => {
   const result = await axios.post(baseURL, info)
   return result.data
 }

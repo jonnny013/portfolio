@@ -1,13 +1,11 @@
-
 import { Formik } from 'formik'
-
 import AddAboutMeForm from './AddAboutMeForm'
-
 import { useState, useEffect } from 'react'
 import { addAboutMe } from '../../../services/aboutMeServices'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from './yupValidation'
 import { useNavigate } from 'react-router-dom'
+import type { AboutMeWithoutID } from '../../../types'
 
 const initialValues = {
   picture: '',
@@ -19,16 +17,16 @@ const AddNewAboutMe = () => {
   const navigate = useNavigate()
   const [notification, setNotification] = useState<string | null>(null)
   const queryClient = useQueryClient()
+  let reset: () => void
   const newProjectMutation = useMutation({
     mutationFn: addAboutMe,
-    onSuccess: (_, variables, context) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
       setNotification('Your project has been added. Redirecting...')
       setTimeout(() => {
         navigate('/admin')
       }, 4000)
-      const {resetForm} = context
-      resetForm()
+      reset()
     },
     onError: error => {
       setNotification(`Error: , ${error.message}`)
@@ -39,15 +37,12 @@ const AddNewAboutMe = () => {
   })
 
   const onSubmit = async (
-    values,
+    values: AboutMeWithoutID,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log('Form submitted', values)
-    newProjectMutation.mutate(values, {context: {resetForm}})
-
-    if (task) {
-      resetForm()
-    }
+    reset = resetForm
+    newProjectMutation.mutate(values)
+    
   }
 
   useEffect(() => {
