@@ -12,7 +12,7 @@ const  InfoCards = ({card}: {card: AboutMe}) => {
   const [open, setOpen] = useState(false)
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 350, width: 350 }}>
       <DialogComponent setOpen={setOpen} open={open} card={card} />
       <CardActionArea onClick={() => setOpen(!open)}>
         <CardMedia

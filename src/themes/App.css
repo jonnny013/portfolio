@@ -128,34 +128,18 @@ h2 {
   font-size: 3rem;
 }
 
-.contactList {
-  font-size: 2rem;
-  width: 600px;
-  height: 300px;
-  display: flex;
-  margin: auto;
-}
-
-.contactList ul {
-  width: 550px;
-}
-
-.contactList li {
-  padding-top: 15px;
-}
-
-.contactList span {
-  justify-content: flex-end;
-  align-items: flex-end;
-  float: right;
-}
-
-.certificates {
+#aboutMeImg {
+  height: 400px;
   width: auto;
-  height: auto;
+  overflow: scroll;
+  object-fit: scale-down;
+  justify-self: center;
+  align-items: center;
+  margin: auto;
+  max-width: 90%;
 }
 
-/*only project boxes  below */
+
 /* project containers */
 .buttons {
   position: relative;
@@ -303,6 +287,8 @@ h2 {
 .ind-projects .icons p {
   padding: 0;
 }
+
+
 
 #express-logo {
   font-family: roboto;

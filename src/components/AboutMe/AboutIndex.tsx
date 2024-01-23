@@ -5,6 +5,19 @@ import Error from '../Error'
 import { useQuery } from '@tanstack/react-query'
 import InfoCards from './InfoCards'
 
+interface Styles {
+  container: React.CSSProperties
+}
+
+const styles: Styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
+    gap: 30
+  }
+}
+
 const AboutIndex = () => {
   let infoCards: AboutMe[] = []
 
@@ -27,7 +40,7 @@ const AboutIndex = () => {
     }
   }
   return (
-    <div>
+    <div style={styles.container}>
       {infoCards.map((card: AboutMe) => (
           <InfoCards card={card} key={card.id}/>
       ))}
