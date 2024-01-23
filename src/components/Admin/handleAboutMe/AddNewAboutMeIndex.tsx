@@ -1,4 +1,3 @@
-import { Formik } from 'formik'
 import AddAboutMeForm from './AddAboutMeForm'
 import { useState, useEffect } from 'react'
 import { addAboutMe } from '../../../services/aboutMeServices'
@@ -6,6 +5,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from './yupValidation'
 import { useNavigate } from 'react-router-dom'
 import type { AboutMeWithoutID } from '../../../types'
+import FormikBaseIndex from '../FormikBaseIndex'
 
 const initialValues = {
   picture: '',
@@ -53,17 +53,13 @@ const AddNewAboutMe = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <h1>Add new About Me section</h1>
-      <Formik
+      <FormikBaseIndex
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-      >
-        {({ handleSubmit }) => (
-          <>
-            <AddAboutMeForm onSubmit={handleSubmit} notification={notification} />
-          </>
-        )}
-      </Formik>
+        formComponent={AddAboutMeForm}
+        notification={notification}
+      />
     </div>
   )
 }

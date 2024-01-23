@@ -18,7 +18,11 @@ const styles: Styles = {
   }
 }
 
-const AboutIndex = () => {
+const AboutIndex = ({
+  setNotification,
+}: {
+  setNotification: React.Dispatch<React.SetStateAction<string | undefined>>
+}) => {
   let infoCards: AboutMe[] = []
 
   const result = useQuery({
@@ -42,7 +46,7 @@ const AboutIndex = () => {
   return (
     <div style={styles.container}>
       {infoCards.map((card: AboutMe) => (
-          <InfoCards card={card} key={card.id}/>
+        <InfoCards card={card} key={card.id} setNotification={setNotification} />
       ))}
     </div>
   )

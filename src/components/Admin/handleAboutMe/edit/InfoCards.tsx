@@ -9,10 +9,33 @@ import DialogComponent from './Dialog'
 import IconButton from '@mui/material/IconButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import themes from '../../../../themes/themes'
+import { deleteAboutMe } from '../../../../services/aboutMeServices'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-
-const  InfoCards = ({card}: {card: AboutMe}) => {
+const  InfoCards = ({card, setNotification}: {card: AboutMe, setNotification: React.Dispatch<React.SetStateAction<string | undefined>>}) => {
   const [open, setOpen] = useState(false)
+
+    const queryClient = useQueryClient()
+    const deleteCardMutation = useMutation({
+      mutationFn: deleteAboutMe,
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['projects'] })
+        setNotification('Your project has been deleted!')
+
+      },
+      onError: error => {
+        setNotification(`Error: , ${error.message}`)
+      },
+      onMutate: () => {
+        setNotification('Please wait...')
+      },
+    })
+
+    const handleDelete = () => {
+      if (window.confirm('Are you sure you want to delete this card permanently?')) {
+        deleteCardMutation.mutate(card.id)
+      }
+    }
 
   return (
     <Card sx={{ maxWidth: 350, width: 350 }}>
@@ -32,10 +55,10 @@ const  InfoCards = ({card}: {card: AboutMe}) => {
         </Typography>
       </CardContent>
       <div style={{ display: 'flex', gap: 20, marginLeft: 20 }}>
-        <IconButton aria-label='delete'>
+        <IconButton aria-label='delete' onClick={handleDelete}>
           <DeleteForeverIcon sx={{ fontSize: themes.fonts.icons }} color='error' />
         </IconButton>
-        <IconButton aria-label='edit'>
+        <IconButton aria-label='edit' onClick={() => {setOpen(true)}}>
           <BorderColorIcon sx={{ fontSize: themes.fonts.icons }} color='primary' />
         </IconButton>
       </div>
