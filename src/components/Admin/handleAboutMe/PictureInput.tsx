@@ -1,7 +1,8 @@
 import themes from '../../../themes/themes'
 import { useField, useFormikContext } from 'formik'
-import { FormHelperText } from '@mui/material'
+import { Button, FormHelperText } from '@mui/material'
 import { useState } from 'react'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 interface propTypes {
   id: string
@@ -17,38 +18,51 @@ const PictureInput = ({ id, type, setPicture }: propTypes) => {
   const [error, setError] = useState<string | undefined>(undefined)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if ((e.target.files[0].size > 3145728)) {
-     return setError('Pictures must be less tha 3mb')
-    }
-    const reader = new FileReader()
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        formikProps.setFieldValue('picture', reader.result)
-        setPicture(reader.result)
+    if (e && e.target && e.target.files && e.target.files[0]) {
+      if (e.target.files[0].size > 3145728) {
+        return setError('Pictures must be less than 3mb')
       }
+      const reader = new FileReader()
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          formikProps.setFieldValue('picture', reader.result)
+          setPicture(reader.result)
+        }
+      }
+      reader.readAsDataURL(e.target.files[0])
     }
-    reader.readAsDataURL(e.target.files[0])
-    
   }
-
-  console.log(formikProps.values)
 
   return (
     <>
-      <input
-        accept='image/*'
-        id={id}
-        type={type}
-        // {...field}
-        onChange={handleFileChange}
-      />
+      <Button component='label' variant='contained' startIcon={<CloudUploadIcon />}>
+        <input
+          accept='image/*'
+          id={id}
+          type={type}
+          // {...field}
+          onChange={handleFileChange}
+          style={{ display: 'none' }}
+        />
+        Choose picture
+      </Button>
       <FormHelperText
-        style={{ fontSize: themes.fonts.helperFont, textAlign: 'center', color: 'red' }}
+        style={{
+          fontSize: themes.fonts.helperFont,
+          textAlign: 'center',
+          color: 'red',
+          display: showError ? 'block' : 'none',
+        }}
       >
         {showError ? meta.error : undefined}
       </FormHelperText>
       <FormHelperText
-        style={{ fontSize: themes.fonts.helperFont, textAlign: 'center', color: 'red' }}
+        style={{
+          fontSize: themes.fonts.helperFont,
+          textAlign: 'center',
+          color: 'red',
+          display: error ? 'block' : 'none',
+        }}
       >
         {error ? error : undefined}
       </FormHelperText>
