@@ -3,7 +3,7 @@
     {
       "title": "Book App",
       "project": "GraphQL",
-      "intro": "This project is from University of Helsinki's fullstack open course. I made it using the MERN stack and used GraphQL for data storage. I used bootstrap for the CSS. This project includes the use of websockets.",
+      "description": "This project is from University of Helsinki's fullstack open course. I made it using the MERN stack and used GraphQL for data storage. I used bootstrap for the CSS. This project includes the use of websockets.",
       "skills": {
         "css": false,
         "html": false,
@@ -23,7 +23,7 @@
     {
       "title": "Patientor App",
       "project": "Typescript",
-      "intro": "This project is from University of Helsinki's Typescript course. The focus was using Typescript in both the frontend and the backend. I used materialUI for the CSS.",
+      "description": "This project is from University of Helsinki's Typescript course. The focus was using Typescript in both the frontend and the backend. I used materialUI for the CSS.",
       "skills": {
         "css": false,
         "html": false,
@@ -43,7 +43,7 @@
     {
       "title": "Flight Diary App",
       "project": "Typescript",
-      "intro": "This project is also from University of Helsinki's Typescript course. The focus was using Typescript in both the frontend and the backend. I used bootstrap for the CSS. It is not connected to a database.",
+      "description": "This project is also from University of Helsinki's Typescript course. The focus was using Typescript in both the frontend and the backend. I used bootstrap for the CSS. It is not connected to a database.",
       "skills": {
         "css": false,
         "html": false,
@@ -63,7 +63,7 @@
     {
       "title": "Blog List",
       "project": "Full Stack",
-      "intro": "This project is from University of Helsinki's fullstack open course. I made it using the MERN stack. This was an independent project that allowed me to get extremely familiar with each aspect of fullstack website development, including frontend testing, backend testing, end-to-end testing, and continued practice in both the frontend and the backend. I am currently working on making it isomorphic.",
+      "description": "This project is from University of Helsinki's fullstack open course. I made it using the MERN stack. This was an independent project that allowed me to get extremely familiar with each aspect of fullstack website development, including frontend testing, backend testing, end-to-end testing, and continued practice in both the frontend and the backend. I am currently working on making it isomorphic.",
       "skills": {
         "css": false,
         "html": false,
@@ -83,7 +83,7 @@
     {
       "title": "Rock, Paper, Scissors",
       "project": "Vanilla Javascript",
-      "intro": "A project from TheOdinProject. I focused on basic Javascript. Although the javascript isn't complex, it was my first time connecting Javascript to HTML which started as a challenge but got easy quickly. I also used Bootstrap for extra practice.",
+      "description": "A project from TheOdinProject. I focused on basic Javascript. Although the javascript isn't complex, it was my first time connecting Javascript to HTML which started as a challenge but got easy quickly. I also used Bootstrap for extra practice.",
       "skills": {
         "css": true,
         "html": true,
