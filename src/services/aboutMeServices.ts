@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AboutMe, AboutMeWithoutID } from '../types'
 
-const baseURL = '/api/aboutMe'
+const baseURL = 'http://localhost:3001/aboutMe'
 
 export const getAboutMe = async () => {
   const result = await axios.get(baseURL)

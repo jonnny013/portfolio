@@ -11,7 +11,8 @@ const initialValues = {
   picture: '',
   description: '',
   name: '',
-  picDesc: ''
+  picDesc: '',
+  type: ''
 }
 
 const AddNewAboutMe = () => {
@@ -21,7 +22,7 @@ const AddNewAboutMe = () => {
   const newProjectMutation = useMutation({
     mutationFn: addAboutMe,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.invalidateQueries({ queryKey: ['aboutMeInfoCards'] })
       setNotification('Your project has been added. Redirecting...')
       setTimeout(() => {
         navigate('/admin')
@@ -38,7 +39,7 @@ const AddNewAboutMe = () => {
   const onSubmit = async (
     values: AboutMeWithoutID,
   ) => {
-
+    console.log(values)
     newProjectMutation.mutate(values)
     
   }

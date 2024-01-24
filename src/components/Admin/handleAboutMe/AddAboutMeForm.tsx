@@ -5,6 +5,18 @@ import Alert from '@mui/material/Alert'
 import themes from '../../../themes/themes'
 import PictureInput from './PictureInput'
 import { useState } from 'react'
+import { AboutMeInfoType } from '../../../types'
+import Selector from './Selector'
+
+export interface InfoTypes {
+  value: AboutMeInfoType
+  label: string
+}
+
+const infoOptions: InfoTypes[] = Object.values(AboutMeInfoType).map(val => ({
+  value: val,
+  label: val.toString(),
+}))
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
@@ -15,9 +27,10 @@ const AddAboutMeForm = ({
 }: {
   onSubmit: FormSubmitHandler
   notification: string | null
-  picturePreview?: string | HTMLImageElement | File
+  picturePreview?: string | HTMLImageElement | File | undefined
 }) => {
   const [picture, setPicture] = useState<null | ArrayBuffer | string>('')
+
   return (
     <form onSubmit={onSubmit}>
       <Box
@@ -56,6 +69,7 @@ const AddAboutMeForm = ({
             rows: 8,
           }}
         />
+        <Selector infoOptions={infoOptions} id='type' />
         <StandardFormBar id='picDesc' label='Picture Description' type='text' />
         <PictureInput id='picture' type='file' setPicture={setPicture} />
         {picture && typeof picture === 'string' && (

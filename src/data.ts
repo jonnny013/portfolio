@@ -129,6 +129,14 @@ const projects = [
   },
 ]
 
+export const aboutMe = {
+  typescript:
+    "I received this certification upon completion of University of Helsinki's full stack typescript course",
+  RWD: 'I received this certification from FreeCodeCamp for completing the course on web design which focused on CSS.',
+  CI: "I received this certification from University of Helsinki's CI/CD course which incorporates using full stack with GitHub actions pipeline ",
+  
+}
+
  const projectsWithId = () => {
 
   const projectWithId = projects.map((project, index) => ({

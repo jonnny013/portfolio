@@ -7,7 +7,7 @@ interface Props {
   validationSchema: unknown
   formComponent: any
   notification?: string | null
-  props: any
+  props?: any
 }
 
 const FormikBaseIndex = ({

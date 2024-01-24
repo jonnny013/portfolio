@@ -28,7 +28,7 @@ const AboutIndex = ({
   let infoCards: AboutMe[] = []
 
   const result = useQuery({
-    queryKey: ['infoCards'],
+    queryKey: ['aboutMeInfoCards'],
     queryFn: getAboutMe,
     refetchOnWindowFocus: false,
   })

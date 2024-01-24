@@ -23,7 +23,7 @@ const DialogComponent = ({ setOpen, open, card, setNotification, notification }:
    const updateProjectMutation = useMutation({
      mutationFn: updateAboutMe,
      onSuccess: () => {
-       queryClient.invalidateQueries({ queryKey: ['projects'] })
+       queryClient.invalidateQueries({ queryKey: ['aboutMeInfoCards'] })
        setNotification('Your post has been updated. ')
        setTimeout(() => {
         setOpen(false)
