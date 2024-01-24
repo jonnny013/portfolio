@@ -1,7 +1,7 @@
 import type { LoginFormTypes } from '../types'
 import axios from 'axios'
 
-const baseURL = 'http://localhost:3001/login'
+const baseURL = '/api/login'
 
 const loginPost = async ({ username, password}: LoginFormTypes) => {
   const user = {username, password}

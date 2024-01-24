@@ -1,7 +1,7 @@
 import type { ContactFormTypes } from "../types"
 import axios from "axios"
 
-const baseURL = 'http://localhost:3001/contactService'
+const baseURL = '/api/contactService'
 
 const contactFormPost = async ({name, email, subject, message}: ContactFormTypes) => {
   const messageToSend = { name, email, subject, message }
