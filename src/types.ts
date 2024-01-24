@@ -31,12 +31,19 @@ export interface LoginFormTypes {
   password: string
 }
 
+export enum AboutMeInfoType {
+  Certificate = 'Certificate',
+  Personal = 'Personal',
+  Experience = 'Experience'
+}
+
 export interface AboutMe {
   picture: HTMLImageElement | File | string
   name: string
   description: string
   id: string
   picDesc: string
+  type: AboutMeInfoType
 }
 
 export type AboutMeWithoutID = Omit<AboutMe, 'id'>
