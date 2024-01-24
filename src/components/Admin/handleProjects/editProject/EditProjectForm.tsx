@@ -29,7 +29,7 @@ const EditProjectForm = ({
             width: '80%',
             maxWidth: 600,
           }}
-          style={{display: 'flex', flexDirection: 'column', margin: 'auto' }}
+          style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
         >
           {notification && (
             <Alert
@@ -42,7 +42,7 @@ const EditProjectForm = ({
           <StandardFormBar id='title' label='Title' type='text' />
           <StandardFormBar id='project' label='Project Name' type='text' />
           <StandardFormBar
-            id='intro'
+            id='description'
             label='Description'
             type='text'
             props={{

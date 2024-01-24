@@ -42,7 +42,7 @@ const AddProjectForm = ({
           <StandardFormBar id='title' label='Title' type='text' />
           <StandardFormBar id='project' label='Project Name' type='text' />
           <StandardFormBar
-            id='intro'
+            id='description'
             label='Description'
             type='text'
             props={{

@@ -27,7 +27,7 @@ const Projects = ({
         </div>
         <h1 className='projectName'>{project.project}</h1>
         <Typography className='long-intro' id='mern-long-paragraph'>
-          {project.intro}
+          {project.description}
         </Typography>
         <div className='project-focus'>
           <p className='main-focus-paragraph'>Main focus:</p>

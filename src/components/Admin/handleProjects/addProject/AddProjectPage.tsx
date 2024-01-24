@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 const initialValues = {
   title: '',
   project: '',
-  intro: '',
+  description: '',
   skills: {
     css: false,
     html: false,

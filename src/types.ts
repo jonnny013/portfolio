@@ -2,7 +2,7 @@ export interface Project {
   id: string,
   title: string;
   project: string;
-  intro: string;
+  description: string;
   skills: {css: boolean;
   html: boolean;
   node: boolean;
