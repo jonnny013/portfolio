@@ -5,14 +5,14 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from './yupValidation'
 import { useNavigate } from 'react-router-dom'
 import type { AboutMeWithoutID } from '../../../types'
-import FormikBaseIndex from '../FormikBaseIndex'
+import FormikBaseIndex from '../../FormikBaseIndex'
 
 const initialValues = {
   picture: '',
   description: '',
   name: '',
   picDesc: '',
-  type: ''
+  type: '',
 }
 
 const AddNewAboutMe = () => {
@@ -36,12 +36,8 @@ const AddNewAboutMe = () => {
     },
   })
 
-  const onSubmit = async (
-    values: AboutMeWithoutID,
-  ) => {
-    console.log(values)
+  const onSubmit = async (values: AboutMeWithoutID) => {
     newProjectMutation.mutate(values)
-    
   }
 
   useEffect(() => {

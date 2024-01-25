@@ -27,9 +27,19 @@ const AddAboutMeForm = ({
 }: {
   onSubmit: FormSubmitHandler
   notification: string | null
-  picturePreview?: string | HTMLImageElement | File | undefined
+  picturePreview?: string | File | undefined
 }) => {
-  const [picture, setPicture] = useState<null | ArrayBuffer | string>('')
+  const [picture, setPicture] = useState<null  | string >('') 
+  const pic = () => {
+    if (typeof picturePreview === 'string') {
+      return picturePreview
+    } else if (picturePreview){
+      return URL.createObjectURL(picturePreview)
+    } else {
+      return undefined
+    }
+  }
+  console.log(pic())
 
   return (
     <form onSubmit={onSubmit}>
@@ -72,16 +82,16 @@ const AddAboutMeForm = ({
         <Selector infoOptions={infoOptions} id='type' />
         <StandardFormBar id='picDesc' label='Picture Description' type='text' />
         <PictureInput id='picture' type='file' setPicture={setPicture} />
-        {picture && typeof picture === 'string' && (
+        {picture && (
           <>
             <h1 style={{ textAlign: 'center' }}>Picture preview:</h1>
             <img src={picture} style={{ maxWidth: 200 }} />
           </>
         )}
-        {picturePreview && typeof picturePreview === 'string' && (
+        {picturePreview && (
           <>
             <h1 style={{ textAlign: 'center' }}>Original picture:</h1>
-            <img src={picturePreview} style={{ maxWidth: 200 }} />
+            <img src={pic()} style={{ maxWidth: 200 }} />
           </>
         )}
         <StandardButton

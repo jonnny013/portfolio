@@ -7,7 +7,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 interface propTypes {
   id: string
   type: string
-  setPicture: React.Dispatch<React.SetStateAction<null | ArrayBuffer | string>>
+  setPicture: React.Dispatch<React.SetStateAction<null  | string >>
 }
 
 const PictureInput = ({ id, type, setPicture }: propTypes) => {
@@ -16,20 +16,15 @@ const PictureInput = ({ id, type, setPicture }: propTypes) => {
   const formikProps = useFormikContext()
   const showError = meta.touched && meta.error
   const [error, setError] = useState<string | undefined>(undefined)
-
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e && e.target && e.target.files && e.target.files[0]) {
       if (e.target.files[0].size > 3145728) {
         return setError('Pictures must be less than 3mb')
       }
-      const reader = new FileReader()
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          formikProps.setFieldValue('picture', reader.result)
-          setPicture(reader.result)
-        }
-      }
-      reader.readAsDataURL(e.target.files[0])
+      const pic = e.target.files[0]
+      formikProps.setFieldValue('picture', pic)
+      setPicture(URL.createObjectURL(pic))
     }
   }
 
