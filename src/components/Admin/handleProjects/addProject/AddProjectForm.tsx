@@ -4,7 +4,6 @@ import StandardButton from '../../../StandardButton'
 import Alert from '@mui/material/Alert'
 import themes from '../../../../themes/themes'
 import StandardSelector from '../StandardSelector'
-import SampleProject from './SampleProject'
 import StandardCheckbox from '../../../StandardCheckbox'
 import Projects from '../../../Projects/Projects'
 import { useFormikContext } from 'formik'
@@ -76,7 +75,6 @@ const AddProjectForm = ({
           <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
         <Projects project={project} index={0} projectIndex={0} />
-        <SampleProject />
       </div>
       {notification && (
         <Alert
