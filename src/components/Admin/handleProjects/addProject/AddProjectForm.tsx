@@ -6,6 +6,10 @@ import themes from '../../../../themes/themes'
 import StandardSelector from '../StandardSelector'
 import SampleProject from './SampleProject'
 import StandardCheckbox from '../../../StandardCheckbox'
+import Projects from '../../../Projects/Projects'
+import { useFormikContext } from 'formik'
+import type { ProjectWithoutID } from '../../../../types'
+import Error from '../../../Error'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
@@ -16,6 +20,14 @@ const AddProjectForm = ({
   onSubmit: FormSubmitHandler
   notification: string | null
 }) => {
+  const formik = useFormikContext()
+  const { values } = formik
+ const project = values as ProjectWithoutID
+
+  if (!project) {
+    return <Error />
+  }
+
   return (
     <form onSubmit={onSubmit}>
       <div id='addProjectContainer'>
@@ -30,7 +42,13 @@ const AddProjectForm = ({
             width: '80%',
             maxWidth: 600,
           }}
-          style={{ display: 'flex', flexDirection: 'column', margin: 'auto', justifyContent: 'center', alignItems: 'center' }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            margin: 'auto',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
           {notification && (
             <Alert
@@ -57,6 +75,7 @@ const AddProjectForm = ({
           <StandardSelector />
           <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
+        <Projects project={project} index={0} projectIndex={0} />
         <SampleProject />
       </div>
       {notification && (

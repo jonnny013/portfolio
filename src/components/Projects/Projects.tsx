@@ -1,4 +1,4 @@
-import type { Project } from '../../types';
+import type { Project, ProjectWithoutID } from '../../types';
 import { renderIcon } from './Icons';
 import { Typography } from '@mui/material';
 import ProjectLinks from './ProjectLinks'
@@ -9,7 +9,7 @@ const Projects = ({
   index,
   projectIndex,
 }: {
-  project: Project;
+  project: Project | ProjectWithoutID;
   index: number;
   projectIndex: number;
 }) => {

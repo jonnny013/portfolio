@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import LoadingScreen from '../../../LoadingScreen'
 import Error from '../../../Error'
-import SampleProject from './SampleProject'
 import StandardButton from '../../../StandardButton'
 import { Alert } from '@mui/material'
 import themes from '../../../../themes/themes'
+import Projects from '../../../Projects/Projects'
 
 const DeletionVerificationForm = () => {
   const navigate = useNavigate()
@@ -85,7 +85,7 @@ const DeletionVerificationForm = () => {
           {notification}
         </Alert>
       )}
-      <SampleProject project={project} />
+      <Projects project={project} index={0} projectIndex={0} />
       <StandardButton
         onClick={handleSubmit}
         text='Delete'
