@@ -3,7 +3,7 @@ import StandardFormBar from '../../../StandardFormBar'
 import StandardButton from '../../../StandardButton'
 import Alert from '@mui/material/Alert'
 import themes from '../../../../themes/themes'
-import StandardCheckBox from '../StandardCheckBox'
+import StandardCheckBox from '../StandardSelector'
 import SampleProject from '../addProject/SampleProject'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void

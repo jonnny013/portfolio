@@ -9,7 +9,7 @@ import * as yup from 'yup'
      .string()
      .min(3, 'Project must be 3 characters or more')
      .required('Project is required'),
-   intro: yup
+   description: yup
      .string()
      .min(10, 'Description must be 10 characters or more')
      .required('Description is required'),
@@ -31,6 +31,7 @@ import * as yup from 'yup'
      message: 'At least one skill must be selected',
      test: skills => Object.values(skills).some(value => value === true),
    }),
+   recommended: yup.boolean()
  })
 
 export default validationSchema

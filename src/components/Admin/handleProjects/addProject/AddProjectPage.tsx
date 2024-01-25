@@ -8,7 +8,6 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from '../yupValidation'
 import { useNavigate } from 'react-router-dom'
 
-
 const initialValues = {
   title: '',
   project: '',
@@ -27,38 +26,32 @@ const initialValues = {
   },
   website: '',
   sourceCode: '',
+  recommended: false,
 }
 
 const AddProjectPage = () => {
   const navigate = useNavigate()
   const [notification, setNotification] = useState<string | null>(null)
   const queryClient = useQueryClient()
-  const newProjectMutation = useMutation({ mutationFn: addProject,
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['projects']})
-    setNotification('Your project has been added. Redirecting...')
-    setTimeout(() => {
-      navigate('/admin')
-    }, 4000)
-  },
-  onError: (error) => {
-    setNotification(`Error: , ${error.message}`)
-  },
-  onMutate: () => {
-    setNotification('Please wait...')
-  }
-})
+  const newProjectMutation = useMutation({
+    mutationFn: addProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['projects'] })
+      setNotification('Your project has been added. Redirecting...')
+      setTimeout(() => {
+        navigate('/admin')
+      }, 4000)
+    },
+    onError: error => {
+      setNotification(`Error: , ${error.message}`)
+    },
+    onMutate: () => {
+      setNotification('Please wait...')
+    },
+  })
 
-  const onSubmit = async (
-    values: ProjectWithoutID,
-    { resetForm }: { resetForm: () => void }
-  ) => {
-    console.log('Form submitted', values)
+  const onSubmit = async (values: ProjectWithoutID) => {
     newProjectMutation.mutate(values)
-    const task = await addProject(values)
-    if (task) {
-      resetForm()
-    }
   }
 
   useEffect(() => {

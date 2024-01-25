@@ -8,7 +8,7 @@ import { getProjects } from '../../services/projectsServices'
 import Error from '../Error'
 
 const Carousel = () => {
-  const [projectIndex, setProjectIndex] = useState(1)
+  const [projectIndex, setProjectIndex] = useState(0)
   const [animationKey, setAnimationKey] = useState(0)
   const [time, setTime] = useState(5)
   const [touchStart, setTouchStart] = useState(0)

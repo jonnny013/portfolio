@@ -3,8 +3,9 @@ import StandardFormBar from '../../../StandardFormBar'
 import StandardButton from '../../../StandardButton'
 import Alert from '@mui/material/Alert'
 import themes from '../../../../themes/themes'
-import StandardCheckBox from '../StandardCheckBox'
+import StandardSelector from '../StandardSelector'
 import SampleProject from './SampleProject'
+import StandardCheckbox from '../../../StandardCheckbox'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
@@ -27,9 +28,9 @@ const AddProjectForm = ({
               width: '80%',
             },
             width: '80%',
-            maxWidth: 600
+            maxWidth: 600,
           }}
-          style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
+          style={{ display: 'flex', flexDirection: 'column', margin: 'auto', justifyContent: 'center', alignItems: 'center' }}
         >
           {notification && (
             <Alert
@@ -53,7 +54,8 @@ const AddProjectForm = ({
 
           <StandardFormBar id='website' label='Project URL' type='text' />
           <StandardFormBar id='sourceCode' label='Source Code URL' type='text' />
-          <StandardCheckBox />
+          <StandardSelector />
+          <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
         <SampleProject />
       </div>

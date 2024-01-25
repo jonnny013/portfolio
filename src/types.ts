@@ -3,7 +3,8 @@ export interface Project {
   title: string;
   project: string;
   description: string;
-  skills: {css: boolean;
+  skills: {
+  css: boolean;
   html: boolean;
   node: boolean;
   react: boolean;
@@ -12,9 +13,11 @@ export interface Project {
   mongoDB: boolean;
   express: boolean;
   javascript: boolean;
-  typescript: boolean;};
+  typescript: boolean;
+};
   website: string;
   sourceCode: string;
+  recommended: boolean
 }
 
 export type ProjectWithoutID = Omit<Project, 'id'>

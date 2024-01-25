@@ -14,7 +14,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import themes from '../../../themes/themes'
 
 
-const StandardCheckBox = () => {
+const StandardSelector = () => {
   const [open, setOpen] = useState(false)
 
   const handleClick = () => {
@@ -49,7 +49,6 @@ const StandardCheckBox = () => {
         variant='standard'
         {...field}
         id={'skills'}
-        {...field}
       >
         <FormLabel component='legend' style={{ fontSize: 30 }} onClick={handleClick}>
           Choose project type {open ? <ExpandLess /> : <ExpandMore />}
@@ -93,4 +92,4 @@ const StandardCheckBox = () => {
   )
 }
 
-export default StandardCheckBox
+export default StandardSelector
