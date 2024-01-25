@@ -4,8 +4,11 @@ import StandardButton from '../../../StandardButton'
 import Alert from '@mui/material/Alert'
 import themes from '../../../../themes/themes'
 import StandardSelector from '../StandardSelector'
-import SampleProject from '../addProject/SampleProject'
+import Projects from '../../../Projects/Projects'
 import StandardCheckbox from '../../../StandardCheckbox'
+import { useFormikContext } from 'formik'
+import type { ProjectWithoutID } from '../../../../types'
+import Error from '../../../Error'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
@@ -16,6 +19,13 @@ const EditProjectForm = ({
   onSubmit: FormSubmitHandler
   notification: string | null
 }) => {
+  const formik = useFormikContext()
+  const { values } = formik
+  const project = values as ProjectWithoutID
+
+  if (!project) {
+    return <Error />
+  }
   return (
     <form onSubmit={onSubmit}>
       <div id='addProjectContainer'>
@@ -57,7 +67,7 @@ const EditProjectForm = ({
           <StandardSelector />
           <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
-        <SampleProject />
+        <Projects project={project} index={0} projectIndex={0}/>
       </div>
       {notification && (
         <Alert

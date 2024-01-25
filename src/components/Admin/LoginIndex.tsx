@@ -4,6 +4,9 @@ import { Formik } from 'formik'
 import loginPost from '../../services/LoginService'
 import * as yup from 'yup'
 import { useState, useEffect } from 'react'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
+import UserContext from '../../contexts/userContext'
+import {useContext } from 'react'
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -19,20 +22,30 @@ username: '',
 password: ''
 }
 
-const ContactIndex = () => {
-
+const LoginIndex = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, dispatch] = useContext(UserContext)!
   const [notification, setNotification] = useState<string | null>(null)
+const queryClient = useQueryClient()
+const loginMutation = useMutation({
+  mutationFn: loginPost ,
+  onSuccess: (result) => {
+    queryClient.invalidateQueries({ queryKey: ['user'] })
+    dispatch({type: 'LOGIN', userToken: result.token})
+  },
+  onError: error => {
+    setNotification(`Error: , ${error.message}`)
+  },
+  onMutate: () => {
+    setNotification('Please wait...')
+  },
+})
+
 
   const onSubmit = async (
     values: LoginFormTypes,
-    { resetForm }: { resetForm: () => void }
   ) => {
-    console.log('Form submitted', values)
-    const task = await loginPost(values)
-    if (task) {
-      setNotification(task)
-      resetForm()
-    }
+    loginMutation.mutate(values)
   }
 
   useEffect(() => {
@@ -55,4 +68,4 @@ const ContactIndex = () => {
   )
 }
 
-export default ContactIndex
+export default LoginIndex

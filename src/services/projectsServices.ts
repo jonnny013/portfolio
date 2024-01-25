@@ -13,8 +13,11 @@ export const  getSingleProject = async (id: string): Promise<Project | undefined
   return result.data
 }
 
-export const addProject = async (project: ProjectWithoutID): Promise<Project> => {
-  const result = await axios.post(baseURL, project)
+export const addProject = async (project: ProjectWithoutID, token: string): Promise<Project> => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  const result = await axios.post(baseURL, project, config)
   return result.data
 }
 

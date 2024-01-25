@@ -12,7 +12,7 @@ import AppRoutes from './Routes'
 
 const App: React.FC = () => {
   const [{ darkMode }, dispatch] = useContext(DarkModeContext)!
-
+ 
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     if (darkModeMediaQuery.matches) {

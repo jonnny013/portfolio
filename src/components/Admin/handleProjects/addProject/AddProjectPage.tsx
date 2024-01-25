@@ -2,11 +2,12 @@ import { Formik } from 'formik'
 
 import AddProjectForm from './AddProjectForm'
 import type { ProjectWithoutID } from '../../../../types'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { addProject } from '../../../../services/projectsServices'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from '../yupValidation'
 import { useNavigate } from 'react-router-dom'
+import UserContext from '../../../../contexts/userContext'
 
 const initialValues = {
   title: '',
@@ -31,6 +32,7 @@ const initialValues = {
 
 const AddProjectPage = () => {
   const navigate = useNavigate()
+  const [{ userToken }] = useContext(UserContext)!
   const [notification, setNotification] = useState<string | null>(null)
   const queryClient = useQueryClient()
   const newProjectMutation = useMutation({
@@ -51,7 +53,9 @@ const AddProjectPage = () => {
   })
 
   const onSubmit = async (values: ProjectWithoutID) => {
-    newProjectMutation.mutate(values)
+    if (userToken) {
+      newProjectMutation.mutate(values, userToken)
+    }
   }
 
   useEffect(() => {

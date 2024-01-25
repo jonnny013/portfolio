@@ -8,10 +8,13 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import UserContext from '../../contexts/userContext'
 
 const AdminIndex = () => {
+  const [{userToken}] = useContext(UserContext)!
   const navigate = useNavigate()
-  const user = true
+  const user = userToken
 
   if (!user) return (
     <LoginIndex />
