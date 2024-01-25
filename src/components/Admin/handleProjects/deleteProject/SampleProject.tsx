@@ -3,6 +3,7 @@ import { Typography } from '@mui/material'
 import Error from '../../../Error'
 import type { Project } from '../../../../types'
 import ProjectLinks from '../../../Projects/ProjectLinks'
+import VerifiedIcon from '@mui/icons-material/Verified'
 
 const SampleProject = ({project}: {project: Project} ) => {
 
@@ -20,6 +21,13 @@ const SampleProject = ({project}: {project: Project} ) => {
     >
       <div className='ind-projects'>
         <div className='project-title'>
+          {project.recommended && (
+            <VerifiedIcon
+              sx={{ fontSize: 50 }}
+              style={{ position: 'absolute', right: 10 }}
+              color='primary'
+            />
+          )}
           <h2>{project.title}</h2>
         </div>
         <h1 className='projectName'>{project.project}</h1>

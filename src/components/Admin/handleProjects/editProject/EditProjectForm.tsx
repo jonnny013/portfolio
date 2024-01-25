@@ -3,8 +3,9 @@ import StandardFormBar from '../../../StandardFormBar'
 import StandardButton from '../../../StandardButton'
 import Alert from '@mui/material/Alert'
 import themes from '../../../../themes/themes'
-import StandardCheckBox from '../StandardSelector'
+import StandardSelector from '../StandardSelector'
 import SampleProject from '../addProject/SampleProject'
+import StandardCheckbox from '../../../StandardCheckbox'
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 
@@ -53,7 +54,8 @@ const EditProjectForm = ({
 
           <StandardFormBar id='website' label='Project URL' type='text' />
           <StandardFormBar id='sourceCode' label='Source Code URL' type='text' />
-          <StandardCheckBox />
+          <StandardSelector />
+          <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
         <SampleProject />
       </div>

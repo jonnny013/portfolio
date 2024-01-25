@@ -95,7 +95,7 @@ const AdminIndex = () => {
             <ListItemIcon>
               <EditIcon />
             </ListItemIcon>
-            <ListItemText primary='Edit "About Me"' />
+            <ListItemText primary='Edit & Delete "About Me"' />
           </ListItemButton>
         </List>
       </div>
