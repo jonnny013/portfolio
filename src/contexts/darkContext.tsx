@@ -1,11 +1,13 @@
 import { Dispatch, ReactNode, createContext, useReducer } from 'react'
 
- type DarkModeAction = { type: 'TOGGLE_DARK' }
+ type DarkModeAction = { type: 'TOGGLE_DARK' } | { type: 'ClIENT_PREFERENCE' }
 
  const darkModeReducer = (state: { darkMode: boolean }, action: DarkModeAction) => {
   switch (action.type) {
-    case "TOGGLE_DARK":
-      return {...state, darkMode: !state.darkMode}
+    case 'TOGGLE_DARK':
+      return { ...state, darkMode: !state.darkMode }
+    case 'ClIENT_PREFERENCE':
+      return { ...state, darkMode: true }
     default:
       return state
   }

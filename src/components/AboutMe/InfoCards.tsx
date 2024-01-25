@@ -4,22 +4,37 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import type { AboutMe } from '../../types'
 import { CardActionArea } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DialogComponent from './Dialog'
 
+const style = { maxWidth: 350, width: 350, height: 300 }
 
-const  InfoCards = ({card}: {card: AboutMe}) => {
+const InfoCards = ({ card }: { card: AboutMe }) => {
   const [open, setOpen] = useState(false)
+  const [pic, setPic] = useState<string | undefined>(undefined)
+  console.log(card.picture)
+  useEffect(() => {
+    if (card.picture && typeof card.picture === 'string') {
+       setPic(card.picture)
+    } else if (card.picture && typeof card.picture === 'object') {
+       setPic(URL.createObjectURL(card.picture))
+    }
+  }, [card.picture, pic])
+
+  console.log(pic)
 
   return (
-    <Card sx={{ maxWidth: 350, width: 350 }}>
-      <DialogComponent setOpen={setOpen} open={open} card={card} />
-      <CardActionArea onClick={() => setOpen(!open)}>
-        <CardMedia
-          sx={{ height: 140, width: 'auto' }}
-          image={card.picture as string}
-          title={card.picDesc}
-        />
+    <CardActionArea onClick={() => setOpen(!open)} sx={style}>
+      <Card sx={style}>
+        <DialogComponent setOpen={setOpen} open={open} card={card} />
+        {pic && (
+          <CardMedia
+            sx={{ height: 140, width: 'auto' }}
+            image={pic}
+            title={card.picDesc}
+          />
+        )}
+
         <CardContent>
           <Typography gutterBottom variant='h4' component='div'>
             {card.name}
@@ -28,8 +43,8 @@ const  InfoCards = ({card}: {card: AboutMe}) => {
             {card.description}
           </Typography>
         </CardContent>
-      </CardActionArea>
-    </Card>
+      </Card>
+    </CardActionArea>
   )
 }
 

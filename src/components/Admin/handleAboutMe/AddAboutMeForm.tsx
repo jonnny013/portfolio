@@ -39,7 +39,7 @@ const AddAboutMeForm = ({
       return undefined
     }
   }
-  console.log(pic())
+
 
   return (
     <form onSubmit={onSubmit}>
