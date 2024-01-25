@@ -12,7 +12,7 @@ const style = { maxWidth: 350, width: 350, height: 300 }
 const InfoCards = ({ card }: { card: AboutMe }) => {
   const [open, setOpen] = useState(false)
   const [pic, setPic] = useState<string | undefined>(undefined)
-  console.log(card.picture)
+
   useEffect(() => {
     if (card.picture && typeof card.picture === 'string') {
        setPic(card.picture)
@@ -30,7 +30,7 @@ const InfoCards = ({ card }: { card: AboutMe }) => {
         {pic && (
           <CardMedia
             sx={{ height: 140, width: 'auto' }}
-            image={pic}
+            image={`http://localhost:3001/images/${pic}`}
             title={card.picDesc}
           />
         )}

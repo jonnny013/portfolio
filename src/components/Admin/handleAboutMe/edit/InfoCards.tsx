@@ -56,7 +56,7 @@ const InfoCards = ({
 
       <CardMedia
         sx={{ height: 140, width: 'auto' }}
-        image={card.picture as string}
+        image={`http://localhost:3001/images/${card.picture}`}
         title={card.picDesc}
       />
       <CardContent>
@@ -67,7 +67,15 @@ const InfoCards = ({
           {card.description}
         </Typography>
       </CardContent>
-      <div style={{ display: 'flex', gap: 20, marginLeft: 20, alignSelf: 'flex-end', justifySelf: 'flex-end' }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: 20,
+          marginLeft: 20,
+          alignSelf: 'flex-end',
+          justifySelf: 'flex-end',
+        }}
+      >
         <IconButton aria-label='delete' onClick={handleDelete}>
           <DeleteForeverIcon sx={{ fontSize: themes.fonts.icons }} color='error' />
         </IconButton>
