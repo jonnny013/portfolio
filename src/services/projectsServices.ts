@@ -1,7 +1,7 @@
 import type { Project, ProjectWithoutID } from '../types'
 import axios from 'axios'
 
-const baseURL = 'http://localhost:3001/projects'
+const baseURL = '/api/projects'
 
 export const getProjects = async () => {
   const result = await axios.get(baseURL)

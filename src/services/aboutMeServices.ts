@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AboutMe, AboutMeWithoutID } from '../types'
 
-const baseURL = 'http://localhost:3001/aboutMe'
+const baseURL = '/api/aboutMe'
 
 export const getAboutMe = async () => {
   const result = await axios.get(baseURL)
@@ -10,7 +10,17 @@ export const getAboutMe = async () => {
 
 export const addAboutMe = async (info: AboutMeWithoutID) => {
   console.log('post', info)
-  const result = await axios.post(baseURL, info)
+  const picture = info.picture
+  const formdata = new FormData()
+  formdata.append('picture', picture)
+  const thingToSend = {
+    ...info,
+    formdata
+  }
+  const result = await axios.post(baseURL, thingToSend, {
+      headers: {
+        'Content-Type': 'multipart/form-data', 
+      }})
   return result.data
 }
 

@@ -38,6 +38,7 @@ const PictureInput = ({ id, type, setPicture }: propTypes) => {
           // {...field}
           onChange={handleFileChange}
           style={{ display: 'none' }}
+          name='picture'
         />
         Choose picture
       </Button>

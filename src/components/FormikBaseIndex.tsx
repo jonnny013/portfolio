@@ -8,6 +8,7 @@ interface Props {
   formComponent: any
   notification?: string | null
   props?: any
+  enctype?: string
 }
 
 const FormikBaseIndex = ({
@@ -16,6 +17,7 @@ const FormikBaseIndex = ({
   validationSchema,
   formComponent,
   notification,
+  enctype,
   ...props
 }: Props) => {
   const FormComponent = formComponent
@@ -27,7 +29,7 @@ const FormikBaseIndex = ({
     >
       {({ handleSubmit }) => (
         <>
-          <FormComponent onSubmit={handleSubmit} notification={notification} {...props}/>
+          <FormComponent onSubmit={handleSubmit} notification={notification} {...props} enctype={enctype}/>
         </>
       )}
     </Formik>

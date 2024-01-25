@@ -56,6 +56,7 @@ const AddNewAboutMe = () => {
         validationSchema={validationSchema}
         formComponent={AddAboutMeForm}
         notification={notification}
+        enctype='multipart/form-data'
       />
     </div>
   )
