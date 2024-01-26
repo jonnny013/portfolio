@@ -8,28 +8,50 @@ export const getAboutMe = async () => {
   return result.data
 }
 
-export const addAboutMe = async (info: AboutMeWithoutID) => {
-  console.log('post', info)
+export const addAboutMe = async ({info, token}: { info: AboutMeWithoutID, token: string }) => {
   const picture = info.picture
   const formdata = new FormData()
   formdata.append('picture', picture)
   const thingToSend = {
     ...info,
-    formdata
+    formdata,
   }
   const result = await axios.post(baseURL, thingToSend, {
-      headers: {
-        'Content-Type': 'multipart/form-data', 
-      }})
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: token,
+    },
+  })
   return result.data
 }
 
-export const updateAboutMe = async (info: AboutMe) => {
-  const result = await axios.put(`${baseURL}/${info.id}`, info)
+export const updateAboutMe = async ({
+  info,
+  token,
+}: {
+  info: AboutMe
+  token: string
+}) => {
+  const picture = info.picture
+  const formdata = new FormData()
+  formdata.append('picture', picture)
+  const thingToSend = {
+    ...info,
+    formdata,
+  }
+  const result = await axios.put(`${baseURL}/${info.id}`, thingToSend, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: token,
+    },
+  })
   return result.data
 }
 
-export const deleteAboutMe = async (id: string) => {
-  const result = await axios.delete(`${baseURL}/${id}`)
+export const deleteAboutMe = async ({ id, token }: { id: string; token: string }) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+  const result = await axios.delete(`${baseURL}/${id}`, config)
   return result.data
 }

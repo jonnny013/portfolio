@@ -54,7 +54,7 @@ const AddProjectPage = () => {
 
   const onSubmit = async (values: ProjectWithoutID) => {
     if (userToken) {
-      newProjectMutation.mutate(values, userToken)
+      newProjectMutation.mutate({project: values, token: userToken})
     }
   }
 
