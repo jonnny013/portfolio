@@ -28,20 +28,29 @@ const initialValues = {
 const ContactIndex = () => {
   const [notification, setNotification] = useState<string | null>(null)
 
-  const onSubmit = async (values: ContactFormTypes, { resetForm }: {resetForm: () => void}) => {
+  const onSubmit = async (
+    values: ContactFormTypes,
+    { resetForm }: { resetForm: () => void }
+  ) => {
     const task = await contactFormPost(values)
     if (task) {
-      setNotification(task)
+      if (typeof task === 'string') {
+        setNotification(task as string)
+      }
+      else {
+        // eslint-disable-next-line no-console
+        console.log(task)
+      }
       resetForm()
     }
   }
 
-   useEffect(() => {
-     const timeoutId = setTimeout(() => {
-       setNotification(null)
-     }, 5000)
-     return () => clearTimeout(timeoutId)
-   }, [notification, setNotification])
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setNotification(null)
+    }, 5000)
+    return () => clearTimeout(timeoutId)
+  }, [notification, setNotification])
 
   return (
     <Formik
