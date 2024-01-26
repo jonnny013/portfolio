@@ -6,7 +6,6 @@ const baseURL = '/api/login'
 const loginPost = async ({ username, password}: LoginFormTypes) => {
   const user = {username, password}
   const result = await axios.post(baseURL, user)
-  console.log('Form to send', user)
   return result.data
 }
 

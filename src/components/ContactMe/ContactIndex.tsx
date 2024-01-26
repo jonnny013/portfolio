@@ -29,7 +29,6 @@ const ContactIndex = () => {
   const [notification, setNotification] = useState<string | null>(null)
 
   const onSubmit = async (values: ContactFormTypes, { resetForm }: {resetForm: () => void}) => {
-    console.log('Form submitted', values)
     const task = await contactFormPost(values)
     if (task) {
       setNotification(task)

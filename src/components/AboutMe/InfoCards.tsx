@@ -21,7 +21,6 @@ const InfoCards = ({ card }: { card: AboutMe }) => {
     }
   }, [card.picture, pic])
 
-  console.log(pic)
 
   return (
     <CardActionArea onClick={() => setOpen(!open)} sx={style}>

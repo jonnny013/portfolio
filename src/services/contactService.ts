@@ -6,7 +6,6 @@ const baseURL = '/api/contactService'
 const contactFormPost = async ({name, email, subject, message}: ContactFormTypes) => {
   const messageToSend = { name, email, subject, message }
   const result = await axios.post(baseURL, messageToSend)
-  console.log('Form to send', messageToSend)
   return result.data
 }
 

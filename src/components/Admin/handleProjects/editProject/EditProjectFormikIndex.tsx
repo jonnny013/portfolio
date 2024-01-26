@@ -44,7 +44,6 @@ const [{ userToken }] = useContext(UserContext)!
   })
 
   const onSubmit = async (values: Project, { resetForm }: { resetForm: () => void }) => {
-    console.log('Form submitted', values)
     if (userToken) {
 updateProjectMutation.mutate({project: values, token: userToken})
     }
