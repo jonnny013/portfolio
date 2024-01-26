@@ -4,13 +4,14 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import type { AboutMe } from '../../../../types'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import DialogComponent from './Dialog'
 import IconButton from '@mui/material/IconButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import themes from '../../../../themes/themes'
 import { deleteAboutMe } from '../../../../services/aboutMeServices'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import UserContext from '../../../../contexts/userContext'
 
 const InfoCards = ({
   card,
@@ -22,7 +23,7 @@ const InfoCards = ({
   notification: string | undefined
 }) => {
   const [open, setOpen] = useState(false)
-
+  const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
   const deleteCardMutation = useMutation({
     mutationFn: deleteAboutMe,
@@ -39,9 +40,10 @@ const InfoCards = ({
   })
 
   const handleDelete = () => {
+    if (userToken) {
     if (window.confirm('Are you sure you want to delete this card permanently?')) {
-      deleteCardMutation.mutate(card.id)
-    }
+      deleteCardMutation.mutate({id: card.id, token: userToken})
+    }}
   }
 
   return (

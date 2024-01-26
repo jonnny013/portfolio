@@ -3,12 +3,13 @@ import { getSingleProject } from '../../../../services/projectsServices'
 import { Formik } from 'formik'
 import type { Project } from '../../../../types'
 import { updateProject } from '../../../../services/projectsServices'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import validationSchema from '../yupValidation'
 import EditProjectForm from './EditProjectForm'
 import LoadingScreen from '../../../LoadingScreen'
 import Error from '../../../Error'
+import UserContext from '../../../../contexts/userContext'
 
 const EditProjectFormikIndex = () => {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ const EditProjectFormikIndex = () => {
     queryKey: ['project'],
     queryFn: () => getSingleProject(projectId),
   })
-
+const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
   const updateProjectMutation = useMutation({
     mutationFn: updateProject,
@@ -44,7 +45,10 @@ const EditProjectFormikIndex = () => {
 
   const onSubmit = async (values: Project, { resetForm }: { resetForm: () => void }) => {
     console.log('Form submitted', values)
-     await updateProjectMutation.mutate(values)
+    if (userToken) {
+updateProjectMutation.mutate({project: values, token: userToken})
+    }
+      
 
     if (updateProjectMutation.isSuccess) {
       resetForm()

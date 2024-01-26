@@ -1,11 +1,12 @@
 import AddAboutMeForm from './AddAboutMeForm'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { addAboutMe } from '../../../services/aboutMeServices'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from './yupValidation'
 import { useNavigate } from 'react-router-dom'
 import type { AboutMeWithoutID } from '../../../types'
 import FormikBaseIndex from '../../FormikBaseIndex'
+import UserContext from '../../../contexts/userContext'
 
 const initialValues = {
   picture: '',
@@ -17,6 +18,7 @@ const initialValues = {
 
 const AddNewAboutMe = () => {
   const navigate = useNavigate()
+  const [{ userToken }] = useContext(UserContext)!
   const [notification, setNotification] = useState<string | null>(null)
   const queryClient = useQueryClient()
   const newProjectMutation = useMutation({
@@ -37,7 +39,9 @@ const AddNewAboutMe = () => {
   })
 
   const onSubmit = async (values: AboutMeWithoutID) => {
-    newProjectMutation.mutate(values)
+    if (userToken) {
+      newProjectMutation.mutate({info: values, token: userToken})
+    }
   }
 
   useEffect(() => {

@@ -5,6 +5,8 @@ import validationSchema from '../yupValidation'
 import AddAboutMeForm from '../AddAboutMeForm'
 import { updateAboutMe } from '../../../../services/aboutMeServices'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useContext } from 'react'
+import UserContext from '../../../../contexts/userContext'
 
 interface props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -24,6 +26,7 @@ const DialogComponent = ({
   const handleClose = () => {
     setOpen(false)
   }
+  const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
   const updateProjectMutation = useMutation({
     mutationFn: updateAboutMe,
@@ -42,9 +45,10 @@ const DialogComponent = ({
     },
   })
 
-  const onSubmit = async (values: AboutMe) => {
-    console.log('Form submitted', values)
-    await updateProjectMutation.mutate(values)
+  const onSubmit = (values: AboutMe) => {
+    if (userToken) {
+      updateProjectMutation.mutate({ info: values, token: userToken })
+    }
   }
 
   return (

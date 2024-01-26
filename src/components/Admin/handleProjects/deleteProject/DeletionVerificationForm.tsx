@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { getSingleProject, deleteProject } from '../../../../services/projectsServices'
 import type { Project } from '../../../../types'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import LoadingScreen from '../../../LoadingScreen'
 import Error from '../../../Error'
@@ -9,6 +9,7 @@ import StandardButton from '../../../StandardButton'
 import { Alert } from '@mui/material'
 import themes from '../../../../themes/themes'
 import Projects from '../../../Projects/Projects'
+import UserContext from '../../../../contexts/userContext'
 
 const DeletionVerificationForm = () => {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ const DeletionVerificationForm = () => {
     queryKey: ['project'],
     queryFn: () => getSingleProject(projectId),
   })
-
+  const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
   const deleteProjectMutation = useMutation({
     mutationFn: deleteProject,
@@ -44,7 +45,9 @@ const DeletionVerificationForm = () => {
 
   const handleSubmit = () => {
     if (window.confirm('Are you sure you want to delete the project permanently?')) {
-      deleteProjectMutation.mutate(project.id)
+      if (userToken) {
+        deleteProjectMutation.mutate({ id: project.id, token: userToken })
+      }
     }
   }
 
