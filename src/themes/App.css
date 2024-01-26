@@ -248,7 +248,6 @@ h2 {
 
 .project-focus {
   width: 100%;
-  overflow:scroll;
 }
 
 .ind-projects .project-focus p {
@@ -266,6 +265,7 @@ h2 {
   height: auto;
   flex: 1;
   text-align: center;
+    overflow:scroll;
 }
 .icons i {
   font-size: 4rem;

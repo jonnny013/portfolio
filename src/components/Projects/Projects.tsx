@@ -24,15 +24,14 @@ const Projects = ({
     >
       <div className='ind-projects'>
         <div className='project-title' style={{ position: 'relative' }}>
-          
-            {project.recommended && (
-              <VerifiedIcon
-                sx={{ fontSize: 50 }}
-                style={{ right: 0, top: 0, position: 'absolute' }}
-                color='primary'
-              />
-            )}
-            <h2 style={{}}>{project.title}</h2>
+          {project.recommended && (
+            <VerifiedIcon
+              sx={{ fontSize: 50 }}
+              style={{ right: 0, top: 0, position: 'absolute' }}
+              color='primary'
+            />
+          )}
+          <h2 style={{}}>{project.title}</h2>
         </div>
         <h1 className='projectName'>{project.project}</h1>
         <Typography className='long-intro' id='mern-long-paragraph'>
@@ -45,8 +44,8 @@ const Projects = ({
               ([skill, value], index) => value && renderIcon(skill, index)
             )}
           </div>
-          <ProjectLinks projectURL={project.website} sourceURL={project.sourceCode} />
         </div>
+        <ProjectLinks projectURL={project.website} sourceURL={project.sourceCode} />
       </div>
     </div>
   )

@@ -59,7 +59,7 @@ const DialogComponent = ({
         onSubmit={onSubmit}
         validationSchema={validationSchema}
         formComponent={AddAboutMeForm}
-        picturePreview={card.picture}
+        picturePreview={`http://localhost:3001/images/${card.picture}`}
         notification={notification}
       />
     </Dialog>
