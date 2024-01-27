@@ -27,20 +27,14 @@ const initialValues = {
 
 const ContactIndex = () => {
   const [notification, setNotification] = useState<string | null>(null)
-
+  
   const onSubmit = async (
     values: ContactFormTypes,
     { resetForm }: { resetForm: () => void }
   ) => {
     const task = await contactFormPost(values)
     if (task) {
-      if (typeof task === 'string') {
-        setNotification(task as string)
-      }
-      else {
-        // eslint-disable-next-line no-console
-        console.log(task)
-      }
+      setNotification('Your message has been sent!')
       resetForm()
     }
   }

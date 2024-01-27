@@ -12,7 +12,7 @@ interface propTypes {
 
 const PictureInput = ({ id, type, setPicture }: propTypes) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, meta] = useField(id)
+  const [_field, meta] = useField(id)
   const formikProps = useFormikContext()
   const showError = meta.touched && meta.error
   const [error, setError] = useState<string | undefined>(undefined)

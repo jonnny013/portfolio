@@ -16,7 +16,6 @@ const DialogComponent = ({ setOpen, open, card }: props) => {
   const handleClose = () => {
     setOpen(false)
   }
-
   return (
     <Dialog onClose={handleClose} open={open} fullWidth maxWidth='xl' scroll='body'>
       <CardActionArea onClick={() => setOpen(!open)}>
@@ -34,7 +33,7 @@ const DialogComponent = ({ setOpen, open, card }: props) => {
         >
           <img
             id='aboutMeImg'
-            src={card.picture as string}
+            src={import.meta.env.VITE_API_BASE_URL + `${card.picture}`}
             alt={card.picDesc}
           />
           <CardContent>

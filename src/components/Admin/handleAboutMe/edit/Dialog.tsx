@@ -69,7 +69,7 @@ const DialogComponent = ({
         onSubmit={onSubmit}
         validationSchema={validationSchema}
         formComponent={AddAboutMeForm}
-        picturePreview={`http://localhost:3001/images/${card.picture}`}
+        picturePreview={import.meta.env.VITE_API_BASE_URL + `${card.picture}`}
         notification={notification}
       />
     </Dialog>
