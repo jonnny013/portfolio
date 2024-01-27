@@ -22,7 +22,6 @@ const EditProjectForm = ({
   const formik = useFormikContext()
   const { values } = formik
   const project = values as ProjectWithoutID
-
   if (!project) {
     return <Error />
   }

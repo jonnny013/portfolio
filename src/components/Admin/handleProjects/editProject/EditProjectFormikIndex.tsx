@@ -18,13 +18,13 @@ const EditProjectFormikIndex = () => {
   let projectId: string
   if (params['id']) {
     projectId = params['id']
-  } 
-  
+  }
+
   const result = useQuery({
     queryKey: ['project'],
     queryFn: () => getSingleProject(projectId),
   })
-const [{ userToken }] = useContext(UserContext)!
+  const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
   const updateProjectMutation = useMutation({
     mutationFn: updateProject,
@@ -43,14 +43,9 @@ const [{ userToken }] = useContext(UserContext)!
     },
   })
 
-  const onSubmit = async (values: Project, { resetForm }: { resetForm: () => void }) => {
+  const onSubmit = async (values: Project) => {
     if (userToken) {
-updateProjectMutation.mutate({project: values, token: userToken})
-    }
-      
-
-    if (updateProjectMutation.isSuccess) {
-      resetForm()
+      updateProjectMutation.mutate({ project: values, token: userToken })
     }
   }
 
@@ -62,7 +57,7 @@ updateProjectMutation.mutate({project: values, token: userToken})
   }, [notification, setNotification])
 
   if (!result) {
-   return <LoadingScreen />
+    return <LoadingScreen />
   }
 
   if (result.isLoading) {
@@ -83,9 +78,7 @@ updateProjectMutation.mutate({project: values, token: userToken})
         validationSchema={validationSchema}
       >
         {({ handleSubmit }) => (
-          
-            <EditProjectForm onSubmit={handleSubmit} notification={notification} />
-      
+          <EditProjectForm onSubmit={handleSubmit} notification={notification} />
         )}
       </Formik>
     </div>

@@ -11,14 +11,14 @@ interface propTypes {
 const StandardCheckbox = ({ id, label}: propTypes) => {
   const [field, meta] = useField(id)
   const showError = meta.touched && meta.error
-
   return (
     <>
       <FormControlLabel
         id={id}
         {...field}
-        control={<Checkbox size='medium' />}
+        control={<Checkbox size='medium' checked={field.value} />}
         label={label}
+
         labelPlacement='start'
         sx={{ fontSize: 20 }}
         componentsProps={{ typography: { variant: 'h4' } }}

@@ -11,10 +11,12 @@ import EditProjectFormikIndex from './components/Admin/handleProjects/editProjec
 import DeletionVerificationForm from './components/Admin/handleProjects/deleteProject/DeletionVerificationForm'
 import EditAndDeleteAboutMe from './components/Admin/handleAboutMe/edit/EditAndDeleteAboutMe'
 import AddNewAboutMeIndex from './components/Admin/handleAboutMe/AddNewAboutMeIndex'
+import { useContext } from 'react'
+import UserContext from './contexts/userContext'
 
 const PrivateRoute = ({ element }: { element: JSX.Element }) => {
-  const user = true
-  return user ? element : <Navigate to='/unauthorized' />
+  const [{ userToken }] = useContext(UserContext)!
+  return userToken ? element : <Navigate to='/unauthorized' />
 }
 
 const AppRoutes = () => {
