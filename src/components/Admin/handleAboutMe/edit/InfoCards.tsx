@@ -12,6 +12,7 @@ import themes from '../../../../themes/themes'
 import { deleteAboutMe } from '../../../../services/aboutMeServices'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import UserContext from '../../../../contexts/userContext'
+import { isAxiosError } from 'axios'
 
 const InfoCards = ({
   card,
@@ -32,7 +33,16 @@ const InfoCards = ({
       setNotification('Your project has been deleted!')
     },
     onError: error => {
-      setNotification(`Error: , ${error.message}`)
+           if (
+             isAxiosError(error) &&
+             error.response &&
+             error.response.data &&
+             error.response.data.error
+           ) {
+             setNotification(`Error: ${error.response.data.error}`)
+           } else {
+             setNotification(error.message)
+           }
     },
     onMutate: () => {
       setNotification('Please wait...')

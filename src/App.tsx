@@ -9,7 +9,6 @@ import DarkModeContext from './contexts/darkContext'
 import AppRoutes from './Routes'
 
 
-
 const App: React.FC = () => {
   const [{ darkMode }, dispatch] = useContext(DarkModeContext)!
  
@@ -18,9 +17,9 @@ const App: React.FC = () => {
     if (darkModeMediaQuery.matches) {
       dispatch({ type: 'ClIENT_PREFERENCE' })
     }
-  }, [])
+  }, [dispatch])
 
-  return (
+  return (  
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />
       <div>

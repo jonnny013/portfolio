@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import type { AboutMeWithoutID } from '../../../types'
 import FormikBaseIndex from '../../FormikBaseIndex'
 import UserContext from '../../../contexts/userContext'
+import { isAxiosError } from 'axios'
 
 const initialValues = {
   picture: '',
@@ -31,7 +32,16 @@ const AddNewAboutMe = () => {
       }, 4000)
     },
     onError: error => {
-      setNotification(`Error: , ${error.message}`)
+           if (
+             isAxiosError(error) &&
+             error.response &&
+             error.response.data &&
+             error.response.data.error
+           ) {
+             setNotification(`Error: ${error.response.data.error}`)
+           } else {
+             setNotification(error.message)
+           }
     },
     onMutate: () => {
       setNotification('Please wait...')

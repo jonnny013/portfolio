@@ -12,13 +12,12 @@ import { useContext } from 'react'
 import UserContext from '../../contexts/userContext'
 
 const AdminIndex = () => {
-  const [{userToken}] = useContext(UserContext)!
+  const [{ userToken }] = useContext(UserContext)!
   const navigate = useNavigate()
   const user = userToken
 
-  if (!user) return (
-    <LoginIndex />
-  )
+
+  if (!user) return <LoginIndex />
 
   return (
     <div

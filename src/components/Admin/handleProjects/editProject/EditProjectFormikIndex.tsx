@@ -10,6 +10,7 @@ import EditProjectForm from './EditProjectForm'
 import LoadingScreen from '../../../LoadingScreen'
 import Error from '../../../Error'
 import UserContext from '../../../../contexts/userContext'
+import { isAxiosError } from 'axios'
 
 const EditProjectFormikIndex = () => {
   const navigate = useNavigate()
@@ -36,7 +37,16 @@ const EditProjectFormikIndex = () => {
       }, 4000)
     },
     onError: error => {
-      setNotification(`Error: , ${error.message}`)
+           if (
+             isAxiosError(error) &&
+             error.response &&
+             error.response.data &&
+             error.response.data.error
+           ) {
+             setNotification(`Error: ${error.response.data.error}`)
+           } else {
+             setNotification(error.message)
+           }
     },
     onMutate: () => {
       setNotification('Please wait...')

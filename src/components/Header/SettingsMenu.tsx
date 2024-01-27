@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import themes from '../../themes/themes'
 import DarkModeSwitch from './DarkModeSwitch'
 import Divider from '@mui/material/Divider'
+import { useContext } from 'react'
+import UserContext from '../../contexts/userContext'
 
 const SettingsMenu = () => {
+  const [{ userToken }, dispatch] = useContext(UserContext)!
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -17,6 +20,9 @@ const SettingsMenu = () => {
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+  const handleLogout = () => {
+    dispatch({type: 'LOGOUT'})
   }
 
   return (
@@ -57,7 +63,7 @@ const SettingsMenu = () => {
         <MenuItem>
           <DarkModeSwitch />
         </MenuItem>
-        <MenuItem onClick={handleClose}>Language</MenuItem>
+        {userToken && <MenuItem onClick={handleLogout}>Logout</MenuItem>}
       </Menu>
     </>
   )

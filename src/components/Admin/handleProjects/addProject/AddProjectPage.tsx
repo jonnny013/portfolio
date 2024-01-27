@@ -8,6 +8,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from '../yupValidation'
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../../../../contexts/userContext'
+import { isAxiosError } from 'axios'
 
 const initialValues = {
   title: '',
@@ -45,7 +46,16 @@ const AddProjectPage = () => {
       }, 4000)
     },
     onError: error => {
-      setNotification(`Error: , ${error.message}`)
+           if (
+             isAxiosError(error) &&
+             error.response &&
+             error.response.data &&
+             error.response.data.error
+           ) {
+             setNotification(`Error: ${error.response.data.error}`)
+           } else {
+             setNotification(error.message)
+           }
     },
     onMutate: () => {
       setNotification('Please wait...')

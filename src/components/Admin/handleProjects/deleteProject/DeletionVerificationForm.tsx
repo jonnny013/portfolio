@@ -10,6 +10,7 @@ import { Alert } from '@mui/material'
 import themes from '../../../../themes/themes'
 import Projects from '../../../Projects/Projects'
 import UserContext from '../../../../contexts/userContext'
+import { isAxiosError } from 'axios'
 
 const DeletionVerificationForm = () => {
   const navigate = useNavigate()
@@ -36,7 +37,16 @@ const DeletionVerificationForm = () => {
       }, 4000)
     },
     onError: error => {
-      setNotification(`Error: , ${error.message}`)
+           if (
+             isAxiosError(error) &&
+             error.response &&
+             error.response.data &&
+             error.response.data.error
+           ) {
+             setNotification(`Error: ${error.response.data.error}`)
+           } else {
+             setNotification(error.message)
+           }
     },
     onMutate: () => {
       setNotification('Please wait...')

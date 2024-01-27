@@ -7,6 +7,7 @@ import { updateAboutMe } from '../../../../services/aboutMeServices'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext } from 'react'
 import UserContext from '../../../../contexts/userContext'
+import { isAxiosError } from 'axios'
 
 interface props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -38,7 +39,16 @@ const DialogComponent = ({
       }, 4000)
     },
     onError: error => {
-      setNotification(`Error: , ${error.message}`)
+           if (
+             isAxiosError(error) &&
+             error.response &&
+             error.response.data &&
+             error.response.data.error
+           ) {
+             setNotification(`Error: ${error.response.data.error}`)
+           } else {
+             setNotification(error.message)
+           }
     },
     onMutate: () => {
       setNotification('Please wait...')
