@@ -5,19 +5,20 @@ const themes = {
     buttonFontSize: 16,
     helperFont: 16,
     title: 22,
-    icons: 30
+    icons: 30,
+    mobileFontSize: 13
   },
   colors: {
     headerColor: 'white',
   },
   lightColors: {
     background: 'white',
-    font: 'black'
+    font: 'black',
   },
   darkColors: {
     background: 'darkGray',
-    font: 'white'
-  }
+    font: 'white',
+  },
 }
 
 export default themes

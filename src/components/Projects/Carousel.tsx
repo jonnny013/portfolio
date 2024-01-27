@@ -61,11 +61,11 @@ const Carousel = () => {
   }
 
   function handleTouchEnd() {
-    if (touchStart - touchEnd > 100) {
+    if (touchStart - touchEnd > 50) {
       nextProject()
     }
 
-    if (touchStart - touchEnd < -100) {
+    if (touchStart - touchEnd < -50) {
       prevProject()
     }
   }

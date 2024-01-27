@@ -5,6 +5,8 @@ import Tab from '@mui/material/Tab'
 import { Link, useLocation } from 'react-router-dom'
 import themes from '../../themes/themes'
 import SettingsMenu from './SettingsMenu'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTheme } from '@mui/material/styles'
 
 interface LinkTabProps {
   label?: string
@@ -13,11 +15,16 @@ interface LinkTabProps {
 }
 
 function LinkTab(props: LinkTabProps) {
+   const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <Tab
       component={Link}
       to={props.to || '/'}
-      style={{ fontSize: themes.fonts.standardFontSize }}
+      style={{
+        fontSize: themes.fonts.standardFontSize,
+        ...(isMobile && { fontSize: themes.fonts.mobileFontSize }),
+      }}
       aria-current={props.selected && 'page'}
       {...props}
     />
