@@ -1,4 +1,4 @@
-import Carousel from './components/Projects/Carousel'
+import ProjectIndex from './components/Projects/ProjectIndex'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import ContactIndex from './components/ContactMe/ContactIndex'
 import AboutIndex from './components/AboutMe/AboutIndex'
@@ -22,7 +22,7 @@ const PrivateRoute = ({ element }: { element: JSX.Element }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Carousel />} />
+      <Route path='/' element={<ProjectIndex />} />
       <Route path='/contact' element={<ContactIndex />} />
       <Route path='/about' element={<AboutIndex />} />
       <Route path='/admin' element={<AdminIndex />} />

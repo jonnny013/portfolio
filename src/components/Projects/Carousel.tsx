@@ -6,13 +6,15 @@ import { useQuery } from '@tanstack/react-query'
 import LoadingScreen from '../LoadingScreen'
 import { getProjects } from '../../services/projectsServices'
 import Error from '../Error'
+import CarouselBottomBar from './CarouselBottomBar'
 
-const Carousel = () => {
+const Carousel = ({filtered}: {filtered: string}) => {
   const [projectIndex, setProjectIndex] = useState(0)
   const [animationKey, setAnimationKey] = useState(0)
   const [time, setTime] = useState(5)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+  let unfilteredProject: Project[] = []
   let projects: Project[] = []
 
   const result = useQuery({
@@ -32,8 +34,7 @@ const Carousel = () => {
       setTime(5)
     }, time * 1000)
     return () => clearTimeout(timer)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projectIndex, projects])
+  }, [animationKey, projectIndex, projects.length, time])
 
   if (result.isLoading) {
     return <LoadingScreen />
@@ -44,9 +45,16 @@ const Carousel = () => {
 
   if (result) {
     if (result.data) {
-      projects = result.data
+      unfilteredProject = result.data
     }
   }
+
+     projects = unfilteredProject.filter(a =>
+      a.title.toLowerCase().match(filtered.toLowerCase())
+    )
+    if (!projects) {
+      return <LoadingScreen />
+    }
 
   function handleTouchStart(e: React.TouchEvent) {
     if (e.targetTouches[0]) {
@@ -55,9 +63,9 @@ const Carousel = () => {
   }
 
   function handleTouchMove(e: React.TouchEvent) {
-   if (e.targetTouches[0]) {
-     setTouchEnd(e.targetTouches[0].clientX)
-   }
+    if (e.targetTouches[0]) {
+      setTouchEnd(e.targetTouches[0].clientX)
+    }
   }
 
   function handleTouchEnd() {
@@ -118,16 +126,18 @@ const Carousel = () => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {projects.map((project: Project, index: number) => {
-          return (
-            <Projects
-              key={index}
-              project={project}
-              index={index}
-              projectIndex={projectIndex}
-            />
-          )
-        })}
+        {projects
+          .sort((a, b) => (a.recommended === b.recommended ? 0 : a.recommended ? -1 : 1))
+          .map((project: Project, index: number) => {
+            return (
+              <Projects
+                key={index}
+                project={project}
+                index={index}
+                projectIndex={projectIndex}
+              />
+            )
+          })}
 
         <div
           id='carouselPageBar'
@@ -137,20 +147,19 @@ const Carousel = () => {
             alignItems: 'center',
           }}
         >
-          {projects.map((_a, index) => {
-            return (
-              <div
-                key={index}
-                style={{
-                  height: 10,
-                  width: 10,
-                  backgroundColor: index !== projectIndex ? 'black' : 'white',
-                  borderRadius: 50,
-                }}
-                onClick={() => BottomBarOnClick(index)}
-              ></div>
-            )
-          })}
+          {projects
+            .map((_a, index) => {
+              return (
+                <CarouselBottomBar
+                  index={index}
+                  animationKey={animationKey}
+                  projectIndex={projectIndex}
+                  key={index}
+                  time={time}
+                  BottomBarOnClick={BottomBarOnClick}
+                />
+              )
+            })}
         </div>
       </div>
       <button className='next-button buttons' onClick={nextProject}>
