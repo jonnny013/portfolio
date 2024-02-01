@@ -8,7 +8,13 @@ export const getAboutMe = async () => {
   return result.data
 }
 
-export const addAboutMe = async ({info, token}: { info: AboutMeWithoutID, token: string }) => {
+export const addAboutMe = async ({
+  info,
+  token,
+}: {
+  info: AboutMeWithoutID
+  token: string
+}) => {
   const picture = info.picture
   const formdata = new FormData()
   formdata.append('picture', picture)
@@ -32,20 +38,29 @@ export const updateAboutMe = async ({
   info: AboutMe
   token: string
 }) => {
-  const picture = info.picture
-  const formdata = new FormData()
-  formdata.append('picture', picture)
-  const thingToSend = {
-    ...info,
-    formdata,
+  if (typeof info.picture !== 'string') {
+    const picture = info.picture
+    const formdata = new FormData()
+    formdata.append('picture', picture)
+    const thingToSend = {
+      ...info,
+      formdata,
+    }
+    const result = await axios.put(`${baseURL}/${info.id}`, thingToSend, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: token,
+      },
+    })
+    return result.data
+  } else {
+    const result = await axios.put(`${baseURL}/${info.id}`, info, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    return result.data
   }
-  const result = await axios.put(`${baseURL}/${info.id}`, thingToSend, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: token,
-    },
-  })
-  return result.data
 }
 
 export const deleteAboutMe = async ({ id, token }: { id: string; token: string }) => {

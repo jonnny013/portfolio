@@ -31,24 +31,24 @@ const DialogComponent = ({
   const queryClient = useQueryClient()
   const updateProjectMutation = useMutation({
     mutationFn: updateAboutMe,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['aboutMeInfoCards'] })
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['aboutMeInfoCards'] })
       setNotification('Your post has been updated. ')
       setTimeout(() => {
         setOpen(false)
       }, 4000)
     },
     onError: error => {
-           if (
-             isAxiosError(error) &&
-             error.response &&
-             error.response.data &&
-             error.response.data.error
-           ) {
-             setNotification(`Error: ${error.response.data.error}`)
-           } else {
-             setNotification(error.message)
-           }
+      if (
+        isAxiosError(error) &&
+        error.response &&
+        error.response.data &&
+        error.response.data
+      ) {
+        setNotification(`Error: ${error.response.data}`)
+      } else {
+        setNotification(error.message)
+      }
     },
     onMutate: () => {
       setNotification('Please wait...')

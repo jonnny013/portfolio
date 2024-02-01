@@ -36,9 +36,9 @@ const AddNewAboutMe = () => {
              isAxiosError(error) &&
              error.response &&
              error.response.data &&
-             error.response.data.error
+             error.response.data
            ) {
-             setNotification(`Error: ${error.response.data.error}`)
+             setNotification(`Error: ${error.response.data}`)
            } else {
              setNotification(error.message)
            }

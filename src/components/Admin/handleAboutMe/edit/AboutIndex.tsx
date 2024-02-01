@@ -30,7 +30,6 @@ const AboutIndex = ({
   const result = useQuery({
     queryKey: ['aboutMeInfoCards'],
     queryFn: getAboutMe,
-    refetchOnWindowFocus: false,
   })
 
   if (result.isLoading) {
