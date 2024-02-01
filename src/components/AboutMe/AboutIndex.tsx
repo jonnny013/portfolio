@@ -54,16 +54,35 @@ const AboutIndex = () => {
       a.name.toLowerCase().match(filtered.toLowerCase()) ||
       a.type.toLowerCase().match(filtered.toLowerCase())
   )
+  const personal = infoCards.filter(card => (
+    card.type === 'Personal'
+  ))
+
+  const experience = infoCards.filter(card => (
+    card.type === 'Experience'
+  ))
     
+  const certificate = infoCards.filter(card => (
+    card.type === 'Certificate'
+  ))
   return (
     <>
-      <SearchBar
-        title=''
-        label='Search here...'
-        onChange={searchBarOnChange}
-      />
+      <SearchBar title='' label='Search here...' onChange={searchBarOnChange} />
+      {personal.length > 0 && <h1>About me</h1>}
       <div style={styles.container}>
-        {infoCards.map((card: AboutMe) => (
+        {personal.map((card: AboutMe) => (
+          <InfoCards card={card} key={card.id} />
+        ))}
+      </div>
+      {certificate.length > 0 && <h1>Certifications</h1>}
+      <div style={styles.container}>
+        {certificate.map((card: AboutMe) => (
+          <InfoCards card={card} key={card.id} />
+        ))}
+      </div>
+      {experience.length > 0 && <h1>Experience</h1>}
+      <div style={styles.container}>
+        {experience.map((card: AboutMe) => (
           <InfoCards card={card} key={card.id} />
         ))}
       </div>
