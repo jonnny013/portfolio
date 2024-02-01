@@ -8,13 +8,12 @@ import { getProjects } from '../../services/projectsServices'
 import Error from '../Error'
 import CarouselBottomBar from './CarouselBottomBar'
 
-const Carousel = ({filtered}: {filtered: string}) => {
+const Carousel = () => {
   const [projectIndex, setProjectIndex] = useState(0)
   const [animationKey, setAnimationKey] = useState(0)
   const [time, setTime] = useState(5)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  let unfilteredProject: Project[] = []
   let projects: Project[] = []
 
   const result = useQuery({
@@ -45,16 +44,10 @@ const Carousel = ({filtered}: {filtered: string}) => {
 
   if (result) {
     if (result.data) {
-      unfilteredProject = result.data
+      projects = result.data
     }
   }
 
-     projects = unfilteredProject.filter(a =>
-      a.title.toLowerCase().match(filtered.toLowerCase())
-    )
-    if (!projects) {
-      return <LoadingScreen />
-    }
 
   function handleTouchStart(e: React.TouchEvent) {
     if (e.targetTouches[0]) {
@@ -72,7 +65,6 @@ const Carousel = ({filtered}: {filtered: string}) => {
     if (touchStart - touchEnd > 50) {
       nextProject()
     }
-
     if (touchStart - touchEnd < -50) {
       prevProject()
     }
@@ -102,7 +94,7 @@ const Carousel = ({filtered}: {filtered: string}) => {
     setProjectIndex(index)
     setAnimationKey(animationKey + 1)
     setTime(15)
-  }
+  } 
 
   return (
     <div

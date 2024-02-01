@@ -8,6 +8,11 @@ const styles = {
   helper: {
     style: { fontSize: themes.fonts.helperFont },
   },
+  container: {
+    width: '50%',
+    marginBottom: 20,
+
+  }
 }
 
 interface propTypes {
@@ -28,6 +33,7 @@ const SearchBar = ({title, label, onChange, props}: propTypes) => {
         inputProps={styles.resize}
         InputLabelProps={styles.resize}
         FormHelperTextProps={styles.helper}
+        style={styles.container}
         onChange={(event) => onChange(event)}
         variant='filled'
         label={label}

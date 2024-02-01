@@ -4,7 +4,8 @@ import LoadingScreen from '../LoadingScreen'
 import Error from '../Error'
 import { useQuery } from '@tanstack/react-query'
 import InfoCards from './InfoCards'
-
+import SearchBar from '../SearchBar'
+import { useState } from 'react'
 interface Styles {
   container: React.CSSProperties
 }
@@ -19,8 +20,15 @@ const styles: Styles = {
 }
 
 const AboutIndex = () => {
-  let infoCards: AboutMe[] = []
-
+  const [filtered, setFiltered] = useState('')
+  const searchBarOnChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    e.preventDefault()
+    setFiltered(e.target.value)
+  }
+  let unfilteredInfoCards: AboutMe[] = []
+  
   const result = useQuery({
     queryKey: ['aboutMeInfoCards'],
     queryFn: getAboutMe,
@@ -36,15 +44,30 @@ const AboutIndex = () => {
 
   if (result) {
     if (result.data) {
-      infoCards = result.data
+      unfilteredInfoCards = result.data
     }
   }
+
+  const infoCards: AboutMe[] = unfilteredInfoCards.filter(
+    a =>
+      a.description.toLowerCase().match(filtered.toLowerCase()) ||
+      a.name.toLowerCase().match(filtered.toLowerCase()) ||
+      a.type.toLowerCase().match(filtered.toLowerCase())
+  )
+    
   return (
-    <div style={styles.container}>
-      {infoCards.map((card: AboutMe) => (
-          <InfoCards card={card} key={card.id}/>
-      ))}
-    </div>
+    <>
+      <SearchBar
+        title=''
+        label='Search here...'
+        onChange={searchBarOnChange}
+      />
+      <div style={styles.container}>
+        {infoCards.map((card: AboutMe) => (
+          <InfoCards card={card} key={card.id} />
+        ))}
+      </div>
+    </>
   )
 }
 
