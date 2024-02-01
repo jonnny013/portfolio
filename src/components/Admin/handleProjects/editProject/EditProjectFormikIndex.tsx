@@ -37,16 +37,16 @@ const EditProjectFormikIndex = () => {
       }, 4000)
     },
     onError: error => {
-           if (
-             isAxiosError(error) &&
-             error.response &&
-             error.response.data &&
-             error.response.data.error
-           ) {
-             setNotification(`Error: ${error.response.data.error}`)
-           } else {
-             setNotification(error.message)
-           }
+        if (
+          isAxiosError(error) &&
+          error.response &&
+          error.response.data &&
+          error.response.data
+        ) {
+          setNotification(`Error: ${error.response.data}`)
+        } else {
+          setNotification(error.message)
+        }
     },
     onMutate: () => {
       setNotification('Please wait...')
