@@ -14,6 +14,12 @@ export const materialUIThemeLight = createTheme({
     mode: 'light',
     background: {
       default: '#fff',
+      paper: '#dbd3d3',
+    },
+  },
+  components: {
+    MuiCard: {
+      variants: [],
     },
   },
 })

@@ -9,9 +9,11 @@ const styles = {
     style: { fontSize: themes.fonts.helperFont },
   },
   container: {
-    width: '50%',
+    width: '60%',
     marginBottom: 20,
-
+  },
+  input: {
+    width: '50%'
   }
 }
 
@@ -27,17 +29,17 @@ interface propTypes {
 
 const SearchBar = ({title, label, onChange, props}: propTypes) => {
   return (
-    <div>
+    <div style={styles.container}>
       <h1>{title}</h1>
       <TextField
         inputProps={styles.resize}
         InputLabelProps={styles.resize}
         FormHelperTextProps={styles.helper}
-        style={styles.container}
-        onChange={(event) => onChange(event)}
+        style={styles.input}
+        onChange={event => onChange(event)}
         variant='filled'
         label={label}
-        type="search"
+        type='search'
         {...props}
       ></TextField>
     </div>

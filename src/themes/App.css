@@ -6,7 +6,7 @@
   align-items: center;
   --my-gradient: linear-gradient(to right, #765d23, #d6c591, #654d21);
   --my-gradient2: linear-gradient(180deg, #765d23, #d6c591, #654d21);
-  --background-color1: linear-gradient(to right, #2c230c, #372b2b, #2a2a28);
+  --background-color1: #1c1c3f;
   --background-color2: white;
 }
 
@@ -139,6 +139,13 @@ h2 {
   max-width: 90%;
 }
 
+.aboutMeOutterContainer {
+   width: 90vw;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
 
 /* project containers */
 .buttons {
