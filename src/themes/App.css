@@ -147,6 +147,10 @@ h2 {
     position: relative;
 }
 
+.aboutMeInner {
+  gap: 30px;
+}
+
 /* project containers */
 .buttons {
   position: relative;
@@ -311,6 +315,9 @@ h2 {
     display: none;
     color: rgba(255, 255, 255, 0.825);
   }
+  .aboutMeInner {
+  gap: 10px;
+}
 }
 
 @media only screen and (max-width: 680px) {

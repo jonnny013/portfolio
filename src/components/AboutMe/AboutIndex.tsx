@@ -12,7 +12,6 @@ const styles = {
     width: 'auto',
     display: 'flex',
     overflow: 'scroll',
-    gap: 30,
     margin: 'auto',
     alignItems: 'center',
   },
@@ -81,7 +80,7 @@ const AboutIndex = () => {
       <SearchBar title='' label='Search here...' onChange={searchBarOnChange} />
       {personal.length > 0 && <h1 style={styles.title}>About me</h1>}
       <div className='aboutMeOutterContainer'>
-        <div style={styles.container}>
+        <div style={styles.container} className='aboutMeInner'>
           {personal.map((card: AboutMe) => (
             <InfoCards card={card} key={card.id} />
           ))}
@@ -89,7 +88,7 @@ const AboutIndex = () => {
       </div>
       {certificate.length > 0 && <h1 style={styles.title}>Certifications</h1>}
       <div className='aboutMeOutterContainer'>
-        <div style={styles.container}>
+        <div style={styles.container} className='aboutMeInner'>
           {certificate.map((card: AboutMe) => (
             <InfoCards card={card} key={card.id} />
           ))}
@@ -97,7 +96,7 @@ const AboutIndex = () => {
       </div>
       {experience.length > 0 && <h1 style={styles.title}>Experience</h1>}
       <div className='aboutMeOutterContainer'>
-        <div style={styles.container}>
+        <div style={styles.container} className='aboutMeInner'>
           {experience.map((card: AboutMe) => (
             <InfoCards card={card} key={card.id} />
           ))}

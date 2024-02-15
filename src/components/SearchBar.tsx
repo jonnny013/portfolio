@@ -9,11 +9,12 @@ const styles = {
     style: { fontSize: themes.fonts.helperFont },
   },
   container: {
-    width: '60%',
+    width: '80%',
     marginBottom: 20,
   },
   input: {
-    width: '50%'
+    width: '80%',
+    maxWidth: 350
   }
 }
 
