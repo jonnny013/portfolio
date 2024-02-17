@@ -15,7 +15,8 @@ const Carousel = () => {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   let projects: Project[] = []
-
+  console.log('start:',touchStart)
+  console.log('end:',touchEnd)
   const result = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
@@ -62,10 +63,10 @@ const Carousel = () => {
   }
 
   function handleTouchEnd() {
-    if (touchStart - touchEnd > 70) {
+    if (touchEnd !== 0 && touchStart - touchEnd > 70) {
       nextProject()
     }
-    if (touchStart - touchEnd < -70) {
+    if (touchEnd !== 0 && touchStart - touchEnd < -70) {
       prevProject()
     }
   }
@@ -73,8 +74,12 @@ const Carousel = () => {
   const nextProject = () => {
     if (projectIndex < projects.length - 1) {
       setProjectIndex(projectIndex + 1)
+      setTouchEnd(0)
+      setTouchStart(0)
     } else {
       setProjectIndex(0)
+      setTouchEnd(0)
+      setTouchStart(0)
     }
     setAnimationKey(animationKey + 1)
     setTime(15)
@@ -83,8 +88,12 @@ const Carousel = () => {
   const prevProject = () => {
     if (projectIndex > 0) {
       setProjectIndex(projectIndex - 1)
+      setTouchEnd(0)
+      setTouchStart(0)
     } else {
       setProjectIndex(projects.length - 1)
+      setTouchEnd(0)
+      setTouchStart(0)
     }
     setAnimationKey(animationKey + 1)
     setTime(15)
