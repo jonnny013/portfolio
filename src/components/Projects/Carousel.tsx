@@ -15,8 +15,7 @@ const Carousel = () => {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   let projects: Project[] = []
-  console.log('start:',touchStart)
-  console.log('end:',touchEnd)
+  
   const result = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
