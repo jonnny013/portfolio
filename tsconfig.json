@@ -26,5 +26,5 @@
 
   "ts-node": {
     "esm": true // «———— enabling ESM for ts-node
-  },
+  }
 }
