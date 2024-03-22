@@ -15,7 +15,6 @@ const Carousel = () => {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   let projects: Project[] = []
-  
   const result = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
@@ -52,6 +51,7 @@ const Carousel = () => {
   function handleTouchStart(e: React.TouchEvent) {
     if (e.targetTouches[0]) {
       setTouchStart(e.targetTouches[0].clientX)
+      setTouchEnd(e.targetTouches[0].clientX)
     }
   }
 
