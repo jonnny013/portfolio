@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <UserProvider>
       <DarkModeProvider>
-        <Router>
+        <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
           <App />
         </Router>
       </DarkModeProvider>
