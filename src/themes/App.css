@@ -182,7 +182,6 @@ h2 {
 .span {
   position: absolute;
   align-self: center;
-  left: 10px;
   left: 50%;
   transform: translate(-50%);
   background: none;
