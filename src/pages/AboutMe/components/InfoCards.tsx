@@ -18,7 +18,7 @@ const InfoCards = ({ card }: { card: AboutMe }) => {
         <DialogComponent setOpen={setOpen} open={open} card={card} />
         <CardMedia
           sx={{ height: 140, width: 'auto' }}
-          image={import.meta.env.VITE_API_BASE_URL + `${card.picture}`}
+          image={card.picture}
           title={card.picDesc}
         />
 
@@ -26,7 +26,16 @@ const InfoCards = ({ card }: { card: AboutMe }) => {
           <Typography gutterBottom variant='h4' component='div'>
             {card.name}
           </Typography>
-          <Typography variant='h6' color='text.secondary'>
+          <Typography
+            variant='h6'
+            color='text.secondary'
+            sx={{
+              display: '-webkit-box',
+              overflow: 'hidden',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 4,
+            }}
+          >
             {card.description}
           </Typography>
         </CardContent>

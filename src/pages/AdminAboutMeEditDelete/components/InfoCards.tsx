@@ -69,7 +69,7 @@ const InfoCards = ({
 
       <CardMedia
         sx={{ height: 140, width: 'auto' }}
-        image={import.meta.env.VITE_API_BASE_URL + `${card.picture}`}
+        image={card.picture}
         title={card.picDesc}
       />
       <CardContent>

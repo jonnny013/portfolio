@@ -3,10 +3,10 @@ import Alert from '@mui/material/Alert'
 import themes from '../../../themes/themes'
 import PictureInput from './PictureInput'
 import { useState } from 'react'
-import { AboutMeInfoType } from '../../../types'
 import Selector from './Selector'
 import StandardFormBar from '../../../components/StandardFormBar'
 import StandardButton from '../../../components/StandardButton'
+import { AboutMeInfoType } from '../../../types'
 
 export interface InfoTypes {
   value: AboutMeInfoType
