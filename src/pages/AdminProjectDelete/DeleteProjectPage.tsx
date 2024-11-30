@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProjects } from '../../services/projectsServices'
-import type { Project } from '../../types'
+import type { Project } from '../../types/types'
 import { List, ListItem } from '@mui/material'
 import ListItemButton from '@mui/material/ListItemButton'
 import { useNavigate } from 'react-router-dom'

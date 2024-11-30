@@ -4,12 +4,11 @@ import themes from '../../../themes/themes'
 import StandardSelector from './StandardSelector'
 import Projects from '../../Projects/Projects'
 import { useFormikContext } from 'formik'
-import type { ProjectWithoutID } from '../../../types'
+import type { ProjectWithoutID } from '../../../types/types'
 import Error from '../../../components/Error'
 import StandardFormBar from '../../../components/StandardFormBar'
 import StandardCheckbox from '../../../components/StandardCheckbox'
 import StandardButton from '../../../components/StandardButton'
-
 
 type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) => void
 

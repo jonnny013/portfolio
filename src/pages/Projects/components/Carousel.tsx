@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import type { Project } from '../../../types'
+import type { Project } from '../../../types/types'
 import Projects from '../Projects'
 import { useQuery } from '@tanstack/react-query'
 import { getProjects } from '../../../services/projectsServices'

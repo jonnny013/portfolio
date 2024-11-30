@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { getSingleProject, deleteProject } from '../../../services/projectsServices'
-import type { Project } from '../../../types'
+import type { Project } from '../../../types/types'
 import { useState, useEffect, useContext } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import { Alert } from '@mui/material'
@@ -37,16 +37,16 @@ const DeletionVerificationForm = () => {
       }, 4000)
     },
     onError: error => {
-       if (
-         isAxiosError(error) &&
-         error.response &&
-         error.response.data &&
-         error.response.data
-       ) {
-         setNotification(`Error: ${error.response.data}`)
-       } else {
-         setNotification(error.message)
-       }
+      if (
+        isAxiosError(error) &&
+        error.response &&
+        error.response.data &&
+        error.response.data
+      ) {
+        setNotification(`Error: ${error.response.data}`)
+      } else {
+        setNotification(error.message)
+      }
     },
     onMutate: () => {
       setNotification('Please wait...')

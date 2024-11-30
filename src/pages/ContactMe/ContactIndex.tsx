@@ -1,4 +1,4 @@
-import type { ContactFormTypes } from '../../types'
+import type { ContactFormTypes } from '../../types/types'
 import ContactForm from './components/ContactForm'
 import { Formik } from 'formik'
 import contactFormPost from '../../services/contactService'

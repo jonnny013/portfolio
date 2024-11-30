@@ -1,5 +1,5 @@
 import { Dialog, DialogTitle } from '@mui/material'
-import type { AboutMe } from '../../../types'
+import type { AboutMe } from '../../../types/types'
 import validationSchema from '../../AdminAboutMeAdd/components/yupValidation'
 import AddAboutMeForm from '../../AdminAboutMeAdd/components/AddAboutMeForm'
 import { updateAboutMe } from '../../../services/aboutMeServices'

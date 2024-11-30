@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { getSingleProject } from '../../../services/projectsServices'
 import { Formik } from 'formik'
-import type { Project } from '../../../types'
+import type { Project } from '../../../types/types'
 import { updateProject } from '../../../services/projectsServices'
 import { useState, useEffect, useContext } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'

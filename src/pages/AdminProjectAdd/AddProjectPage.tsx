@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { isAxiosError } from 'axios'
 import UserContext from '../../contexts/userContext'
 import { addProject } from '../../services/projectsServices'
-import { ProjectWithoutID } from '../../types'
+import { ProjectWithoutID } from '../../types/types'
 import validationSchema from '../AdminProjectEdit/components/yupValidation'
 import AddProjectForm from './components/AddProjectForm'
 

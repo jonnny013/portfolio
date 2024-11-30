@@ -1,5 +1,5 @@
 import { Dialog, DialogTitle } from '@mui/material'
-import type { AboutMe } from '../../../types'
+import type { AboutMe } from '../../../types/types'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'

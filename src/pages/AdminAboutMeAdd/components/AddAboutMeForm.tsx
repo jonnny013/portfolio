@@ -6,7 +6,7 @@ import { useState } from 'react'
 import Selector from './Selector'
 import StandardFormBar from '../../../components/StandardFormBar'
 import StandardButton from '../../../components/StandardButton'
-import { AboutMeInfoType } from '../../../types'
+import { AboutMeInfoType } from '../../../types/types'
 
 export interface InfoTypes {
   value: AboutMeInfoType

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AboutMe, AboutMeWithoutID } from '../types'
+import type { AboutMe, AboutMeWithoutID } from '../types/types'
 
 const baseURL = '/api/aboutMe'
 

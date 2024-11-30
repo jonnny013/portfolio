@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProjects } from '../../services/projectsServices'
-import type { Project } from '../../types'
+import type { Project } from '../../types/types'
 import { List, ListItem } from '@mui/material'
 import ListItemButton from '@mui/material/ListItemButton'
 import { useNavigate } from 'react-router-dom'
@@ -25,7 +25,6 @@ const EditProjectPage = () => {
     }
   }
 
-
   return (
     <div>
       <h1>Which project would you like to edit?</h1>
@@ -40,7 +39,10 @@ const EditProjectPage = () => {
         }}
       >
         {projects.map(project => (
-          <ListItemButton key={project.id} onClick={() => navigate(`/editContent/${project.id}`)}>
+          <ListItemButton
+            key={project.id}
+            onClick={() => navigate(`/editContent/${project.id}`)}
+          >
             <ListItem>
               {project.project} - {project.title}
             </ListItem>

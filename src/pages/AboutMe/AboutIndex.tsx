@@ -1,5 +1,5 @@
 import { getAboutMe } from '../../services/aboutMeServices'
-import type { AboutMe } from '../../types'
+import type { AboutMe } from '../../types/types'
 import { useQuery } from '@tanstack/react-query'
 import InfoCards from './components/InfoCards'
 import { useState } from 'react'

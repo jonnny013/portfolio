@@ -1,4 +1,4 @@
-import type { Project, ProjectWithoutID } from '../types'
+import type { Project, ProjectWithoutID } from '../types/types'
 import axios from 'axios'
 
 const baseURL = '/api/projects'
@@ -8,7 +8,7 @@ export const getProjects = async () => {
   return result.data
 }
 
-export const  getSingleProject = async (id: string): Promise<Project | undefined> => {
+export const getSingleProject = async (id: string): Promise<Project | undefined> => {
   const result = await axios.get(`${baseURL}/${id}`)
   return result.data
 }
@@ -41,7 +41,7 @@ export const updateProject = async ({
   return result.data
 }
 
-export const deleteProject = async ({ id, token }: { id: string, token: string }) => {
+export const deleteProject = async ({ id, token }: { id: string; token: string }) => {
   const config = {
     headers: { Authorization: token },
   }

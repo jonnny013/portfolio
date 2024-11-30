@@ -1,4 +1,4 @@
-import type { ContactFormTypes } from '../types'
+import type { ContactFormTypes } from '../types/types'
 import axios from 'axios'
 import emailjs from '@emailjs/browser'
 
@@ -14,14 +14,9 @@ const contactFormPost = async ({ name, email, subject, message }: ContactFormTyp
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       if (serviceId && templateId && publicKey) {
-        const  text  = await emailjs.send(
-          serviceId,
-          templateId,
-          messageToSend,
-          publicKey
-        )
-          // eslint-disable-next-line no-console
-          console.log(text)
+        const text = await emailjs.send(serviceId, templateId, messageToSend, publicKey)
+        // eslint-disable-next-line no-console
+        console.log(text)
         return { backendResult: result.data, emailjsResult: text }
       } else {
         throw new Error('Unable to send')
@@ -35,7 +30,7 @@ const contactFormPost = async ({ name, email, subject, message }: ContactFormTyp
     } else {
       // eslint-disable-next-line no-console
       console.log(error)
-      return {error: 'unknown error'}
+      return { error: 'unknown error' }
     }
   }
 }

@@ -1,4 +1,4 @@
-import type { LoginFormTypes } from '../../types'
+import type { LoginFormTypes } from '../../types/types'
 import LoginForm from './components/LoginForm'
 import { Formik } from 'formik'
 import loginPost from '../../services/LoginService'

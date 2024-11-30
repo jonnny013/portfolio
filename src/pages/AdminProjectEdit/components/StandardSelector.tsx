@@ -7,12 +7,11 @@ import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import { FormHelperText, Collapse, Divider } from '@mui/material'
-import type { ProjectWithoutID } from '../../../types'
+import type { ProjectWithoutID } from '../../../types/types'
 import { useState } from 'react'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import themes from '../../../themes/themes'
-
 
 const StandardSelector = () => {
   const [open, setOpen] = useState(false)
@@ -28,7 +27,7 @@ const StandardSelector = () => {
   const [field, meta] = useField('skills')
   const showError = meta.touched && meta.error
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
+    const { name, checked } = e.target
     field.onChange({
       target: {
         name: 'skills',
@@ -37,8 +36,8 @@ const StandardSelector = () => {
           [name]: checked,
         },
       },
-    });
-  };
+    })
+  }
 
   return (
     <Box>

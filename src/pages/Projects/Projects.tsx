@@ -1,4 +1,4 @@
-import type { Project, ProjectWithoutID } from '../../types'
+import type { Project, ProjectWithoutID } from '../../types/types'
 import { renderIcon } from './components/Icons'
 import { Typography } from '@mui/material'
 import ProjectLinks from './components/ProjectLinks'
