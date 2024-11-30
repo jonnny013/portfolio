@@ -7,11 +7,11 @@ import HeaderIndex from './components/Header/HeaderIndex'
 import { useContext, useEffect } from 'react'
 import DarkModeContext from './contexts/darkContext'
 import AppRoutes from './Routes'
-
+import Footer from './components/Footer/Index'
 
 const App: React.FC = () => {
   const [{ darkMode }, dispatch] = useContext(DarkModeContext)!
- 
+
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     if (darkModeMediaQuery.matches) {
@@ -19,12 +19,13 @@ const App: React.FC = () => {
     }
   }, [dispatch])
 
-  return (  
+  return (
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />
       <div>
         <HeaderIndex />
         <AppRoutes />
+        <Footer />
       </div>
     </ThemeProvider>
   )

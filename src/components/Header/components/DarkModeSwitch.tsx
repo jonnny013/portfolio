@@ -2,7 +2,8 @@ import { styled } from '@mui/material/styles'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
 import { useContext } from 'react'
-import DarkModeContext from '../../contexts/darkContext'
+import DarkModeContext from '../../../contexts/darkContext'
+
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,

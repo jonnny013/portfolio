@@ -4,11 +4,11 @@ import MenuItem from '@mui/material/MenuItem'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import themes from '../../themes/themes'
+import themes from '../../../themes/themes'
 import DarkModeSwitch from './DarkModeSwitch'
 import Divider from '@mui/material/Divider'
 import { useContext } from 'react'
-import UserContext from '../../contexts/userContext'
+import UserContext from '../../../contexts/userContext'
 
 const SettingsMenu = () => {
   const [{ userToken }, dispatch] = useContext(UserContext)!
@@ -22,7 +22,7 @@ const SettingsMenu = () => {
     setAnchorEl(null)
   }
   const handleLogout = () => {
-    dispatch({type: 'LOGOUT'})
+    dispatch({ type: 'LOGOUT' })
   }
 
   return (

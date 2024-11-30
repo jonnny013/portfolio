@@ -1,5 +1,5 @@
-import NavBar from "./NavBar"
-import Title from "./Title"
+import NavBar from "./components/NavBar"
+import Title from "./components/Title"
 
 const HeaderIndex = () => {
   return (
