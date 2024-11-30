@@ -1,11 +1,8 @@
 import Box from '@mui/material/Box'
-import Alert from '@mui/material/Alert'
-import themes from '../../../themes/themes'
 import StandardSelector from './StandardSelector'
-import Projects from '../../Projects/Projects'
+import Projects from '../../Projects/components/Projects'
 import { useFormikContext } from 'formik'
 import type { ProjectWithoutID } from '../../../types/types'
-import Error from '../../../components/Error'
 import StandardFormBar from '../../../components/StandardFormBar'
 import StandardCheckbox from '../../../components/StandardCheckbox'
 import StandardButton from '../../../components/StandardButton'
@@ -14,41 +11,30 @@ type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) 
 
 const EditProjectForm = ({
   onSubmit,
-  notification,
+  isLoading,
 }: {
   onSubmit: FormSubmitHandler
-  notification: string | null
+  isLoading: boolean
 }) => {
   const formik = useFormikContext()
   const { values } = formik
   const project = values as ProjectWithoutID
   if (!project) {
-    return <Error />
+    return null
   }
   return (
     <form onSubmit={onSubmit}>
-      <div id='addProjectContainer'>
+      <div id='addProjectContainer' className='marginAuto row gap centered aligned'>
         <Box
           sx={{
             '& > :not(style)': {
               m: 1,
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              width: '80%',
             },
-            width: '80%',
             maxWidth: 600,
           }}
-          style={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}
+          style={{ display: 'flex', flexDirection: 'column' }}
+          className='flex'
         >
-          {notification && (
-            <Alert
-              severity={notification === 'error' ? 'error' : 'success'}
-              style={{ fontSize: themes.fonts.formTextSize }}
-            >
-              {notification}
-            </Alert>
-          )}
           <StandardFormBar id='title' label='Title' type='text' />
           <StandardFormBar id='project' label='Project Name' type='text' />
           <StandardFormBar
@@ -66,21 +52,11 @@ const EditProjectForm = ({
           <StandardSelector />
           <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
-        <Projects project={project} index={0} projectIndex={0} />
+        <div className='flex' style={{maxWidth: 'fit-content'}}>
+          <Projects project={project} index={0} projectIndex={0} />
+        </div>
       </div>
-      {notification && (
-        <Alert
-          severity={notification === 'error' ? 'error' : 'success'}
-          style={{ fontSize: themes.fonts.formTextSize }}
-        >
-          {notification}
-        </Alert>
-      )}
-      <StandardButton
-        text='Update project'
-        type='submit'
-        disabled={notification ? true : false}
-      />
+      <StandardButton text='Update project' type='submit' disabled={isLoading} />
     </form>
   )
 }

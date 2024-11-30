@@ -12,40 +12,27 @@ import themes from '../../../themes/themes'
 import { deleteAboutMe } from '../../../services/aboutMeServices'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import UserContext from '../../../contexts/userContext'
-import { isAxiosError } from 'axios'
+import { useNotificationDispatch } from '../../../contexts/notificationContext'
 
-const InfoCards = ({
-  card,
-  setNotification,
-  notification,
-}: {
-  card: AboutMe
-  setNotification: React.Dispatch<React.SetStateAction<string | undefined>>
-  notification: string | undefined
-}) => {
+const InfoCards = ({ card }: { card: AboutMe }) => {
   const [open, setOpen] = useState(false)
   const [{ userToken }] = useContext(UserContext)!
+  const notificationDispatch = useNotificationDispatch()
   const queryClient = useQueryClient()
   const deleteCardMutation = useMutation({
     mutationFn: deleteAboutMe,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
-      setNotification('Your project has been deleted!')
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'Your About Me section has been deleted!',
+      })
     },
     onError: error => {
-      if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.data &&
-        error.response.data
-      ) {
-        setNotification(`Error: ${error.response.data}`)
-      } else {
-        setNotification(error.message)
-      }
+      notificationDispatch({ type: 'ERROR', payload: error })
     },
     onMutate: () => {
-      setNotification('Please wait...')
+      notificationDispatch({ type: 'SUCCESS', payload: 'Please wait...' })
     },
   })
 
@@ -63,8 +50,6 @@ const InfoCards = ({
         setOpen={setOpen}
         open={open}
         card={card}
-        setNotification={setNotification}
-        notification={notification}
       />
 
       <CardMedia

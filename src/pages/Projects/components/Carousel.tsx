@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import type { Project } from '../../../types/types'
-import Projects from '../Projects'
-import { useQuery } from '@tanstack/react-query'
+import Projects from './Projects'
 import { getProjects } from '../../../services/projectsServices'
-
 import CarouselBottomBar from './CarouselBottomBar'
-import LoadingScreen from '../../../components/LoadingScreen'
-import Error from '../../../components/Error'
+import useQueryWithLoadingError from '../../../hooks/useQueryWithLoadingError'
 
 const Carousel = () => {
   const [projectIndex, setProjectIndex] = useState(0)
@@ -16,11 +13,11 @@ const Carousel = () => {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   let projects: Project[] = []
-  const result = useQuery({
-    queryKey: ['projects'],
-    queryFn: getProjects,
-    refetchOnWindowFocus: false,
-  })
+  const { data, isLoading, error, loadingScreen } = useQueryWithLoadingError(
+    'projects',
+    getProjects,
+    false
+  )
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -35,17 +32,15 @@ const Carousel = () => {
     return () => clearTimeout(timer)
   }, [animationKey, projectIndex, projects.length, time])
 
-  if (result.isLoading) {
-    return <LoadingScreen />
+  if (isLoading) {
+    return loadingScreen
   }
-  if (result.isError) {
-    return <Error />
+  if (error) {
+    return null
   }
 
-  if (result) {
-    if (result.data) {
-      projects = result.data
-    }
+  if (data) {
+    projects = data as Project[]
   }
 
   function handleTouchStart(e: React.TouchEvent) {

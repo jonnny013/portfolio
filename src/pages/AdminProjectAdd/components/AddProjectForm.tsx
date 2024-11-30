@@ -1,12 +1,8 @@
 import Box from '@mui/material/Box'
-import Alert from '@mui/material/Alert'
-import themes from '../../../themes/themes'
 import StandardSelector from '../../AdminProjectEdit/components/StandardSelector'
-
-import Projects from '../../Projects/Projects'
+import Projects from '../../Projects/components/Projects'
 import { useFormikContext } from 'formik'
 import type { ProjectWithoutID } from '../../../types/types'
-import Error from '../../../components/Error'
 import StandardFormBar from '../../../components/StandardFormBar'
 import StandardCheckbox from '../../../components/StandardCheckbox'
 import StandardButton from '../../../components/StandardButton'
@@ -15,17 +11,17 @@ type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) 
 
 const AddProjectForm = ({
   onSubmit,
-  notification,
+  isLoading,
 }: {
   onSubmit: FormSubmitHandler
-  notification: string | null
+  isLoading: boolean
 }) => {
   const formik = useFormikContext()
   const { values } = formik
   const project = values as ProjectWithoutID
 
   if (!project) {
-    return <Error />
+    return null
   }
 
   return (
@@ -35,8 +31,6 @@ const AddProjectForm = ({
           sx={{
             '& > :not(style)': {
               m: 1,
-              marginLeft: 'auto',
-              marginRight: 'auto',
               width: '80%',
             },
             width: '80%',
@@ -45,19 +39,10 @@ const AddProjectForm = ({
           style={{
             display: 'flex',
             flexDirection: 'column',
-            margin: 'auto',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          {notification && (
-            <Alert
-              severity={notification === 'error' ? 'error' : 'success'}
-              style={{ fontSize: themes.fonts.formTextSize }}
-            >
-              {notification}
-            </Alert>
-          )}
           <StandardFormBar id='title' label='Title' type='text' />
           <StandardFormBar id='project' label='Project Name' type='text' />
           <StandardFormBar
@@ -77,18 +62,11 @@ const AddProjectForm = ({
         </Box>
         <Projects project={project} index={0} projectIndex={0} />
       </div>
-      {notification && (
-        <Alert
-          severity={notification === 'error' ? 'error' : 'success'}
-          style={{ fontSize: themes.fonts.formTextSize }}
-        >
-          {notification}
-        </Alert>
-      )}
+
       <StandardButton
         text='Add project'
         type='submit'
-        disabled={notification ? true : false}
+        disabled={isLoading ? true : false}
       />
     </form>
   )

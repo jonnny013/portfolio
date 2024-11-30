@@ -1,11 +1,9 @@
 import { getAboutMe } from '../../services/aboutMeServices'
 import type { AboutMe } from '../../types/types'
-import { useQuery } from '@tanstack/react-query'
 import InfoCards from './components/InfoCards'
 import { useState } from 'react'
-import Error from '../../components/Error'
-import LoadingScreen from '../../components/LoadingScreen'
 import SearchBar from '../../components/SearchBar'
+import useQueryWithLoadingError from '../../hooks/useQueryWithLoadingError'
 
 const styles = {
   container: {
@@ -38,24 +36,21 @@ const AboutIndex = () => {
     setFiltered(e.target.value)
   }
   let unfilteredInfoCards: AboutMe[] = []
+  const { isLoading, data, error, loadingScreen } = useQueryWithLoadingError(
+    'aboutMeInfoCards',
+    getAboutMe,
+    false
+  )
 
-  const result = useQuery({
-    queryKey: ['aboutMeInfoCards'],
-    queryFn: getAboutMe,
-    refetchOnWindowFocus: false,
-  })
-
-  if (result.isLoading) {
-    return <LoadingScreen />
+  if (isLoading) {
+    return loadingScreen
   }
-  if (result.isError) {
-    return <Error />
+  if (error) {
+    return null
   }
 
-  if (result) {
-    if (result.data) {
-      unfilteredInfoCards = result.data
-    }
+  if (data) {
+    unfilteredInfoCards = data as AboutMe[]
   }
 
   const infoCards: AboutMe[] = unfilteredInfoCards.filter(

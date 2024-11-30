@@ -1,7 +1,7 @@
-import type { Project, ProjectWithoutID } from '../../types/types'
-import { renderIcon } from './components/Icons'
+import type { Project, ProjectWithoutID } from '../../../types/types'
+import { renderIcon } from './Icons'
 import { Typography } from '@mui/material'
-import ProjectLinks from './components/ProjectLinks'
+import ProjectLinks from './ProjectLinks'
 import VerifiedIcon from '@mui/icons-material/Verified'
 
 const Projects = ({
@@ -16,7 +16,7 @@ const Projects = ({
   return (
     <div
       style={{
-        objectFit: 'cover',
+        width: 'fit-content',
         display: projectIndex !== index ? 'none' : 'block',
         backgroundColor: '',
       }}

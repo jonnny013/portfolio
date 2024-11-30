@@ -1,13 +1,13 @@
 import { Formik } from 'formik'
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
-import { isAxiosError } from 'axios'
 import UserContext from '../../contexts/userContext'
 import { addProject } from '../../services/projectsServices'
 import { ProjectWithoutID } from '../../types/types'
 import validationSchema from '../AdminProjectEdit/components/yupValidation'
 import AddProjectForm from './components/AddProjectForm'
+import { useNotificationDispatch } from '../../contexts/notificationContext'
 
 const initialValues = {
   title: '',
@@ -33,31 +33,25 @@ const initialValues = {
 const AddProjectPage = () => {
   const navigate = useNavigate()
   const [{ userToken }] = useContext(UserContext)!
-  const [notification, setNotification] = useState<string | null>(null)
+  const notificationDispatch = useNotificationDispatch()
   const queryClient = useQueryClient()
   const newProjectMutation = useMutation({
     mutationFn: addProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
-      setNotification('Your project has been added. Redirecting...')
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'Your project has been added! Redirecting...',
+      })
       setTimeout(() => {
         navigate('/admin')
       }, 4000)
     },
     onError: error => {
-      if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.data &&
-        error.response.data
-      ) {
-        setNotification(`Error: ${error.response.data}`)
-      } else {
-        setNotification(error.message)
-      }
+      notificationDispatch({ type: 'ERROR', payload: error })
     },
     onMutate: () => {
-      setNotification('Please wait...')
+      notificationDispatch({ type: 'SUCCESS', payload: 'Please wait...' })
     },
   })
 
@@ -66,13 +60,6 @@ const AddProjectPage = () => {
       newProjectMutation.mutate({ project: values, token: userToken })
     }
   }
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setNotification(null)
-    }, 5000)
-    return () => clearTimeout(timeoutId)
-  }, [notification, setNotification])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -84,7 +71,10 @@ const AddProjectPage = () => {
       >
         {({ handleSubmit }) => (
           <>
-            <AddProjectForm onSubmit={handleSubmit} notification={notification} />
+            <AddProjectForm
+              onSubmit={handleSubmit}
+              isLoading={newProjectMutation.status === 'pending'}
+            />
           </>
         )}
       </Formik>

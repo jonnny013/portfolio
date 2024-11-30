@@ -15,6 +15,7 @@ type ResetAction = {
 type ErrorAction = {
   type: 'ERROR'
   payload: {
+    status?: number
     response?: {
       data?:
         | {

@@ -3,54 +3,51 @@ import { getSingleProject } from '../../../services/projectsServices'
 import { Formik } from 'formik'
 import type { Project } from '../../../types/types'
 import { updateProject } from '../../../services/projectsServices'
-import { useState, useEffect, useContext } from 'react'
-import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
+import { useContext, useState } from 'react'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from './yupValidation'
 import EditProjectForm from './EditProjectForm'
 
 import UserContext from '../../../contexts/userContext'
-import { isAxiosError } from 'axios'
 import LoadingScreen from '../../../components/LoadingScreen'
-import Error from '../../../components/Error'
+import useQueryWithLoadingError from '../../../hooks/useQueryWithLoadingError'
+import { useNotificationDispatch } from '../../../contexts/notificationContext'
 
 const EditProjectFormikIndex = () => {
   const navigate = useNavigate()
-  const [notification, setNotification] = useState<string | null>(null)
+  const notificationDispatch = useNotificationDispatch()
+  const [loading, setLoading] = useState(false)
   const params = useParams()
   let projectId: string
   if (params['id']) {
     projectId = params['id']
   }
-
-  const result = useQuery({
-    queryKey: ['project'],
-    queryFn: () => getSingleProject(projectId),
-  })
+  const { isLoading, data, error, loadingScreen } = useQueryWithLoadingError(
+    'project',
+    () => getSingleProject(projectId)
+  )
   const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
   const updateProjectMutation = useMutation({
     mutationFn: updateProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
-      setNotification('Your project has been updated. Redirecting...')
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'Your project has been updated! Redirecting...',
+      })
       setTimeout(() => {
         navigate('/admin')
       }, 4000)
+      setLoading(false)
     },
     onError: error => {
-      if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.data &&
-        error.response.data
-      ) {
-        setNotification(`Error: ${error.response.data}`)
-      } else {
-        setNotification(error.message)
-      }
+      notificationDispatch({ type: 'ERROR', payload: error })
+      setLoading(false)
     },
     onMutate: () => {
-      setNotification('Please wait...')
+      notificationDispatch({ type: 'SUCCESS', payload: 'Please wait...' })
+      setLoading(true)
     },
   })
 
@@ -60,25 +57,18 @@ const EditProjectFormikIndex = () => {
     }
   }
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setNotification(null)
-    }, 5000)
-    return () => clearTimeout(timeoutId)
-  }, [notification, setNotification])
-
-  if (!result) {
+  if (!data) {
     return <LoadingScreen />
   }
 
-  if (result.isLoading) {
-    return <LoadingScreen />
+  if (isLoading) {
+    return loadingScreen
   }
 
-  if (result.isError) {
-    return <Error />
+  if (error) {
+    return null
   }
-  const project: Project = result.data as Project
+  const project: Project = data as Project
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -89,7 +79,7 @@ const EditProjectFormikIndex = () => {
         validationSchema={validationSchema}
       >
         {({ handleSubmit }) => (
-          <EditProjectForm onSubmit={handleSubmit} notification={notification} />
+          <EditProjectForm onSubmit={handleSubmit} isLoading={loading} />
         )}
       </Formik>
     </div>

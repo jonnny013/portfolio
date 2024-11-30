@@ -1,4 +1,4 @@
-import type React from 'react'
+import React from 'react'
 import { materialUIThemeDark, materialUIThemeLight } from './themes/materialUI'
 import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
@@ -6,8 +6,9 @@ import './themes/App.css'
 import HeaderIndex from './components/Header/HeaderIndex'
 import { useContext, useEffect } from 'react'
 import DarkModeContext from './contexts/darkContext'
-import AppRoutes from './Routes'
-import Footer from './components/Footer/Index'
+const AppRoutes = React.lazy(() => import('./Routes'))
+import Footer from './components/footer/Index'
+import Notification from './components/Notification'
 
 const App: React.FC = () => {
   const [{ darkMode }, dispatch] = useContext(DarkModeContext)!
@@ -22,9 +23,12 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={darkMode ? materialUIThemeDark : materialUIThemeLight}>
       <CssBaseline />
-      <div>
+      <div className='column' style={{ height: '100vh' }}>
         <HeaderIndex />
-        <AppRoutes />
+        <Notification />
+        <div className='flex'>
+          <AppRoutes />
+        </div>
         <Footer />
       </div>
     </ThemeProvider>

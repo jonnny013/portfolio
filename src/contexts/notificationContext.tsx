@@ -15,7 +15,9 @@ const notificationReducer = (
     case 'ERROR': {
       let errorMessage = ''
       const data = action.payload.response?.data
-
+      if (action.payload.status === 500) {
+        return { ...state, message: 'Internal Server Error', style: 'error' }
+      }
       if (data && typeof data === 'object' && 'error' in data) {
         errorMessage = data.error ?? ''
       } else if (typeof data === 'string') {

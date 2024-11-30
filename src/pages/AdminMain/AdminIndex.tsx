@@ -36,6 +36,7 @@ const AdminIndex = () => {
           flexWrap: 'wrap',
           width: '100%',
           justifyContent: 'center',
+          gap: 20,
         }}
       >
         <List

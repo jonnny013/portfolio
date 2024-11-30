@@ -63,6 +63,13 @@ header {
   flex: 1;
 }
 
+.marginAuto {
+  margin: auto;
+}
+.gap {
+  gap: 10px
+}
+
 #titleDiv {
   flex-direction: row;
 }

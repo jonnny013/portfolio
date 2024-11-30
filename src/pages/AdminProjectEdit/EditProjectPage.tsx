@@ -26,24 +26,24 @@ const EditProjectPage = () => {
   }
 
   return (
-    <div>
+    <div className='column centered aligned'>
       <h1>Which project would you like to edit?</h1>
       <List
         sx={{
-          width: '100%',
-          bgcolor: 'background.paper',
-          position: 'relative',
-          overflow: 'auto',
+          width: '90%',
+          maxWidth: 600,
           fontSize: 20,
           '& ul': { padding: 0 },
         }}
+        className='marginAuto column centered aligned gap'
       >
         {projects.map(project => (
           <ListItemButton
             key={project.id}
             onClick={() => navigate(`/editContent/${project.id}`)}
+            sx={{ bgcolor: 'background.paper', width: '100%' }}
           >
-            <ListItem>
+            <ListItem className='marginAuto column centered aligned'>
               {project.project} - {project.title}
             </ListItem>
           </ListItemButton>

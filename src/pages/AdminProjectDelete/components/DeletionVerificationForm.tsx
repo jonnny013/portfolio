@@ -1,20 +1,17 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { getSingleProject, deleteProject } from '../../../services/projectsServices'
 import type { Project } from '../../../types/types'
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
-import { Alert } from '@mui/material'
-import themes from '../../../themes/themes'
-import Projects from '../../Projects/Projects'
+import Projects from '../../Projects/components/Projects'
 import UserContext from '../../../contexts/userContext'
-import { isAxiosError } from 'axios'
 import LoadingScreen from '../../../components/LoadingScreen'
-import Error from '../../../components/Error'
 import StandardButton from '../../../components/StandardButton'
+import { useNotificationDispatch } from '../../../contexts/notificationContext'
 
 const DeletionVerificationForm = () => {
   const navigate = useNavigate()
-  const [notification, setNotification] = useState<string | null>(null)
+  const notificationDispatch = useNotificationDispatch()
   const params = useParams()
   let projectId: string
   if (params['id']) {
@@ -31,25 +28,19 @@ const DeletionVerificationForm = () => {
     mutationFn: deleteProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
-      setNotification('Your project has been deleted! Redirecting...')
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'Your project has been deleted! Redirecting...',
+      })
       setTimeout(() => {
         navigate('/admin')
       }, 4000)
     },
     onError: error => {
-      if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.data &&
-        error.response.data
-      ) {
-        setNotification(`Error: ${error.response.data}`)
-      } else {
-        setNotification(error.message)
-      }
+      notificationDispatch({ type: 'ERROR', payload: error })
     },
     onMutate: () => {
-      setNotification('Please wait...')
+      notificationDispatch({ type: 'SUCCESS', payload: 'Please wait...' })
     },
   })
 
@@ -61,13 +52,6 @@ const DeletionVerificationForm = () => {
     }
   }
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setNotification(null)
-    }, 5000)
-    return () => clearTimeout(timeoutId)
-  }, [notification, setNotification])
-
   if (!result) {
     return <LoadingScreen />
   }
@@ -77,7 +61,7 @@ const DeletionVerificationForm = () => {
   }
 
   if (result.isError) {
-    return <Error />
+    return null
   }
   const project: Project = result.data as Project
   return (
@@ -90,21 +74,14 @@ const DeletionVerificationForm = () => {
       }}
     >
       <h1>Are you sure you want to delete this project?</h1>
-      {notification && (
-        <Alert
-          severity={notification === 'error' ? 'error' : 'success'}
-          style={{ fontSize: themes.fonts.formTextSize }}
-        >
-          {notification}
-        </Alert>
-      )}
+
       <Projects project={project} index={0} projectIndex={0} />
       <StandardButton
         onClick={handleSubmit}
         text='Delete'
         type='button'
         buttonColor='error'
-        disabled={notification ? true : false}
+        disabled={result.isLoading}
       />
       <br />
     </div>

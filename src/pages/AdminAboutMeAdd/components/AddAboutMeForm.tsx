@@ -1,6 +1,4 @@
 import Box from '@mui/material/Box'
-import Alert from '@mui/material/Alert'
-import themes from '../../../themes/themes'
 import PictureInput from './PictureInput'
 import { useState } from 'react'
 import Selector from './Selector'
@@ -22,12 +20,12 @@ type FormSubmitHandler = (event?: React.FormEvent<HTMLFormElement> | undefined) 
 
 const AddAboutMeForm = ({
   onSubmit,
-  notification,
   picturePreview,
+  isLoading
 }: {
   onSubmit: FormSubmitHandler
-  notification: string | null
   picturePreview?: string | File | undefined
+  isLoading: boolean
 }) => {
   const [picture, setPicture] = useState<null | string>('')
   const pic = () => {
@@ -60,14 +58,6 @@ const AddAboutMeForm = ({
           justifyContent: 'center',
         }}
       >
-        {notification && (
-          <Alert
-            severity={notification === 'error' ? 'error' : 'success'}
-            style={{ fontSize: themes.fonts.formTextSize }}
-          >
-            {notification}
-          </Alert>
-        )}
         <StandardFormBar id='name' label='Name' type='text' />
         <StandardFormBar
           id='description'
@@ -96,7 +86,7 @@ const AddAboutMeForm = ({
         <StandardButton
           text='Add About Me '
           type='submit'
-          disabled={notification ? true : false}
+          disabled={isLoading}
         />
       </Box>
     </form>

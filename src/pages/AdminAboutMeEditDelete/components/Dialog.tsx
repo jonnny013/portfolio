@@ -6,52 +6,39 @@ import { updateAboutMe } from '../../../services/aboutMeServices'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext } from 'react'
 import UserContext from '../../../contexts/userContext'
-import { isAxiosError } from 'axios'
 import FormikBaseIndex from '../../../components/FormikBaseIndex'
+import { useNotificationDispatch } from '../../../contexts/notificationContext'
 
 interface props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   open: boolean
   card: AboutMe
-  setNotification: React.Dispatch<React.SetStateAction<string | undefined>>
-  notification: string | undefined
 }
 
-const DialogComponent = ({
-  setOpen,
-  open,
-  card,
-  setNotification,
-  notification,
-}: props) => {
+const DialogComponent = ({ setOpen, open, card }: props) => {
   const handleClose = () => {
     setOpen(false)
   }
   const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
+  const notificationDispatch = useNotificationDispatch()
   const updateProjectMutation = useMutation({
     mutationFn: updateAboutMe,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['aboutMeInfoCards'] })
-      setNotification('Your post has been updated. ')
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'Your post has been updated. ',
+      })
       setTimeout(() => {
         setOpen(false)
       }, 4000)
     },
     onError: error => {
-      if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.data &&
-        error.response.data
-      ) {
-        setNotification(`Error: ${error.response.data}`)
-      } else {
-        setNotification(error.message)
-      }
+      notificationDispatch({ type: 'ERROR', payload: error })
     },
     onMutate: () => {
-      setNotification('Please wait...')
+      notificationDispatch({ type: 'SUCCESS', payload: 'Please wait...' })
     },
   })
 
@@ -70,7 +57,7 @@ const DialogComponent = ({
         validationSchema={validationSchema}
         formComponent={AddAboutMeForm}
         picturePreview={card.picture}
-        notification={notification}
+        isLoading={updateProjectMutation.status === 'pending'}
       />
     </Dialog>
   )
