@@ -1,11 +1,13 @@
-import NavBar from "./components/NavBar"
-import Title from "./components/Title"
-
+import NavBar from './components/NavBar'
+import Title from './components/Title'
+import './components/header.css'
 const HeaderIndex = () => {
   return (
-    <header >
-      <Title />
-      <NavBar />
+    <header>
+      <div className='row centered ninetyPercent marginAuto' id='header'>
+        <Title />
+        <NavBar />
+      </div>
     </header>
   )
 }

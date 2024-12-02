@@ -16,10 +16,9 @@ const Projects = ({
   return (
     <div
       style={{
-        width: 'fit-content',
         display: projectIndex !== index ? 'none' : 'block',
-        backgroundColor: '',
       }}
+      className='project-container'
     >
       <div className='ind-projects'>
         <div className='project-title' style={{ position: 'relative' }}>
@@ -30,7 +29,7 @@ const Projects = ({
               color='primary'
             />
           )}
-          <h2 style={{}}>{project.title}</h2>
+          <h2 style={{ color: 'white' }}>{project.title}</h2>
         </div>
         <h1 className='projectName'>{project.project}</h1>
         <Typography className='long-intro' id='mern-long-paragraph'>

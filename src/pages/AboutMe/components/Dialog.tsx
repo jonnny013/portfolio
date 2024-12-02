@@ -33,7 +33,7 @@ const DialogComponent = ({ setOpen, open, card }: props) => {
         >
           {card.picture && <img id='aboutMeImg' src={card.picture} alt={card.picDesc} />}
           <CardContent>
-            <Typography variant='h4' color='text.secondary'>
+            <Typography variant='h4' color='text.secondary' style={{whiteSpace: 'pre-wrap'}}>
               {card.description}
             </Typography>
           </CardContent>

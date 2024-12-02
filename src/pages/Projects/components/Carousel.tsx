@@ -117,6 +117,7 @@ const Carousel = () => {
           alignItems: 'center',
           gap: 10,
         }}
+        className='scroll-box'
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}

@@ -1,0 +1,145 @@
+.project-container {
+  width: fit-content;
+}
+
+.scroll-box {
+}
+.ind-projects {
+  box-shadow: var(--box-shadow);
+  width: 420px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+  margin: 0;
+}
+
+.ind-projects::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+.ind-projects p {
+  padding: 15px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.7rem;
+  flex: 1;
+}
+
+.project-focus {
+  width: 100%;
+}
+
+.ind-projects .project-focus p {
+  font-weight: 600;
+  flex: 1;
+  margin: auto;
+  text-align: center;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: auto;
+  flex: 1;
+  text-align: center;
+  overflow: scroll;
+}
+.icons i {
+  font-size: 4rem;
+}
+
+.html-icon,
+.css-icon,
+.js-icon,
+.bootstrap-icon,
+.mern-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  padding: 2px;
+}
+
+.ind-projects .icons p {
+  padding: 0;
+}
+#express-logo {
+  font-family: roboto;
+  font-size: 2.5rem;
+  margin: 0px;
+}
+.project-title {
+  text-align: center;
+  background: var(--my-gradient);
+  align-self: flex-start;
+  width: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  border-radius: 7px 7px 0 0;
+}
+
+#mern-long-paragraph {
+  padding: 8px;
+  overflow: scroll;
+}
+
+.all-projects {
+  width: 90%;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#carouselPageBar {
+  background: var(--my-gradient, gold);
+  height: 50px;
+  width: 300px;
+  border-radius: 10px;
+  display: 'flex' !important;
+  justify-content: 'space-around';
+  align-items: 'center';
+  box-shadow: var(--box-shadow);
+}
+.progressBar {
+  background: var(--my-gradient2);
+
+  width: 0%;
+}
+
+.buttons {
+  position: relative;
+  height: 30px;
+  width: 50px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: stretch;
+  padding: 0;
+  background: #f7f7f7d1;
+  text-align: center;
+border: none;
+  box-shadow: var(--box-shadow);
+}
+
+.previous-button {
+  background: var(--my-gradient2);
+  display: 'flex';
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.span {
+  position: absolute;
+  align-self: center;
+  left: 50%;
+  transform: translate(-50%);
+  background: none;
+  color: white
+}

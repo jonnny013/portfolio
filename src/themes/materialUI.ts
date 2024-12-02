@@ -13,7 +13,7 @@ export const materialUIThemeLight = createTheme({
   palette: {
     mode: 'light',
     background: {
-      default: '#fff',
+      default: '#eeeee2',
       paper: '#dbd3d3',
     },
   },

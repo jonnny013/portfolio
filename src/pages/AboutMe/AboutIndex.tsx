@@ -14,7 +14,6 @@ const styles = {
     alignItems: 'center',
   },
   mainContainer: {
-    width: '100vw',
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'center',
@@ -65,7 +64,7 @@ const AboutIndex = () => {
 
   const certificate = infoCards.filter(card => card.type === 'Certificate')
   return (
-    <div style={styles.mainContainer}>
+    <div style={styles.mainContainer} className='ninetyPercent marginAuto'>
       <SearchBar title='' label='Search here...' onChange={searchBarOnChange} />
       {personal.length > 0 && <h1 style={styles.title}>About me</h1>}
       <div className='aboutMeOutterContainer'>
@@ -75,18 +74,22 @@ const AboutIndex = () => {
           ))}
         </div>
       </div>
+      {experience.length > 0 && (
+        <>
+          <h1 style={styles.title}>Experience</h1>
+          <div className='aboutMeOutterContainer'>
+            <div style={styles.container} className='aboutMeInner'>
+              {experience.map((card: AboutMe) => (
+                <InfoCards card={card} key={card.id} />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
       {certificate.length > 0 && <h1 style={styles.title}>Certifications</h1>}
       <div className='aboutMeOutterContainer'>
         <div style={styles.container} className='aboutMeInner'>
           {certificate.map((card: AboutMe) => (
-            <InfoCards card={card} key={card.id} />
-          ))}
-        </div>
-      </div>
-      {experience.length > 0 && <h1 style={styles.title}>Experience</h1>}
-      <div className='aboutMeOutterContainer'>
-        <div style={styles.container} className='aboutMeInner'>
-          {experience.map((card: AboutMe) => (
             <InfoCards card={card} key={card.id} />
           ))}
         </div>
