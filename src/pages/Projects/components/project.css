@@ -121,7 +121,7 @@
   padding: 0;
   background: #f7f7f7d1;
   text-align: center;
-border: none;
+  border: none;
   box-shadow: var(--box-shadow);
 }
 
@@ -139,5 +139,15 @@ border: none;
   left: 50%;
   transform: translate(-50%);
   background: none;
-  color: white
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .buttons {
+    display: none;
+  }
+  .ind-projects {
+    width: 360px;
+    height: 630px;
+  }
 }
