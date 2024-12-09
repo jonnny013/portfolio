@@ -132,6 +132,23 @@ h2 {
   gap: 30px;
 }
 
+.removeLinkStyles {
+  text-decoration: none;
+  text-decoration-color: inherit !important;
+  color: inherit !important;
+}
+.removeLinkStyles:visited {
+  text-decoration: none;
+  color: inherit;
+}
+.removeLinkStyles > div {
+  color: inherit;
+}
+
+.oneHundred {
+  width: 100%;
+}
+
 /* admin */
 
 #addProjectContainer {

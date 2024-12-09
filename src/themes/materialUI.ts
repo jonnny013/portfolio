@@ -7,6 +7,19 @@ export const materialUIThemeDark = createTheme({
       default: '#1c1c3f',
     },
   },
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: 'inherit',
+          textDecoration: 'none',
+        },
+      },
+    },
+    MuiCard: {
+      variants: [],
+    },
+  },
 })
 
 export const materialUIThemeLight = createTheme({
@@ -18,6 +31,14 @@ export const materialUIThemeLight = createTheme({
     },
   },
   components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: 'inherit',
+          textDecoration: 'none',
+        },
+      },
+    },
     MuiCard: {
       variants: [],
     },

@@ -3,12 +3,13 @@ import { getProjects } from '../../services/projectsServices'
 import type { Project } from '../../types/types'
 import { List, ListItem } from '@mui/material'
 import ListItemButton from '@mui/material/ListItemButton'
-import { useNavigate } from 'react-router-dom'
 import LoadingScreen from '../../components/LoadingScreen'
+import { Link } from 'react-router-dom'
+import { useDarkModeValue } from '../../contexts/darkContext'
 
 const EditProjectPage = () => {
-  const navigate = useNavigate()
   let projects: Project[] = []
+  const { darkMode } = useDarkModeValue() as { darkMode: boolean }
 
   const result = useQuery({
     queryKey: ['projects'],
@@ -33,20 +34,26 @@ const EditProjectPage = () => {
           width: '90%',
           maxWidth: 600,
           fontSize: 20,
+          color: 'inherit',
           '& ul': { padding: 0 },
         }}
         className='marginAuto column centered aligned gap'
       >
         {projects.map(project => (
-          <ListItemButton
+          <Link
+            to={`/editContent/${project.id}`}
             key={project.id}
-            onClick={() => navigate(`/editContent/${project.id}`)}
-            sx={{ bgcolor: 'background.paper', width: '100%' }}
+            className='removeLinkStyles oneHundred'
           >
-            <ListItem className='marginAuto column centered aligned'>
-              {project.project} - {project.title}
-            </ListItem>
-          </ListItemButton>
+            <ListItemButton sx={{ bgcolor: 'background.paper', width: '100%' }}>
+              <ListItem
+                className='marginAuto column centered aligned'
+                style={{ color: darkMode ? 'white' : 'black' }}
+              >
+                {project.project} - {project.title}
+              </ListItem>
+            </ListItemButton>
+          </Link>
         ))}
       </List>
     </div>

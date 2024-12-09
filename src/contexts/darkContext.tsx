@@ -1,8 +1,9 @@
-import { Dispatch, ReactNode, createContext, useReducer } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react'
 
- type DarkModeAction = { type: 'TOGGLE_DARK' } | { type: 'ClIENT_PREFERENCE' }
+type DarkModeAction = { type: 'TOGGLE_DARK' } | { type: 'ClIENT_PREFERENCE' }
 
- const darkModeReducer = (state: { darkMode: boolean }, action: DarkModeAction) => {
+const darkModeReducer = (state: { darkMode: boolean }, action: DarkModeAction) => {
   switch (action.type) {
     case 'TOGGLE_DARK':
       return { ...state, darkMode: !state.darkMode }
@@ -29,6 +30,15 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </DarkModeContext.Provider>
   )
+}
+export const useDarkModeValue = () => {
+  const darkModeAndDispatch = useContext(DarkModeContext)
+  if (darkModeAndDispatch) return darkModeAndDispatch[0]
+}
+
+export const useDarkModeDispatch = () => {
+  const darkModeAndDispatch = useContext(DarkModeContext)
+  if (darkModeAndDispatch) return darkModeAndDispatch[1]
 }
 
 export default DarkModeContext

@@ -7,24 +7,20 @@ import { useContext, useState } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import validationSchema from './yupValidation'
 import EditProjectForm from './EditProjectForm'
-
 import UserContext from '../../../contexts/userContext'
 import LoadingScreen from '../../../components/LoadingScreen'
 import useQueryWithLoadingError from '../../../hooks/useQueryWithLoadingError'
 import { useNotificationDispatch } from '../../../contexts/notificationContext'
+import { Link } from 'react-router-dom'
 
 const EditProjectFormikIndex = () => {
   const navigate = useNavigate()
   const notificationDispatch = useNotificationDispatch()
   const [loading, setLoading] = useState(false)
-  const params = useParams()
-  let projectId: string
-  if (params['id']) {
-    projectId = params['id']
-  }
-  const { isLoading, data, error, loadingScreen } = useQueryWithLoadingError(
-    'project',
-    () => getSingleProject(projectId)
+  const { id } = useParams()
+
+  const { isLoading, data, error } = useQueryWithLoadingError('project', () =>
+    getSingleProject(id as string)
   )
   const [{ userToken }] = useContext(UserContext)!
   const queryClient = useQueryClient()
@@ -57,22 +53,23 @@ const EditProjectFormikIndex = () => {
     }
   }
 
-  if (!data) {
+  if (!data || isLoading) {
     return <LoadingScreen />
-  }
-
-  if (isLoading) {
-    return loadingScreen
   }
 
   if (error) {
     return null
   }
   const project: Project = data as Project
+  if (project.id !== id) {
+    return null
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h1>Edit project</h1>
+      <Link to='/editContent' className='removeLinkStyles'>
+        <h1>Edit project</h1>
+      </Link>
       <Formik
         initialValues={project}
         onSubmit={onSubmit}
