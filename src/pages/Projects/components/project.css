@@ -12,6 +12,7 @@
   align-items: center;
   height: 550px;
   margin: 0;
+  background-color: #08080838;
 }
 
 .ind-projects::-webkit-scrollbar {

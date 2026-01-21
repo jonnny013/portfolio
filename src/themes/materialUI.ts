@@ -4,7 +4,8 @@ export const materialUIThemeDark = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#1c1c3f',
+      default: '#3a3a4c',
+      paper: '#000007',
     },
   },
   components: {
