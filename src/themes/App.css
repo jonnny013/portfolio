@@ -4,14 +4,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* --my-gradient: linear-gradient(to right, #765d23, #d6c591, #654d21);
-  --my-gradient2: linear-gradient(180deg, #765d23, #d6c591, #654d21); */
-  --my-gradient: rgb(41, 40, 40);
-  --my-gradient2: rgb(41, 40, 40);
-  --background-color1: #1c1c3f;
-  --background-color2: white;
-  --test: #eeeee2;
-  --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  --my-gradient: linear-gradient(90deg, #02112b, #062a5a);
+  --my-gradient2: linear-gradient(180deg, #02112b, #062a5a);
+  --background-color1: #06183a;
+  --background-color2: #eef6ff;
+  --test: #eaf4ff;
+  --box-shadow: rgba(2, 6, 23, 0.15) 0px 6px 18px 0px;
 }
 
 html {
@@ -120,7 +118,7 @@ h2 {
   max-width: 90%;
 }
 
-.aboutMeOutterContainer {
+.aboutMeOuterContainer {
   width: 90vw;
   overflow: scroll;
   display: flex;

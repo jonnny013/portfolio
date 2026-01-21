@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import StandardSelector from './StandardSelector'
-import Projects from '../../Projects/components/Projects'
+import ProjectCard from '../../Projects/components/ProjectCard'
 import { useFormikContext } from 'formik'
 import type { ProjectWithoutID } from '../../../types/types'
 import StandardFormBar from '../../../components/StandardFormBar'
@@ -52,8 +52,8 @@ const EditProjectForm = ({
           <StandardSelector />
           <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
-        <div className='flex' style={{maxWidth: 'fit-content'}}>
-          <Projects project={project} index={0} projectIndex={0} />
+        <div className='flex' style={{ maxWidth: 'fit-content' }}>
+          <ProjectCard project={project} />
         </div>
       </div>
       <StandardButton text='Update project' type='submit' disabled={isLoading} />

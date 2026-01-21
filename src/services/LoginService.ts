@@ -5,8 +5,14 @@ const baseURL = '/api/login'
 
 const loginPost = async ({ username, password }: LoginFormTypes) => {
   const user = { username, password }
-  const result = await axios.post(baseURL, user)
-  return result.data
+  try {
+    const result = await axios.post(baseURL, user)
+    return result.data
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err)
+    throw err
+  }
 }
 
 export default loginPost

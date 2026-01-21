@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import StandardSelector from '../../AdminProjectEdit/components/StandardSelector'
-import Projects from '../../Projects/components/Projects'
+import ProjectCard from '../../Projects/components/ProjectCard'
 import { useFormikContext } from 'formik'
 import type { ProjectWithoutID } from '../../../types/types'
 import StandardFormBar from '../../../components/StandardFormBar'
@@ -60,7 +60,7 @@ const AddProjectForm = ({
           <StandardSelector />
           <StandardCheckbox label='Is this project recommended?' id='recommended' />
         </Box>
-        <Projects project={project} index={0} projectIndex={0} />
+        <ProjectCard project={project} />
       </div>
 
       <StandardButton

@@ -29,7 +29,7 @@ const styles = {
 const AboutIndex = () => {
   const [filtered, setFiltered] = useState('')
   const searchBarOnChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     e.preventDefault()
     setFiltered(e.target.value)
@@ -38,7 +38,7 @@ const AboutIndex = () => {
   const { isLoading, data, error, loadingScreen } = useQueryWithLoadingError(
     'aboutMeInfoCards',
     getAboutMe,
-    false
+    false,
   )
 
   if (isLoading) {
@@ -56,7 +56,7 @@ const AboutIndex = () => {
     a =>
       a.description.toLowerCase().match(filtered.toLowerCase()) ||
       a.name.toLowerCase().match(filtered.toLowerCase()) ||
-      a.type.toLowerCase().match(filtered.toLowerCase())
+      a.type.toLowerCase().match(filtered.toLowerCase()),
   )
   const personal = infoCards.filter(card => card.type === 'Personal')
 
@@ -67,7 +67,7 @@ const AboutIndex = () => {
     <div style={styles.mainContainer} className='ninetyPercent marginAuto'>
       <SearchBar title='' label='Search here...' onChange={searchBarOnChange} />
       {personal.length > 0 && <h1 style={styles.title}>About me</h1>}
-      <div className='aboutMeOutterContainer'>
+      <div className='aboutMeOuterContainer'>
         <div style={styles.container} className='aboutMeInner'>
           {personal.map((card: AboutMe) => (
             <InfoCards card={card} key={card.id} />
@@ -77,7 +77,7 @@ const AboutIndex = () => {
       {experience.length > 0 && (
         <>
           <h1 style={styles.title}>Experience</h1>
-          <div className='aboutMeOutterContainer'>
+          <div className='aboutMeOuterContainer'>
             <div style={styles.container} className='aboutMeInner'>
               {experience.map((card: AboutMe) => (
                 <InfoCards card={card} key={card.id} />
@@ -87,7 +87,7 @@ const AboutIndex = () => {
         </>
       )}
       {certificate.length > 0 && <h1 style={styles.title}>Certifications</h1>}
-      <div className='aboutMeOutterContainer'>
+      <div className='aboutMeOuterContainer'>
         <div style={styles.container} className='aboutMeInner'>
           {certificate.map((card: AboutMe) => (
             <InfoCards card={card} key={card.id} />

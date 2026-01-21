@@ -4,22 +4,9 @@ import { Typography } from '@mui/material'
 import ProjectLinks from './ProjectLinks'
 import VerifiedIcon from '@mui/icons-material/Verified'
 
-const Projects = ({
-  project,
-  index,
-  projectIndex,
-}: {
-  project: Project | ProjectWithoutID
-  index: number
-  projectIndex: number
-}) => {
+const ProjectCard = ({ project }: { project: Project | ProjectWithoutID }) => {
   return (
-    <div
-      style={{
-        display: projectIndex !== index ? 'none' : 'block',
-      }}
-      className='project-container'
-    >
+    <div className='project-container'>
       <div className='ind-projects'>
         <div className='project-title' style={{ position: 'relative' }}>
           {project.recommended && (
@@ -39,7 +26,7 @@ const Projects = ({
           <p className='main-focus-paragraph'>Main focus:</p>
           <div className='icons'>
             {Object.entries(project.skills).map(
-              ([skill, value], index) => value && renderIcon(skill, index)
+              ([skill, value], index) => value && renderIcon(skill, index),
             )}
           </div>
         </div>
@@ -49,4 +36,4 @@ const Projects = ({
   )
 }
 
-export default Projects
+export default ProjectCard

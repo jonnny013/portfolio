@@ -3,7 +3,7 @@ import { getSingleProject, deleteProject } from '../../../services/projectsServi
 import type { Project } from '../../../types/types'
 import { useContext } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
-import Projects from '../../Projects/components/Projects'
+import Projects from '../../Projects/components/ProjectCard'
 import UserContext from '../../../contexts/userContext'
 import LoadingScreen from '../../../components/LoadingScreen'
 import StandardButton from '../../../components/StandardButton'
@@ -75,7 +75,7 @@ const DeletionVerificationForm = () => {
     >
       <h1>Are you sure you want to delete this project?</h1>
 
-      <Projects project={project} index={0} projectIndex={0} />
+      <Projects project={project} />
       <StandardButton
         onClick={handleSubmit}
         text='Delete'
